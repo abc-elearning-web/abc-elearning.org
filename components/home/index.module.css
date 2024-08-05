@@ -2,21 +2,6 @@
   min-height: 100vh;
 }
 
-.footer {
-  display: flex;
-  flex: 1;
-  padding: 2rem 0;
-  justify-content: space-between;
-  background-color: #282f3a;
-  color: white;
-}
-
-.footerContent {
-  display: flex;
-  flex: 1;
-  padding: 2rem 0;
-}
-
 .banner {
   background-image: url(/images/banner.jpg);
   background-size: cover;
@@ -34,23 +19,6 @@
   height: 100%;
 }
 
-.header {
-  background-color: #282f3a;
-  height: 50px;
-}
-
-.homeLogo {
-  width: 48px;
-}
-.flex {
-  display: flex;
-}
-.flexAICenter {
-  align-items: center;
-}
-.flexJCSB {
-  justify-content: space-between;
-}
 .sectionItem {
   display: flex;
   padding: 32px 0;

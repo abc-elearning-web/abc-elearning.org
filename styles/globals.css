@@ -2,8 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
 a {
@@ -67,4 +66,20 @@ a {
   .container, .container-lg, .container-md, .container-sm, .container-xl {
     max-width: 1140px;
   }
+}
+
+.flex {
+  display: flex;
+}
+.flex-ai-center {
+  align-items: center;
+}
+.flex-jc-sb {
+  justify-content: space-between;
+}
+.flex-ai-start {
+  justify-items: flex-start;
+}
+.home-logo {
+  width: 48px;
 }
