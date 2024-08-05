@@ -1,0 +1,9 @@
+.item {
+    padding-top: 100px;
+}
+@media (max-width: 576px) {
+    .item {
+        flex-direction: column;
+        padding-top: 20px;
+    }
+}

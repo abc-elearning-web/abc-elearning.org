@@ -6,10 +6,10 @@ const Home = ({items}) => {
             <div className={styles.banner}>
                 <div className={styles.bannerT} style={{zIndex: 1}}></div>
             </div>
-            <div className={'container'}>
+            <div className={'container '}>
                 { items.map((item) => {
                     return (
-                        <section key={'section-' + item.id} className={[item.position === 'left' ? styles.left : styles.right, styles.sectionItem, styles.flexAICenter, styles.flexJCSB].join(' ')}>
+                        <section key={'section-' + item.id} className={[item.position === 'left' ? styles.left : styles.right, styles.sectionItem, styles.flexAICenter, styles.flexJCSB].join(' ') + ' ' + styles.item}>
                             <div style={{ flex: 1 }}>
                                 <h2>{item.title}</h2>
                                 <div style={{ height: 20 }}></div>
