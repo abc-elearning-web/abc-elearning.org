@@ -16,7 +16,6 @@ const MyHead = ({ title, description, image }) => {
             <link rel="icon" href="/favicon.ico" />
             <link rel="apple-touch-icon" href="/images/logo.png" />
             <meta charSet="UTF-8" />
-            <meta name='robots' content='noindex,follow' />
         </Head>
     );
 }
