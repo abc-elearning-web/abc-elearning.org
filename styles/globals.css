@@ -15,12 +15,56 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
   body {
     color: white;
-    background: black;
+    background: white;
+  }
+} */
+
+.start-button {
+  padding: 15px 70px;
+  background-image: linear-gradient(to right, #5376e7, #7d4ae4);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 26px;
+  transition: 0.3s;
+  font-weight: 700;
+  background-color: #4a44f2;
+  color: #fff;
+  border-radius: 5px;
+  white-space: nowrap;
+  border: none;
+}
+
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container, .container-sm {
+      max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container, .container-md, .container-sm {
+      max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container, .container-lg, .container-md, .container-sm {
+      max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 1140px;
   }
 }
