@@ -1,9 +1,19 @@
 .item {
     padding-top: 100px;
 }
+.image {
+    width: 100%;
+    padding-bottom: 30%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 16px;
+}
 @media (max-width: 576px) {
     .item {
         flex-direction: column;
         padding-top: 20px;
+    }
+    .image {
+        padding-bottom: 52%;
     }
 }
