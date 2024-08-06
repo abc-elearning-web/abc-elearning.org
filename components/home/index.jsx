@@ -19,6 +19,7 @@ const Home = ({items}) => {
                             </div>
                             <div style={{ width: 100 }}></div>
                             <div style={{ 
+                                flex: 1,
                                 backgroundImage: `url(${item.image})`,
                             }} className={styles.itemImage}>
                                 {/* <img style={{ width: '100%', borderRadius: 12 }} src={item.image} alt={item.title} href={item.url} /> */}
