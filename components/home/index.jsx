@@ -18,8 +18,10 @@ const Home = ({items}) => {
                                 <a className='start-button' target='_blank' href={item.url}>Get Started</a>
                             </div>
                             <div style={{ width: 100 }}></div>
-                            <div style={{ flex: 1 }}>
-                                <img style={{ width: '100%', borderRadius: 12 }} src={item.image} alt={item.title} href={item.url} />
+                            <div style={{ 
+                                backgroundImage: `url(${item.image})`,
+                            }} className={styles.itemImage}>
+                                {/* <img style={{ width: '100%', borderRadius: 12 }} src={item.image} alt={item.title} href={item.url} /> */}
                             </div>
                         </section>
                     );

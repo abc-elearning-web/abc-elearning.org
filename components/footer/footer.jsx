@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from './index.module.css';
 
 const Footer = () => {
@@ -5,7 +6,7 @@ const Footer = () => {
         <footer className={styles.footer}>
             <div className={[styles.footerContent, 'container'].join(' ')}>
                 <div style={{ flex: 1 }}>
-                    <a href='/'><img src='/images/logo.png' alt='logo' width='100px' /></a>
+                    <a href='/'><Image src='/images/logo.png' alt='logo' width={100} height={100} /></a>
                 </div>
                 <div style={{ flex: 1, flexDirection: 'column', fontSize: 18 }} className={'flex flex-ai-start'}>
                     <div><strong>Contact Us</strong></div>
