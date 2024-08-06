@@ -13,7 +13,7 @@ const Blog = ({ post }) => {
             </div>
             <div style={{ height: 100 }}></div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <a className='start-button' target='_blank' href={'https://passemall.com/'}>Get Started</a>
+                <a className='start-button' target='_blank' href={'https://passemall.com/about-us'}>Get Started</a>
             </div>
             <div style={{ height: 100 }}></div>
         </div>
