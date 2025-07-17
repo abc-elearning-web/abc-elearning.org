@@ -1,0 +1,30 @@
+export interface IAppInfo {
+  id: number;
+  appId: number;
+  appName: string;
+  appNameId: string;
+  categoryId: number;
+  appShortName: string;
+  linkAndroid: string;
+  linkIos: string;
+  pageLinkDownload: string;
+  bucket: string;
+  descriptionSEO: string;
+  keywordSEO: string;
+  title: string;
+  description: string;
+  hasState: boolean;
+  totalQuestion: number;
+  usingFeaturePro: boolean;
+  usingMathJax: boolean;
+  parentId: number;
+  stateName?: string;
+  stateId?: number;
+  ip?: string;
+  currentTime?: number;
+  rank_math_title?: string;
+  oneWeekPro?: string;
+  oneMonthPro?: string;
+  oneYearPro?: string;
+  oneTimePro?: string;
+}

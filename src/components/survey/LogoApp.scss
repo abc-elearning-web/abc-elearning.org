@@ -1,0 +1,27 @@
+.logo-app-0 {
+    display: flex;
+
+    > img.logo {
+        display: block;
+    }
+
+    > div {
+        margin-left: 6px;
+        p,
+        span {
+            display: block;
+            margin: 0;
+            font-size: 16px;
+            line-height: 20px;
+        }
+
+        p {
+            text-transform: uppercase;
+            font-family: "Poppins-SemiBold";
+        }
+
+        span {
+            font-style: italic;
+        }
+    }
+}
