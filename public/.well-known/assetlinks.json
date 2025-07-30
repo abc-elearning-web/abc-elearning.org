@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.sima.ccna",
+      "sha256_cert_fingerprints": [
+        "A6:AB:37:8D:CB:52:18:11:85:04:FB:AF:D9:45:15:5B:AB:0C:74:11:28:E6:55:24:B4:4C:1C:C1:9B:BF:CD:4D"
+      ]
+    }
+  }
+]
