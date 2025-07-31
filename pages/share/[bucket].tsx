@@ -283,7 +283,7 @@ const Share = ({ appConfig, query }: ShareProps) => {
                         )}
 
                         <div className="space-y-4">
-                            {isLoading && (
+                            {!isLoading && (
                                 <>
                                     <button
                                         onClick={() => window.location.href = deeplink}
