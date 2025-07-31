@@ -1,144 +1,348 @@
 import fs from 'fs';
 import { GetServerSidePropsContext } from 'next';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Head from 'next/head';
+import Image from 'next/image';
 
-const Share = ({ appConfig, query }: { appConfig: any, query: string }) => {
+// Define types
+interface AppConfig {
+    webConfig: {
+        linkIos: string;
+    };
+    android: {
+        name: string;
+        packageName: string;
+        assets?: {
+            appImages?: {
+                logo?: string;
+            };
+        };
+    };
+    ios: {
+        name: string;
+        packageName: string;
+        assets?: {
+            appImages?: {
+                logo?: string;
+            };
+        };
+        colors: {
+            primary: string,
+            secondary: string
+        }
+    };
+    bucket: string;
+    appName?: string;
+    appIcon?: string;
+}
+
+interface ShareProps {
+    appConfig: AppConfig;
+    query: string;
+}
+
+interface BrowserInfo {
+    isIOS: boolean;
+    isAndroid: boolean;
+    isChrome: boolean;
+    isFirefox: boolean;
+    isSafari: boolean;
+    isCriOS: boolean;
+    isIOSVersion: boolean;
+}
+
+// Constants
+const IOS_REDIRECT_TIMEOUT = 250;
+const ANDROID_REDIRECT_TIMEOUT = 25;
+
+// Model để lấy thông tin thiết bị và xử lý chuyển hướng
+class DeeplinkHandler {
+    private userAgent: string;
+    private browserInfo: BrowserInfo;
+
+    constructor() {
+        if (typeof window !== 'undefined') {
+            this.userAgent = navigator.userAgent;
+            this.browserInfo = this.detectBrowser();
+        } else {
+            this.userAgent = '';
+            this.browserInfo = {
+                isIOS: false,
+                isAndroid: false,
+                isChrome: false,
+                isFirefox: false,
+                isSafari: false,
+                isCriOS: false,
+                isIOSVersion: false
+            };
+        }
+    }
+
+    private detectBrowser(): BrowserInfo {
+        return {
+            isIOS: /iPhone|iPad|iPod/i.test(this.userAgent),
+            isAndroid: /Android/i.test(this.userAgent),
+            isChrome: /Chrome/i.test(this.userAgent),
+            isFirefox: /Firefox/i.test(this.userAgent),
+            isSafari: /Safari/i.test(this.userAgent),
+            isCriOS: /CriOS/i.test(this.userAgent),
+            isIOSVersion: /Version\/(9|10|11|12)/i.test(this.userAgent)
+        };
+    }
+
+    public getBrowserInfo(): BrowserInfo {
+        return this.browserInfo;
+    }
+
+    public launchApp(
+        deeplink: string,
+        iosLink: string,
+        playStoreLink: string,
+        androidIntent: string,
+        onComplete: () => void,
+        onError: (error: Error) => void
+    ): void {
+        try {
+            if (this.browserInfo.isIOS) {
+                this.iosLaunch(deeplink, iosLink, onComplete);
+            } else if (this.browserInfo.isAndroid) {
+                this.androidLaunch(deeplink, playStoreLink, androidIntent, onComplete);
+            } else {
+                window.location.href = iosLink;
+                onComplete();
+            }
+        } catch (error) {
+            console.error('Redirect error:', error);
+            onError(error instanceof Error ? error : new Error('Unknown error'));
+        }
+    }
+
+    private iosLaunch(deepLink: string, iosStoreLink: string, onComplete: () => void): void {
+        if (this.browserInfo.isCriOS || (this.browserInfo.isSafari && this.browserInfo.isIOSVersion)) {
+            console.log('launchWekitApproach');
+            this.launchWekitApproach(deepLink, iosStoreLink, onComplete);
+        } else {
+            console.log('launchIframeApproach');
+            this.launchIframeApproach(deepLink, iosStoreLink, onComplete);
+        }
+    }
+
+    private androidLaunch(deepLink: string, playStoreLink: string, androidIntent: string, onComplete: () => void): void {
+        if (this.browserInfo.isChrome) {
+            console.log('launchChromeApproach');
+            window.location.href = androidIntent;
+            setTimeout(onComplete, ANDROID_REDIRECT_TIMEOUT);
+        } else if (this.browserInfo.isFirefox) {
+            console.log('launchWekitApproach');
+            this.launchWekitApproach(deepLink, playStoreLink, onComplete);
+        } else {
+            console.log('launchIframeApproach');
+            this.launchIframeApproach(deepLink, playStoreLink, onComplete);
+        }
+    }
+
+    private launchWekitApproach(url: string, fallback: string, onComplete: () => void): void {
+        window.location.href = url;
+        setTimeout(() => {
+            window.location.href = fallback;
+            onComplete();
+        }, IOS_REDIRECT_TIMEOUT);
+    }
+
+    private launchIframeApproach(url: string, fallback: string, onComplete: () => void): void {
+        const iframe = document.createElement('iframe');
+        iframe.style.border = 'none';
+        iframe.style.width = '1px';
+        iframe.style.height = '1px';
+        iframe.onload = () => {
+            window.location.href = url;
+        };
+        iframe.src = url;
+
+        document.body.appendChild(iframe);
+
+        setTimeout(() => {
+            window.location.href = fallback;
+            onComplete();
+        }, ANDROID_REDIRECT_TIMEOUT);
+    }
+}
+
+const Share = ({ appConfig, query }: ShareProps) => {
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const [deviceInfo, setDeviceInfo] = useState<BrowserInfo | null>(null);
+
     const iosLink = appConfig.webConfig.linkIos;
     const androidPackageName = appConfig.android.packageName;
     const bucket = appConfig.bucket;
+    const appName = appConfig.android.name || 'Application';
     const playStoreLink = `https://market.android.com/details?id=${androidPackageName}`;
 
-    const deeplink =  bucket + '://' + query;
+    const deeplink = bucket + '://abc-app/' + query;
     const androidIntent = `intent://${query}#Intent;scheme=${bucket};package=${androidPackageName};end;`;
+
     useEffect(() => {
-        if(isIOS()) {
-            iosLaunch(deeplink, iosLink);
-        } else if(isAndroid()) {
-            androidLaunch(deeplink, playStoreLink, androidIntent);
-        } else {
-            window.location.href = iosLink;
-        }
-        document.getElementById('share-container').innerHTML = JSON.stringify({
-            userAgent: getUserAgent(),
+        // Avoid SSR issues
+        if (typeof window === 'undefined') return;
+
+        const deeplinkHandler = new DeeplinkHandler();
+        const browserInfo = deeplinkHandler.getBrowserInfo();
+
+        // Save browser info to state for use in render
+        setDeviceInfo(browserInfo);
+
+        // Launch app using the model
+        deeplinkHandler.launchApp(
+            deeplink,
             iosLink,
             playStoreLink,
             androidIntent,
-            isIOS: isIOS(),
-            isAndroid: isAndroid(),
-            isChrome: isChrome(),
-            isFirefox: isFirefox(),
-            isSafari: isSafari(),
-            isCriOS: isCriOS(),
-            isIOSVersion: isIOSVersion(),
-            deeplink,
-        });
-    }, []);
+            () => setIsLoading(false),
+            (error) => {
+                console.error('Launch error:', error);
+                setError('Failed to open application. Please try again.');
+                setIsLoading(false);
+            }
+        );
+
+        // Only show debug info in development
+        if (process.env.NODE_ENV === 'development') {
+            const debugContainer = document.getElementById('debug-info');
+            if (debugContainer) {
+                debugContainer.innerHTML = JSON.stringify({
+                    userAgent: navigator.userAgent,
+                    iosLink,
+                    playStoreLink,
+                    androidIntent,
+                    ...browserInfo,
+                    deeplink,
+                }, null, 2);
+                debugContainer.style.display = 'block';
+            }
+        }
+    }, [deeplink, iosLink, playStoreLink, androidIntent]);
+
+    // Function to handle store redirect
+    const handleStoreRedirect = () => {
+        if (deviceInfo?.isIOS) {
+            window.location.href = iosLink;
+        } else {
+            window.location.href = playStoreLink;
+        }
+    };
+
+    // Lấy logo từ appConfig nếu có
+    const appLogo = appConfig.android?.assets?.appImages?.logo || appConfig.appIcon;
+
+    // Lấy màu sắc từ appConfig
+    const primaryColor = appConfig.ios?.colors?.primary || '#E3A651';
+
     return (
         <>
-            <div id="share-container">
-                Hello world!
+            <Head>
+                <title>Opening {appName}</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <meta name="description" content={`Open ${appName} or download from app store`} />
+            </Head>
+            <div className="min-h-screen bg-gradient-to-b from-primary-50 to-primary-100 flex flex-col items-center justify-center p-4">
+
+                <div className="w-full max-w-md bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div className="p-6 text-center">
+                        {appLogo && (
+                            <div className="flex justify-center mb-4">
+                                <div className="w-20 h-20 relative rounded-xl overflow-hidden">
+                                    <img
+                                        src={appLogo}
+                                        alt={`${appName} icon`}
+                                        className="object-cover"
+                                    />
+                                </div>
+                            </div>
+                        )}
+
+                        <h1 className="text-2xl font-bold text-gray-800 mb-2">
+                            {appName}
+                        </h1>
+                        <h2 className="text-xl font-bold text-gray-800 mb-2">
+                            {isLoading ? 'Opening App...' : `Open ${appName}`}
+                        </h2>
+                        {isLoading ? (
+                            <div className="flex justify-center my-6">
+                                <div
+                                    className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2"
+                                    style={{ borderColor: primaryColor }}
+                                ></div>
+                            </div>
+                        ) : error ? (
+                            <div className="text-red-500 mb-6">{error}</div>
+                        ) : (
+                            <p className="text-gray-600 mb-6">
+                                If the app didn't open automatically, please click the button below.
+                            </p>
+                        )}
+
+                        <div className="space-y-4">
+                            {isLoading && (
+                                <>
+                                    <button
+                                        onClick={() => window.location.href = deeplink}
+                                        className="w-full py-3 px-4 text-white font-medium rounded-lg transition duration-200 flex items-center justify-center"
+                                        style={{ backgroundColor: primaryColor }}
+                                    >
+                                        Open App
+                                    </button>
+
+                                    <div className="relative flex items-center justify-center">
+                                        <div className="flex-grow border-t border-gray-300"></div>
+                                        <span className="flex-shrink mx-4 text-gray-500">or</span>
+                                        <div className="flex-grow border-t border-gray-300"></div>
+                                    </div>
+
+                                    <button
+                                        onClick={handleStoreRedirect}
+                                        className="w-full py-3 px-4 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium rounded-lg transition duration-200 flex items-center justify-center"
+                                    >
+                                        Download App
+                                    </button>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                </div>
+                <div className='mt-3'>
+                    <span>Email:</span>
+                    <a href="mailto:support@abc-elearning.org">support@abc-elearning.org</a>
+                </div>
             </div>
         </>
     );
 };
 
-const getUserAgent = () => {
-    return navigator.userAgent;
-}
-
-const isIOS = () => {
-    return /iPhone|iPad|iPod/i.test(getUserAgent());
-}
-
-const isAndroid = () => {
-    return /Android/i.test(getUserAgent());
-}
-
-const isChrome = () => {
-    return /Chrome/i.test(getUserAgent());
-}
-
-const isFirefox = () => {
-    return /Firefox/i.test(getUserAgent());
-}
-
-const isSafari = () => {
-    return /Safari/i.test(getUserAgent());
-}
-
-const isCriOS = () => {
-    return /CriOS/i.test(getUserAgent());
-}
-
-const isIOSVersion = () => {
-    return /Version\/(9|10|11|12)/i.test(getUserAgent());
-}
-
-const iosLaunch = (deepLink: string, iosStoreLink: string) => {
-    // chrome and safari on ios >= 9 don't allow the iframe approach
-    if (isCriOS() || (isSafari() && isIOSVersion())
-    ) {
-        console.log('launchWekitApproach');
-        launchWekitApproach(deepLink, iosStoreLink);
-    } else {
-        console.log('launchIframeApproach');
-        launchIframeApproach(deepLink, iosStoreLink);
-    }
-}
-
-const androidLaunch = (deepLink: string, playStoreLink: string, androidIntent: string) => {
-    if (isChrome()) {
-        console.log('launchChromeApproach');
-        document.location = androidIntent;
-    } else if (isFirefox()) {
-        console.log('launchWekitApproach');
-        launchWekitApproach(deepLink, playStoreLink);
-    } else {
-        console.log('launchIframeApproach');
-        launchIframeApproach(deepLink, playStoreLink);
-    }
-}
-
-const launchWekitApproach = (url: string, fallback: string) => {
-    document.location = url;
-    setTimeout(function () {
-        document.location = fallback;
-    }, 250);
-}
-
-const launchIframeApproach = (url: string, fallback: string) => {
-    var iframe = document.createElement('iframe');
-    iframe.style.border = 'none';
-    iframe.style.width = '1px';
-    iframe.style.height = '1px';
-    iframe.onload = function () {
-        document.location = url;
-    };
-    iframe.src = url;
-
-    window.onload = function () {
-        document.body.appendChild(iframe);
-
-        setTimeout(function () {
-            window.location.href = fallback;
-        }, 25);
-    };
-}
-
 export default Share;
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-    const { bucket } = context.params as { bucket: string };
-    const { query } = context.query as { query: string };
-    const data = fs.readFileSync('public/json/app_config.json').toString();
-    const appConfigData = JSON.parse(data);
-    const appConfig = appConfigData[bucket];
-    if (!appConfig || !query) {
+    try {
+        const { bucket } = context.params as { bucket: string };
+        const { query } = context.query as { query: string };
+
+        if (!bucket || !query) {
+            return { notFound: true };
+        }
+
+        const data = fs.readFileSync('public/json/app_config.json').toString();
+        const appConfigData = JSON.parse(data);
+        const appConfig = appConfigData[bucket];
+
+        if (!appConfig) {
+            return { notFound: true };
+        }
+
         return {
-            notFound: true
+            props: { query, appConfig }
         };
+    } catch (error) {
+        console.error('Error in getServerSideProps:', error);
+        return { notFound: true };
     }
-    return {
-        props: { query, appConfig }
-    };
 };
