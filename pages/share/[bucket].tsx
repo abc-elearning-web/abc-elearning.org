@@ -39,6 +39,7 @@ interface AppConfig {
 interface ShareProps {
     appConfig: AppConfig;
     query: string;
+    fullUrl: string;
 }
 
 interface BrowserInfo {
@@ -168,7 +169,7 @@ class DeeplinkHandler {
     }
 }
 
-const Share = ({ appConfig, query }: ShareProps) => {
+const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [deviceInfo, setDeviceInfo] = useState<BrowserInfo | null>(null);
@@ -181,6 +182,118 @@ const Share = ({ appConfig, query }: ShareProps) => {
 
     const deeplink = bucket + '://abc-app/' + query;
     const androidIntent = `intent://${query}#Intent;scheme=${bucket};package=${androidPackageName};end;`;
+    const apiDeeplink = "https://test-api-cms-v2-dot-micro-enigma-235001.appspot.com/api/app/deeplink";
+    interface QueryParams {
+        type: string;
+        customParams?: Record<string, string>;
+        [key: string]: any;
+    }
+
+    const parseQueryParams = (): QueryParams => {
+        try {
+            let path, queryString;
+
+            // Phân tích query từ tham số query
+            if (query.includes('?')) {
+                [path, queryString] = query.split('?');
+            } else {
+                path = query;
+                queryString = '';
+            }
+
+            const result: QueryParams = { type: path };
+
+            const urlParams = new Map<string, string>();
+
+            if (queryString) {
+                const searchParams = new URLSearchParams(queryString);
+                Array.from(searchParams.keys()).forEach(key => {
+                    const value = searchParams.get(key);
+                    if (value !== null) {
+                        urlParams.set(key, value);
+                    }
+                });
+            }
+
+            if (fullUrl) {
+                try {
+                    const fullUrlObj = new URL(fullUrl, 'https://example.com');
+
+                    Array.from(fullUrlObj.searchParams.keys()).forEach(key => {
+                        if (key !== 'query') {
+                            const value = fullUrlObj.searchParams.get(key);
+                            if (value !== null) {
+                                urlParams.set(key, value);
+                            }
+                        }
+                    });
+                } catch (e) {
+                    console.error('Error parsing fullUrl:', e);
+                }
+            }
+
+            const params: Record<string, string> = {};
+            urlParams.forEach((value, key) => {
+                params[key] = value;
+            });
+
+            console.log('All parsed params:', params);
+            console.log('Original query:', query);
+            console.log('Full URL:', fullUrl);
+
+            result.customParams = params;
+
+            Object.entries(params).forEach(([key, value]) => {
+                result[key] = value;
+            });
+
+            return result;
+        } catch (error) {
+            console.error('Error parsing query:', error);
+            return { type: query };
+        }
+    };
+
+    const callApiDeeplink = async () => {
+        try {
+            setIsLoading(true);
+            const queryParams = parseQueryParams();
+            const payload = {
+                appId: queryParams["appId"] ?? -1,
+                bucket: appConfig.bucket,
+                type: queryParams.type,
+                customParams: queryParams.customParams || {}
+            };
+
+
+            // Gọi API
+            const response = await fetch(apiDeeplink, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) {
+                throw new Error(`API call failed with status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            if (data.url) {
+                window.location.href = data.url;
+            } else {
+                window.location.href = deeplink;
+            }
+        } catch (error) {
+            console.error('Error calling deeplink API:', error);
+            setError('Failed to generate deeplink. Please try again.');
+
+            window.location.href = deeplink;
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     useEffect(() => {
         // Avoid SSR issues
@@ -191,8 +304,15 @@ const Share = ({ appConfig, query }: ShareProps) => {
 
         // Save browser info to state for use in render
         setDeviceInfo(browserInfo);
-
+        launchApp();
+        callApiDeeplink();
         // Launch app using the model
+
+    }, [deeplink, iosLink, playStoreLink, androidIntent]);
+
+
+    const launchApp = () => {
+        const deeplinkHandler = new DeeplinkHandler();
         deeplinkHandler.launchApp(
             deeplink,
             iosLink,
@@ -205,23 +325,7 @@ const Share = ({ appConfig, query }: ShareProps) => {
                 setIsLoading(false);
             }
         );
-
-        // Only show debug info in development
-        if (process.env.NODE_ENV === 'development') {
-            const debugContainer = document.getElementById('debug-info');
-            if (debugContainer) {
-                debugContainer.innerHTML = JSON.stringify({
-                    userAgent: navigator.userAgent,
-                    iosLink,
-                    playStoreLink,
-                    androidIntent,
-                    ...browserInfo,
-                    deeplink,
-                }, null, 2);
-                debugContainer.style.display = 'block';
-            }
-        }
-    }, [deeplink, iosLink, playStoreLink, androidIntent]);
+    }
 
     // Function to handle store redirect
     const handleStoreRedirect = () => {
@@ -286,7 +390,7 @@ const Share = ({ appConfig, query }: ShareProps) => {
                             {!isLoading && (
                                 <>
                                     <button
-                                        onClick={() => window.location.href = deeplink}
+                                        onClick={() => launchApp()}
                                         className="w-full py-3 px-4 text-white font-medium rounded-lg transition duration-200 flex items-center justify-center"
                                         style={{ backgroundColor: primaryColor }}
                                     >
@@ -325,6 +429,21 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     try {
         const { bucket } = context.params as { bucket: string };
         const { query } = context.query as { query: string };
+        console.log("Original query:", query);
+
+        const fullUrl = context.resolvedUrl;
+        console.log("Full URL:", fullUrl);
+        const urlObj = new URL(fullUrl, 'https://example.com');
+        const allParams = Object.fromEntries(urlObj.searchParams.entries());
+        console.log("All URL params:", allParams);
+
+        let enhancedQuery = query;
+        if (allParams.appId && !query.includes('appId=')) {
+            enhancedQuery = query.includes('?')
+                ? `${query}&appId=${allParams.appId}`
+                : `${query}?appId=${allParams.appId}`;
+        }
+        console.log("Enhanced query:", enhancedQuery);
 
         if (!bucket || !query) {
             return { notFound: true };
@@ -339,7 +458,11 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
         }
 
         return {
-            props: { query, appConfig }
+            props: {
+                query: enhancedQuery,
+                appConfig,
+                fullUrl: context.resolvedUrl
+            }
         };
     } catch (error) {
         console.error('Error in getServerSideProps:', error);
