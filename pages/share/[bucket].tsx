@@ -18,7 +18,20 @@ const Share = ({ appConfig, query }: { appConfig: any, query: string }) => {
         } else {
             window.location.href = iosLink;
         }
-        document.getElementById('share-container').innerHTML = JSON.stringify(getUserAgent());
+        document.getElementById('share-container').innerHTML = JSON.stringify({
+            userAgent: getUserAgent(),
+            iosLink,
+            playStoreLink,
+            androidIntent,
+            isIOS: isIOS(),
+            isAndroid: isAndroid(),
+            isChrome: isChrome(),
+            isFirefox: isFirefox(),
+            isSafari: isSafari(),
+            isCriOS: isCriOS(),
+            isIOSVersion: isIOSVersion(),
+            deeplink,
+        });
     }, []);
     return (
         <>
@@ -76,7 +89,7 @@ const iosLaunch = (deepLink: string, iosStoreLink: string) => {
 const androidLaunch = (deepLink: string, playStoreLink: string, androidIntent: string) => {
     if (isChrome()) {
         console.log('launchChromeApproach');
-        window.location.href = androidIntent;
+        document.location = androidIntent;
     } else if (isFirefox()) {
         console.log('launchWekitApproach');
         launchWekitApproach(deepLink, playStoreLink);
@@ -87,9 +100,9 @@ const androidLaunch = (deepLink: string, playStoreLink: string, androidIntent: s
 }
 
 const launchWekitApproach = (url: string, fallback: string) => {
-    window.location.href = url;
+    document.location = url;
     setTimeout(function () {
-        window.location.href = fallback;
+        document.location = fallback;
     }, 250);
 }
 
@@ -99,7 +112,7 @@ const launchIframeApproach = (url: string, fallback: string) => {
     iframe.style.width = '1px';
     iframe.style.height = '1px';
     iframe.onload = function () {
-        window.location.href = url;
+        document.location = url;
     };
     iframe.src = url;
 
