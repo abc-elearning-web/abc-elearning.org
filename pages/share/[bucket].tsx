@@ -83,29 +83,29 @@ const androidLaunch = (deepLink: string, playStoreLink: string, androidIntent: s
 }
 
 const launchWekitApproach = (url: string, fallback: string) => {
-    // document.location = url;
-    // setTimeout(function () {
-    //     document.location = fallback;
-    // }, 250);
+    document.location = url;
+    setTimeout(function () {
+        document.location = fallback;
+    }, 250);
 }
 
 const launchIframeApproach = (url: string, fallback: string) => {
-    // var iframe = document.createElement('iframe');
-    // iframe.style.border = 'none';
-    // iframe.style.width = '1px';
-    // iframe.style.height = '1px';
-    // iframe.onload = function () {
-    //     document.location = url;
-    // };
-    // iframe.src = url;
+    var iframe = document.createElement('iframe');
+    iframe.style.border = 'none';
+    iframe.style.width = '1px';
+    iframe.style.height = '1px';
+    iframe.onload = function () {
+        document.location = url;
+    };
+    iframe.src = url;
 
-    // window.onload = function () {
-    //     document.body.appendChild(iframe);
+    window.onload = function () {
+        document.body.appendChild(iframe);
 
-    //     setTimeout(function () {
-    //         window.location.href = fallback;
-    //     }, 25);
-    // };
+        setTimeout(function () {
+            window.location.href = fallback;
+        }, 25);
+    };
 }
 
 export default Share;
