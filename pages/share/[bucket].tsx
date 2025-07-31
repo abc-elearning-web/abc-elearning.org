@@ -18,7 +18,7 @@ const Share = ({ appConfig, query }: { appConfig: any, query: string }) => {
         } else {
             window.location.href = iosLink;
         }
-        document.getElementById('share-container').innerHTML = JSON.stringify(navigator.userAgent);
+        document.getElementById('share-container').innerHTML = JSON.stringify(getUserAgent());
     }, []);
     return (
         <>
@@ -29,32 +29,37 @@ const Share = ({ appConfig, query }: { appConfig: any, query: string }) => {
     );
 };
 
+const getUserAgent = () => {
+    // return navigator.userAgent;
+    return "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1";
+}
+
 const isIOS = () => {
-    return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    return /iPhone|iPad|iPod/i.test(getUserAgent());
 }
 
 const isAndroid = () => {
-    return /Android/i.test(navigator.userAgent);
+    return /Android/i.test(getUserAgent());
 }
 
 const isChrome = () => {
-    return /Chrome/i.test(navigator.userAgent);
+    return /Chrome/i.test(getUserAgent());
 }
 
 const isFirefox = () => {
-    return /Firefox/i.test(navigator.userAgent);
+    return /Firefox/i.test(getUserAgent());
 }
 
 const isSafari = () => {
-    return /Safari/i.test(navigator.userAgent);
+    return /Safari/i.test(getUserAgent());
 }
 
 const isCriOS = () => {
-    return /CriOS/i.test(navigator.userAgent);
+    return /CriOS/i.test(getUserAgent());
 }
 
 const isIOSVersion = () => {
-    return /Version\/(9|10|11|12)/i.test(navigator.userAgent);
+    return /Version\/(9|10|11|12)/i.test(getUserAgent());
 }
 
 const iosLaunch = (deepLink: string, iosStoreLink: string) => {
@@ -72,7 +77,7 @@ const iosLaunch = (deepLink: string, iosStoreLink: string) => {
 const androidLaunch = (deepLink: string, playStoreLink: string, androidIntent: string) => {
     if (isChrome()) {
         console.log('launchChromeApproach');
-        document.location = androidIntent;
+        window.location.href = androidIntent;
     } else if (isFirefox()) {
         console.log('launchWekitApproach');
         launchWekitApproach(deepLink, playStoreLink);
@@ -83,9 +88,9 @@ const androidLaunch = (deepLink: string, playStoreLink: string, androidIntent: s
 }
 
 const launchWekitApproach = (url: string, fallback: string) => {
-    document.location = url;
+    window.location.href = url;
     setTimeout(function () {
-        document.location = fallback;
+        window.location.href = fallback;
     }, 250);
 }
 
@@ -95,7 +100,7 @@ const launchIframeApproach = (url: string, fallback: string) => {
     iframe.style.width = '1px';
     iframe.style.height = '1px';
     iframe.onload = function () {
-        document.location = url;
+        window.location.href = url;
     };
     iframe.src = url;
 
@@ -116,7 +121,6 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     const data = fs.readFileSync('public/json/app_config.json').toString();
     const appConfigData = JSON.parse(data);
     const appConfig = appConfigData[bucket];
-    console.log(appConfig, query);
     if (!appConfig || !query) {
         return {
             notFound: true
