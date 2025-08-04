@@ -56,7 +56,6 @@ interface BrowserInfo {
 const IOS_REDIRECT_TIMEOUT = 250;
 const ANDROID_REDIRECT_TIMEOUT = 25;
 
-// Model để lấy thông tin thiết bị và xử lý chuyển hướng
 class DeeplinkHandler {
     private userAgent: string;
     private browserInfo: BrowserInfo;
@@ -182,7 +181,7 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
 
     const deeplink = bucket + '://abc-app/' + query;
     const androidIntent = `intent://${query}#Intent;scheme=${bucket};package=${androidPackageName};end;`;
-    const apiDeeplink = "https://test-api-cms-v2-dot-micro-enigma-235001.appspot.com/api/app/deeplink";
+    const apiDeeplink = "http://192.168.88.92:3003/api/app/deeplink";
     interface QueryParams {
         type: string;
         customParams?: Record<string, string>;
@@ -193,7 +192,6 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
         try {
             let path, queryString;
 
-            // Phân tích query từ tham số query
             if (query.includes('?')) {
                 [path, queryString] = query.split('?');
             } else {
@@ -254,7 +252,7 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
         }
     };
 
-    const callApiDeeplink = async () => {
+    const callApiServer = async () => {
         try {
             setIsLoading(true);
             const queryParams = parseQueryParams();
@@ -279,55 +277,61 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
                 throw new Error(`API call failed with status: ${response.status}`);
             }
 
-            const data = await response.json();
-            if (data.url) {
-                window.location.href = data.url;
-            } else {
-                window.location.href = deeplink;
-            }
+            await response.json();
         } catch (error) {
-            console.error('Error calling deeplink API:', error);
-            setError('Failed to generate deeplink. Please try again.');
-
-            window.location.href = deeplink;
         } finally {
             setIsLoading(false);
         }
     };
 
+    const launchApp = () => {
+        let appOpened = false;
+
+        const onAppOpened = () => {
+            console.log('App opened successfully');
+            appOpened = true;
+            setIsLoading(false);
+        };
+
+        const onError = (error: Error) => {
+            console.error('Launch error:', error);
+            if (!appOpened) {
+                setError('Failed to open application. Please try again.');
+                setIsLoading(false);
+            }
+        };
+
+        try {
+            window.location.href = deeplink;
+            setTimeout(() => {
+                if (!appOpened) {
+                    const deeplinkHandler = new DeeplinkHandler();
+                    deeplinkHandler.launchApp(
+                        deeplink,
+                        iosLink,
+                        playStoreLink,
+                        androidIntent,
+                        onAppOpened,
+                        onError
+                    );
+                }
+            }, 1500);
+        } catch (error) {
+            onError(error instanceof Error ? error : new Error('Unknown error'));
+        }
+    };
+
     useEffect(() => {
-        // Avoid SSR issues
         if (typeof window === 'undefined') return;
 
         const deeplinkHandler = new DeeplinkHandler();
         const browserInfo = deeplinkHandler.getBrowserInfo();
 
-        // Save browser info to state for use in render
         setDeviceInfo(browserInfo);
+        callApiServer();
         launchApp();
-        callApiDeeplink();
-        // Launch app using the model
+    }, []);
 
-    }, [deeplink, iosLink, playStoreLink, androidIntent]);
-
-
-    const launchApp = () => {
-        const deeplinkHandler = new DeeplinkHandler();
-        deeplinkHandler.launchApp(
-            deeplink,
-            iosLink,
-            playStoreLink,
-            androidIntent,
-            () => setIsLoading(false),
-            (error) => {
-                console.error('Launch error:', error);
-                setError('Failed to open application. Please try again.');
-                setIsLoading(false);
-            }
-        );
-    }
-
-    // Function to handle store redirect
     const handleStoreRedirect = () => {
         if (deviceInfo?.isIOS) {
             window.location.href = iosLink;
@@ -336,10 +340,8 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
         }
     };
 
-    // Lấy logo từ appConfig nếu có
     const appLogo = appConfig.android?.assets?.appImages?.logo || appConfig.appIcon;
 
-    // Lấy màu sắc từ appConfig
     const primaryColor = appConfig.ios?.colors?.primary || '#E3A651';
 
     return (
