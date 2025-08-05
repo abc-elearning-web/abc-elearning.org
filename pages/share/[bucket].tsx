@@ -181,7 +181,7 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
 
     const deeplink = bucket + '://abc-app/' + query;
     const androidIntent = `intent://${query}#Intent;scheme=${bucket};package=${androidPackageName};end;`;
-    const apiDeeplink = "http://192.168.88.92:3003/api/app/deeplink";
+    const apiDeeplink = "https://test-api-cms-v2-dot-micro-enigma-235001.appspot.com/api/app/deeplink";
     interface QueryParams {
         type: string;
         customParams?: Record<string, string>;
@@ -263,7 +263,7 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
                 customParams: queryParams.customParams || {}
             };
 
-
+            console.log(payload);
             // Gọi API
             const response = await fetch(apiDeeplink, {
                 method: 'POST',
@@ -272,13 +272,12 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
                 },
                 body: JSON.stringify(payload),
             });
-
             if (!response.ok) {
                 throw new Error(`API call failed with status: ${response.status}`);
             }
-
             await response.json();
         } catch (error) {
+            console.log(error)
         } finally {
             setIsLoading(false);
         }
@@ -329,7 +328,7 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
 
         setDeviceInfo(browserInfo);
         callApiServer();
-        launchApp();
+        // launchApp();
     }, []);
 
     const handleStoreRedirect = () => {
