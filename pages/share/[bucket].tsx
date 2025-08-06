@@ -328,7 +328,7 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
 
         setDeviceInfo(browserInfo);
         callApiServer();
-        // launchApp();
+        launchApp();
     }, []);
 
     const handleStoreRedirect = () => {
