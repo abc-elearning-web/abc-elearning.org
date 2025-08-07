@@ -323,12 +323,16 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
     useEffect(() => {
         if (typeof window === 'undefined') return;
 
-        const deeplinkHandler = new DeeplinkHandler();
-        const browserInfo = deeplinkHandler.getBrowserInfo();
+        const runEffect = async () => {
+            const deeplinkHandler = new DeeplinkHandler();
+            const browserInfo = deeplinkHandler.getBrowserInfo();
 
-        setDeviceInfo(browserInfo);
-        callApiServer();
-        launchApp();
+            setDeviceInfo(browserInfo);
+            await callApiServer();
+            launchApp();
+        };
+
+        runEffect();
     }, []);
 
     const handleStoreRedirect = () => {
