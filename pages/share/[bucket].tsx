@@ -253,34 +253,25 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
     };
 
     const callApiServer = async () => {
-        try {
-            setIsLoading(true);
-            const queryParams = parseQueryParams();
-            const payload = {
-                appId: queryParams["appId"] ?? -1,
-                bucket: appConfig.bucket,
-                type: queryParams.type,
-                customParams: queryParams.customParams || {}
-            };
+        setIsLoading(true);
+        const queryParams = parseQueryParams();
+        const payload = {
+            appId: queryParams["appId"] ?? -1,
+            bucket: appConfig.bucket,
+            type: queryParams.type,
+            customParams: queryParams.customParams || {}
+        };
 
-            console.log(payload);
-            // Gọi API
-            const response = await fetch(apiDeeplink, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(payload),
-            });
-            if (!response.ok) {
-                throw new Error(`API call failed with status: ${response.status}`);
-            }
-            await response.json();
-        } catch (error) {
-            console.log(error)
-        } finally {
-            setIsLoading(false);
-        }
+        console.log(payload);
+        // Gọi API
+        const response = await fetch(apiDeeplink, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        });
+        await response.json();
     };
 
     const launchApp = () => {
@@ -328,8 +319,16 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
             const browserInfo = deeplinkHandler.getBrowserInfo();
 
             setDeviceInfo(browserInfo);
-            await callApiServer();
-            launchApp();
+            try {
+                await callApiServer();
+                launchApp();
+            } catch (error: any) {
+                if (error?.message?.includes('EMAIL_INVITED_BY_OTHER')) {
+                    setError('You have already completed this task for another account.');
+                } else {
+                    launchApp();
+                }
+            }
         };
 
         runEffect();
