@@ -53,7 +53,7 @@ interface BrowserInfo {
 }
 
 // Constants
-const IOS_REDIRECT_TIMEOUT = 250;
+const IOS_REDIRECT_TIMEOUT = 2500; // Tăng từ 250 lên 2500ms
 const ANDROID_REDIRECT_TIMEOUT = 25;
 
 class DeeplinkHandler {
@@ -164,7 +164,7 @@ class DeeplinkHandler {
         setTimeout(() => {
             window.location.href = fallback;
             onComplete();
-        }, ANDROID_REDIRECT_TIMEOUT);
+        }, this.browserInfo.isIOS ? IOS_REDIRECT_TIMEOUT : ANDROID_REDIRECT_TIMEOUT); // Sử dụng timeout phù hợp với loại thiết bị
     }
 }
 
@@ -285,6 +285,7 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
 
     const launchApp = () => {
         let appOpened = false;
+        const appOpenedTime = Date.now();
 
         const onAppOpened = () => {
             console.log('App opened successfully');
@@ -301,7 +302,26 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
         };
 
         try {
+            // Lưu thời điểm trước khi thực hiện hành động
+            const beforeRedirect = Date.now();
+            
+            // Thử mở ứng dụng trực tiếp
             window.location.href = deeplink;
+            
+            // Tạo một sự kiện lắng nghe khi người dùng quay lại trang
+            window.addEventListener('visibilitychange', () => {
+                // Nếu người dùng quay lại trang sau một khoảng thời gian dài, có thể họ đã sử dụng ứng dụng
+                if (document.visibilityState === 'visible') {
+                    const returnTime = Date.now();
+                    // Nếu thời gian quay lại > 2 giây, có thể giả định ứng dụng đã mở
+                    if (returnTime - beforeRedirect > 2000) {
+                        appOpened = true;
+                        setIsLoading(false);
+                        return;
+                    }
+                }
+            });
+            
             setTimeout(() => {
                 if (!appOpened) {
                     const deeplinkHandler = new DeeplinkHandler();
