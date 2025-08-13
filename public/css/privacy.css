@@ -61,3 +61,11 @@ ul.ul1 {
     color: #000000;
     -webkit-text-stroke: #000000
 }
+
+.easy-prep-privacy-policy {
+    padding: 20px;
+}
+
+.easy-prep-privacy-policy a {
+    color: #0000e9 !important;
+}
