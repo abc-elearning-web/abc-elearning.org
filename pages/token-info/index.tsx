@@ -1,6 +1,12 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 const TokenInfo = () => {
+    const { query } = useRouter();
+    const { appName } = query;
+
+    console.log(appName);
+    
     return (
         <>
             <Head>
@@ -251,7 +257,7 @@ const TokenInfo = () => {
                     </h2>
                     <p className="lead">
                         If you don't want to spend time collecting tokens, you can
-                        <a className="link" href="#" rel="noopener"> buy PRO now</a> to unlock all
+                        <a className="link" href={`https://abc-elearning.org/share/${appName}?query=buy-pro`} rel="noopener"> buy PRO now</a> to unlock all
                         features instantly.
                     </p>
                 </section>
