@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    background: #f3f4f6;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    font-size: 1rem;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Hero */
+.hero {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.hero img {
+    max-width: 100px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #000;
+}
+
+.hero p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Sections */
+section {
+    padding: 20px;
+    border-top: 1px solid #eee;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #111;
+}
+
+h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: #00796b;
+}
+
+p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+ul,
+ol {
+    margin: 1rem 0 1rem 1.25rem;
+}
+
+ul li,
+ol li {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+/* Rewards cards */
+.rewards .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.rewards .card {
+    flex: 1 1 calc(50% - 15px);
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 15px;
+}
+
+.rewards .card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.rewards .card p {
+    font-size: 1rem;
+    color: #444;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+}
+
+th,
+td {
+    border: 1px solid #e5e7eb;
+    padding: 0.75rem;
+    text-align: left;
+}
+
+/* Strong emphasis */
+strong {
+    color: #000;
+}
