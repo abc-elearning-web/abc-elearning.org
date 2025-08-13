@@ -570,10 +570,6 @@ const TermsOfUse = () => {
                         <br />
                         <a href="mailto:support@passemall.com">support@passemall.com</a>
                     </address>
-                    <p className="mt-6 text-xs opacity-70">
-                        These terms of use were created using Termly's Terms and Conditions
-                        Generator.
-                    </p>
                 </section>
             </main>
 
