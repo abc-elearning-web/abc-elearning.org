@@ -1,6 +1,7 @@
 import Head from "next/head";
 
 const EasyPrepTermsOfUse = () => {
+    
     return (
         <>
             <Head>
