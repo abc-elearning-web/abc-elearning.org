@@ -473,7 +473,7 @@
     },
     "comptiasecurity": {
         "id": 4533508085121024,
-        "lastUpdate": 1752128220000,
+        "lastUpdate": 1755145553000,
         "createDate": 1705310612780,
         "longId": 5001009542725632,
         "key": "comptiasecurity",
@@ -553,8 +553,8 @@
                     "splash_background": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/images_ios/splash_background.png",
                     "splash_primary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/images_ios/splash_primary.png",
                     "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/images_ios/onboarding_0.png",
-                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/onboarding_1.png",
-                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/onboarding_2.png",
+                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/images_ios/onboarding_1.png",
+                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/images_ios/onboarding_2.png",
                     "authentication_email": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_email.png",
                     "authentication_email_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_email_dark.png",
                     "authentication_otp": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_otp.png",
@@ -694,8 +694,8 @@
                     "splash_background": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/images_ios/splash_background.png",
                     "splash_primary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/images_ios/splash_primary.png",
                     "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/images_ios/onboarding_0.png",
-                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/onboarding_1.png",
-                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/onboarding_2.png",
+                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/images_ios/onboarding_1.png",
+                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/images_ios/onboarding_2.png",
                     "authentication_email": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_email.png",
                     "authentication_email_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_email_dark.png",
                     "authentication_otp": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_otp.png",
@@ -753,10 +753,10 @@
                     "study_plan_setup_4_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/images_ios/study_plan_setup_4_dark.png",
                     "study_plan_setup_4": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/images_ios/study_plan_setup_4.png",
                     "study_plan_setup_3": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/images_ios/study_plan_setup_3.png",
-                    "onboarding_3": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/images_android/onboarding_3.png"
+                    "onboarding_3": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/images_ios/onboarding_3.png"
                 },
                 "logo": "",
-                "googleServiceUrl": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/google-services/google-services.json"
+                "googleServiceUrl": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/google-services/GoogleService-Info.plist"
             },
             "colors": {
                 "primary": "#E13C50",
@@ -915,7 +915,7 @@
             "name": "CompTIA Sec+",
             "nameId": "free-comptia-security-practice-test",
             "linkAndroid": "https://play.google.com/store/apps/details?id=com.simple.comptiasecurityplus",
-            "linkIos": "http://itunes.apple.com/us/app/id1501784033",
+            "linkIos": "https://apps.apple.com/us/app/comptia-security-exam-prep/id1501784033",
             "rankMathTitle": "",
             "totalQuestion": "868",
             "categoryId": "1",
@@ -1030,7 +1030,7 @@
         ],
         "remoteConfig": {
             "android": "{\"showAdsConfig\":1,\"useSubscription\":1,\"inAppPurchase\":1,\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":1,\"freeTrialEvent\":{\"isShow\":false,\"eventId\":\"event_free_trial_1\",\"startTime\":\"2025-06-01T00:00:00\",\"dayLimit\":1}}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":1,\"freeTrialEvent\":{\"isShow\":false,\"eventId\":\"event_free_trial_1\",\"startTime\":\"2025-06-01T00:00:00\",\"dayLimit\":1}}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":1,\"freeTrialEvent\":{\"isShow\":false,\"eventId\":\"event_free_trial_1\",\"startTime\":\"2025-06-01T00:00:00\",\"dayLimit\":1},\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
@@ -4604,7 +4604,7 @@
     },
     "cna": {
         "id": 4762206503698432,
-        "lastUpdate": 1751875690000,
+        "lastUpdate": 1754899247000,
         "createDate": 1705310612780,
         "longId": 5007397443600384,
         "key": "cna",
@@ -5142,14 +5142,14 @@
         ],
         "remoteConfig": {
             "android": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0,\"freeTrialEvent\":{\"isShow\":false,\"eventId\":\"event_free_trial_1\",\"startTime\":\"2025-06-01T00:00:00\",\"dayLimit\":1}}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
     },
     "comptiaitf": {
         "id": 4779798689742848,
-        "lastUpdate": 1750670817000,
+        "lastUpdate": 1755145487000,
         "createDate": 1705310612780,
         "longId": 6413438390632448,
         "key": "comptiaitf",
@@ -5229,8 +5229,8 @@
                     "splash_background": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaitf/app/images_android/splash_background.png",
                     "splash_primary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaitf/app/images_ios/splash_primary.png",
                     "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaitf/app/images_ios/onboarding_0.png",
-                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/onboarding_1.png",
-                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/onboarding_2.png",
+                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaitf/app/images_ios/onboarding_1.png",
+                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaitf/app/images_ios/onboarding_2.png",
                     "authentication_email": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_email.png",
                     "authentication_email_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_email_dark.png",
                     "authentication_otp": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_otp.png",
@@ -5368,8 +5368,8 @@
                     "splash_background": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaitf/app/images_android/splash_background.png",
                     "splash_primary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaitf/app/images_ios/splash_primary.png",
                     "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaitf/app/images_ios/onboarding_0.png",
-                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/onboarding_1.png",
-                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/onboarding_2.png",
+                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaitf/app/images_ios/onboarding_1.png",
+                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaitf/app/images_ios/onboarding_2.png",
                     "authentication_email": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_email.png",
                     "authentication_email_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_email_dark.png",
                     "authentication_otp": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_otp.png",
@@ -6617,7 +6617,7 @@
     },
     "part107": {
         "id": 4850167433920512,
-        "lastUpdate": 1751875524000,
+        "lastUpdate": 1754898826000,
         "createDate": 1705310612780,
         "longId": 6036400967254016,
         "key": "part107",
@@ -7139,14 +7139,14 @@
         ],
         "remoteConfig": {
             "android": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0,\"freeTrialEvent\":{\"isShow\":false,\"eventId\":\"event_free_trial_1\",\"startTime\":\"2025-06-01T00:00:00\",\"dayLimit\":1}}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":1,\"freeTrialEvent\":{\"isShow\":false,\"eventId\":\"event_free_trial_1\",\"startTime\":\"2025-06-01T00:00:00\",\"dayLimit\":1}}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":1,\"freeTrialEvent\":{\"isShow\":false,\"eventId\":\"event_free_trial_1\",\"startTime\":\"2025-06-01T00:00:00\",\"dayLimit\":1},\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
     },
     "ceh": {
         "id": 4885351806009344,
-        "lastUpdate": 1752120673000,
+        "lastUpdate": 1754378763000,
         "createDate": 1705310612780,
         "longId": 6552799815925760,
         "key": "ceh",
@@ -7217,9 +7217,9 @@
                     "logo": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ceh/app/images_android/logo.png",
                     "splash_background": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/images_ios/splash_background.png",
                     "splash_primary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ceh/app/images_android/splash_primary.png",
-                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/images_ios/onboarding_0.png",
-                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/onboarding_1.png",
-                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/onboarding_2.png",
+                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ceh/app/images_ios/onboarding_0.png",
+                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ceh/app/images_ios/onboarding_1.png",
+                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ceh/app/images_ios/onboarding_2.png",
                     "authentication_email": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_email.png",
                     "authentication_email_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_email_dark.png",
                     "authentication_otp": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_otp.png",
@@ -7348,9 +7348,9 @@
                     "logo": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ceh/app/images_android/logo.png",
                     "splash_background": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/images_ios/splash_background.png",
                     "splash_primary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ceh/app/images_android/splash_primary.png",
-                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiasecurity/app/images_ios/onboarding_0.png",
-                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/onboarding_1.png",
-                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/onboarding_2.png",
+                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ceh/app/images_ios/onboarding_0.png",
+                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ceh/app/images_ios/onboarding_1.png",
+                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ceh/app/images_ios/onboarding_2.png",
                     "authentication_email": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_email.png",
                     "authentication_email_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_email_dark.png",
                     "authentication_otp": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_otp.png",
@@ -8110,7 +8110,7 @@
     },
     "maf": {
         "id": 4920536178098176,
-        "lastUpdate": 1750745730000,
+        "lastUpdate": 1754378595000,
         "createDate": 1705310612780,
         "longId": 6115280825614336,
         "key": "maf",
@@ -8181,9 +8181,9 @@
                     "logo": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images/logo.png",
                     "splash_background": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images/splash_background.png",
                     "splash_primary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images/splash_primary.png",
-                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images/onboarding_0.png",
-                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images/onboarding_1.png",
-                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images/onboarding_2.png",
+                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images_ios/onboarding_0.png",
+                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images_ios/onboarding_1.png",
+                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images_ios/onboarding_2.png",
                     "authentication_email": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images/authentication_email.png",
                     "authentication_email_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images/authentication_email_dark.png",
                     "authentication_otp": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images/authentication_otp.png",
@@ -8313,9 +8313,9 @@
                     "logo": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images/logo.png",
                     "splash_background": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images/splash_background.png",
                     "splash_primary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images/splash_primary.png",
-                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images/onboarding_0.png",
-                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images/onboarding_1.png",
-                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images/onboarding_2.png",
+                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images_ios/onboarding_0.png",
+                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images_ios/onboarding_1.png",
+                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images_ios/onboarding_2.png",
                     "authentication_email": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images/authentication_email.png",
                     "authentication_email_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images/authentication_email_dark.png",
                     "authentication_otp": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/maf/app/images/authentication_otp.png",
@@ -10127,7 +10127,7 @@
     },
     "g1": {
         "id": 5043681480409088,
-        "lastUpdate": 1751011587000,
+        "lastUpdate": 1754899077000,
         "createDate": 1705310612780,
         "longId": 6341062520995840,
         "key": "g1",
@@ -10660,14 +10660,14 @@
         ],
         "remoteConfig": {
             "android": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
     },
     "comptialinux": {
         "id": 5048423258521600,
-        "lastUpdate": 1752222848000,
+        "lastUpdate": 1754378407000,
         "createDate": 1740642965685,
         "longId": -1,
         "key": "comptialinux",
@@ -10905,7 +10905,7 @@
                     "study_plan_setup_4_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptialinux/app/images_ios/study_plan_setup_4_dark.png"
                 },
                 "logo": "",
-                "googleServiceUrl": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptialinux/app/google-services/google-services.json"
+                "googleServiceUrl": ""
             },
             "colors": {
                 "primary": "#E13C50",
@@ -11990,7 +11990,7 @@
     },
     "servsafe": {
         "id": 5096458038542336,
-        "lastUpdate": 1751513114000,
+        "lastUpdate": 1754898741000,
         "createDate": 1705310612780,
         "longId": 5746867797229568,
         "key": "servsafe",
@@ -12486,7 +12486,7 @@
         ],
         "remoteConfig": {
             "android": "{\"showAdsConfig\":0,\"useSubscription\":1,\"inAppPurchase\":1,\"mentoraFreeLimit\":10,\"mentoraProLimit\":100}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0,\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
@@ -12962,7 +12962,7 @@
     },
     "fsc": {
         "id": 5131642410631168,
-        "lastUpdate": 1750670874000,
+        "lastUpdate": 1754898973000,
         "createDate": 1705310612780,
         "longId": 5397248982646784,
         "key": "fsc",
@@ -13453,7 +13453,7 @@
         ],
         "remoteConfig": {
             "android": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0,\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
@@ -16405,7 +16405,7 @@
     },
     "accuplacer": {
         "id": 5325156457119744,
-        "lastUpdate": 1750393831000,
+        "lastUpdate": 1754899264000,
         "createDate": 1705310612780,
         "longId": 6119576033034240,
         "key": "accuplacer",
@@ -16929,7 +16929,7 @@
         ],
         "remoteConfig": {
             "android": "{\"showAdsConfig\":1,\"useSubscription\":1,\"inAppPurchase\":1,\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0,\"freeTrialEvent\":{\"isShow\":false,\"eventId\":\"event_free_trial_1\",\"startTime\":\"2025-06-01T00:00:00\",\"dayLimit\":1}}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":1}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":1,\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
@@ -17407,7 +17407,7 @@
     },
     "awscerifiedsysopsadministrator": {
         "id": 5355942782697472,
-        "lastUpdate": 1751350447000,
+        "lastUpdate": 1754380004000,
         "createDate": 1705310612780,
         "longId": 5215607919214592,
         "key": "awscerifiedsysopsadministrator",
@@ -17876,7 +17876,7 @@
     },
     "mblex": {
         "id": 5377933015252992,
-        "lastUpdate": 1752031995000,
+        "lastUpdate": 1754898877000,
         "createDate": 1705310612780,
         "longId": 5719960095555584,
         "key": "mblex",
@@ -18413,14 +18413,14 @@
         ],
         "remoteConfig": {
             "android": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
     },
     "awscp": {
         "id": 5413117387341824,
-        "lastUpdate": 1751593472000,
+        "lastUpdate": 1754378951000,
         "createDate": 1705310612780,
         "longId": 6219842827845632,
         "key": "awscp",
@@ -18925,7 +18925,7 @@
     },
     "cissp": {
         "id": 5448301759430656,
-        "lastUpdate": 1752223386000,
+        "lastUpdate": 1754379827000,
         "createDate": 1705310612780,
         "longId": 4574196346650624,
         "key": "cissp",
@@ -19475,7 +19475,7 @@
     },
     "cisa": {
         "id": 5454089924116480,
-        "lastUpdate": 1751350331000,
+        "lastUpdate": 1754378271000,
         "createDate": 1740643082315,
         "longId": -1,
         "key": "cisa",
@@ -19707,7 +19707,7 @@
                     "study_plan_setup_4_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/cisa/app/images_ios/study_plan_setup_4_dark.png"
                 },
                 "logo": "",
-                "googleServiceUrl": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/cisa/app/google-services/google-services.json"
+                "googleServiceUrl": ""
             },
             "colors": {
                 "primary": "#4471FD",
@@ -20897,7 +20897,7 @@
     },
     "ccsp": {
         "id": 5553854875697152,
-        "lastUpdate": 1752223360000,
+        "lastUpdate": 1754379180000,
         "createDate": 1705310612780,
         "longId": 6536271351513088,
         "key": "ccsp",
@@ -21133,7 +21133,7 @@
                     "study_plan_setup_4_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccsp/app/images_ios/study_plan_setup_4_dark.png"
                 },
                 "logo": "",
-                "googleServiceUrl": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccsp/app/google-services/google-services.json"
+                "googleServiceUrl": ""
             },
             "colors": {
                 "primary": "#2588C2",
@@ -21370,7 +21370,7 @@
     },
     "vtne": {
         "id": 5589039247785984,
-        "lastUpdate": 1750745683000,
+        "lastUpdate": 1754898798000,
         "createDate": 1705310612780,
         "longId": 4821614053031936,
         "key": "vtne",
@@ -21861,7 +21861,7 @@
         ],
         "remoteConfig": {
             "android": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0,\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
@@ -22367,7 +22367,7 @@
     },
     "pl300": {
         "id": 5624223619874816,
-        "lastUpdate": 1751512069000,
+        "lastUpdate": 1754378808000,
         "createDate": 1705310612780,
         "longId": 6640384538050560,
         "key": "pl300",
@@ -22439,8 +22439,8 @@
                     "splash_background": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/splash_background.png",
                     "splash_primary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/pl300/app/images_ios/splash_primary.png",
                     "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/pl300/app/images_ios/onboarding_0.png",
-                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/onboarding_1.png",
-                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/onboarding_2.png",
+                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/pl300/app/images_ios/onboarding_1.png",
+                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/pl300/app/images_ios/onboarding_2.png",
                     "authentication_email": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/authentication_email.png",
                     "authentication_email_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/authentication_email_dark.png",
                     "authentication_otp": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/authentication_otp.png",
@@ -22571,8 +22571,8 @@
                     "splash_background": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/splash_background.png",
                     "splash_primary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/pl300/app/images_ios/splash_primary.png",
                     "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/pl300/app/images_ios/onboarding_0.png",
-                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/onboarding_1.png",
-                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/onboarding_2.png",
+                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/pl300/app/images_ios/onboarding_1.png",
+                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/pl300/app/images_ios/onboarding_2.png",
                     "authentication_email": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/authentication_email.png",
                     "authentication_email_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/authentication_email_dark.png",
                     "authentication_otp": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/authentication_otp.png",
@@ -23742,7 +23742,7 @@
     },
     "comptianetwork": {
         "id": 5659407991963648,
-        "lastUpdate": 1752128555000,
+        "lastUpdate": 1755145669000,
         "createDate": 1705310612780,
         "longId": 5473188218667008,
         "key": "comptianetwork",
@@ -24177,7 +24177,7 @@
             "name": "CompTIA Net+",
             "nameId": "free-comptia-network-practice-test",
             "linkAndroid": "https://play.google.com/store/apps/details?id=com.simple.comptianetworkplus",
-            "linkIos": "http://itunes.apple.com/us/app/id1501783324",
+            "linkIos": "https://apps.apple.com/us/app/comptia-network-exam-training/id1501783324",
             "rankMathTitle": "",
             "totalQuestion": "1258",
             "categoryId": "1",
@@ -26191,7 +26191,7 @@
     },
     "dkt": {
         "id": 5729776736141312,
-        "lastUpdate": 1751513032000,
+        "lastUpdate": 1754899004000,
         "createDate": 1705310612780,
         "longId": 5252858371899392,
         "key": "dkt",
@@ -26687,14 +26687,14 @@
         ],
         "remoteConfig": {
             "android": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":1}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":1}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":1,\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
     },
     "asvab": {
         "id": 5747368922185728,
-        "lastUpdate": 1751273488000,
+        "lastUpdate": 1754898930000,
         "createDate": 1705310612780,
         "longId": 4878338973761536,
         "key": "asvab",
@@ -27269,7 +27269,7 @@
         ],
         "remoteConfig": {
             "android": "{\"game_scroll_pattern\":2,\"disclaimer_statement\":\"\",\"pop_up_configs\":{\"show_pop_up\":false,\"title\":\"New Version Available\",\"version\":\"1.1.2\",\"build_number\":\"30\",\"description\":\"- Numberous updated questions available.\\n- Completely free of charge, with no advertisements or additional fees.\\n- Incorporates intelligent learning techniques to enhance your chances of passing on the first attempt.\",\"url\":\"https://play.google.com/store/apps/details?id=com.sima.asvab&hl=en&gl=US\",\"call_to_action_text\":\"Continue\",\"option\":4},\"rating_pop_up_configs\":{\"first_pop_up_count\":3,\"late_pop_up_count\":6,\"achievement_subtraction\":6},\"showAdsConfig\":1,\"useSubscription\":0,\"inAppPurchase\":0,\"mentoraFreeLimit\":100,\"mentoraProLimit\":100,\"mentoraMode\":0}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
@@ -29684,7 +29684,7 @@
     },
     "ged": {
         "id": 5888106410541056,
-        "lastUpdate": 1751875492000,
+        "lastUpdate": 1754899121000,
         "createDate": 1705310612780,
         "longId": 5296397775536128,
         "key": "ged",
@@ -30206,14 +30206,14 @@
         ],
         "remoteConfig": {
             "android": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0,\"freeTrialEvent\":{\"isShow\":false,\"eventId\":\"event_free_trial_1\",\"startTime\":\"2025-06-01T00:00:00\",\"dayLimit\":1}}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":1,\"freeTrialEvent\":{\"isShow\":false,\"eventId\":\"event_free_trial_1\",\"startTime\":\"2025-06-01T00:00:00\",\"dayLimit\":1}}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":1,\"freeTrialEvent\":{\"isShow\":false,\"eventId\":\"event_free_trial_1\",\"startTime\":\"2025-06-01T00:00:00\",\"dayLimit\":1},\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
     },
     "comptiacysa": {
         "id": 5905698596585472,
-        "lastUpdate": 1750393877000,
+        "lastUpdate": 1755145517000,
         "createDate": 1705310612780,
         "longId": 6326015811911680,
         "key": "comptiacysa",
@@ -30294,8 +30294,8 @@
                     "splash_primary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images/splash_primary.png",
                     "splash_secondary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images/splash_secondary.png",
                     "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images_ios/onboarding_0.png",
-                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images/onboarding_1.png",
-                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images/onboarding_2.png",
+                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images_ios/onboarding_1.png",
+                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images_ios/onboarding_2.png",
                     "authentication_email": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images/authentication_email.png",
                     "authentication_email_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images/authentication_email_dark.png",
                     "authentication_otp": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images/authentication_otp.png",
@@ -30435,8 +30435,8 @@
                     "splash_primary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images/splash_primary.png",
                     "splash_secondary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images/splash_secondary.png",
                     "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images_ios/onboarding_0.png",
-                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images/onboarding_1.png",
-                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images/onboarding_2.png",
+                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images_ios/onboarding_1.png",
+                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images_ios/onboarding_2.png",
                     "authentication_email": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images/authentication_email.png",
                     "authentication_email_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images/authentication_email_dark.png",
                     "authentication_otp": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiacysa/app/images/authentication_otp.png",
@@ -30624,7 +30624,7 @@
             "name": "CompTIA CySA+",
             "nameId": "cysa-practice-test",
             "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.comptiacysa",
-            "linkIos": "",
+            "linkIos": "https://apps.apple.com/us/app/comptia-cysa-practice-test/id6473518054",
             "rankMathTitle": "",
             "totalQuestion": "990",
             "categoryId": "1",
@@ -30745,7 +30745,7 @@
     },
     "awscertifieddeveloper": {
         "id": 5918892736118784,
-        "lastUpdate": 1751350492000,
+        "lastUpdate": 1754379908000,
         "createDate": 1705310612780,
         "longId": 5910018231631872,
         "key": "awscertifieddeveloper",
@@ -31212,7 +31212,7 @@
     },
     "realestate": {
         "id": 5940882968674304,
-        "lastUpdate": 1751011645000,
+        "lastUpdate": 1754899174000,
         "createDate": 1705310612780,
         "longId": 6212062713741312,
         "key": "realestate",
@@ -31741,14 +31741,14 @@
         ],
         "remoteConfig": {
             "android": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
     },
     "epa608": {
         "id": 6011251712851968,
-        "lastUpdate": 1750393903000,
+        "lastUpdate": 1754899198000,
         "createDate": 1705310612780,
         "longId": 6074233270566912,
         "key": "epa608",
@@ -32259,7 +32259,7 @@
         ],
         "remoteConfig": {
             "android": "{\"useSubscription\":0,\"showAdsConfig\":0,\"inAppPurchase\":1,\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0,\"freeTrialEvent\":{\"isShow\":true,\"eventId\":\"event_free_trial_1\",\"startTime\":\"2025-06-01T00:00:00\",\"dayLimit\":1}}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":1}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":1,\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
@@ -32693,7 +32693,7 @@
     },
     "comptiaproject": {
         "id": 6056872209547264,
-        "lastUpdate": 1751350360000,
+        "lastUpdate": 1754378419000,
         "createDate": 1740643152228,
         "longId": -1,
         "key": "comptiaproject",
@@ -32925,7 +32925,7 @@
                     "study_plan_setup_4_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaproject/app/images_ios/study_plan_setup_4_dark.png"
                 },
                 "logo": "",
-                "googleServiceUrl": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaproject/app/google-services/google-services.json"
+                "googleServiceUrl": ""
             },
             "colors": {
                 "primary": "#E13C50",
@@ -34656,7 +34656,7 @@
     },
     "dmv": {
         "id": 6169581387251712,
-        "lastUpdate": 1751011658000,
+        "lastUpdate": 1754899049000,
         "createDate": 1705310612780,
         "longId": 6309732366155776,
         "key": "dmv",
@@ -35178,7 +35178,7 @@
         ],
         "remoteConfig": {
             "android": "{}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"showAdsConfig\":1}",
             "statusAndroid": 0,
             "statusIOS": 1
         }
@@ -37635,7 +37635,7 @@
     },
     "cfa": {
         "id": 6292726689562624,
-        "lastUpdate": 1750670859000,
+        "lastUpdate": 1754899156000,
         "createDate": 1705310612780,
         "longId": 6117350328762368,
         "key": "cfa",
@@ -38180,14 +38180,14 @@
         ],
         "remoteConfig": {
             "android": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0,\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
     },
     "ccna": {
         "id": 6310318875607040,
-        "lastUpdate": 1752128498000,
+        "lastUpdate": 1754384192000,
         "createDate": 1705310612780,
         "longId": 6535568742678528,
         "key": "ccna",
@@ -38258,8 +38258,8 @@
                     "logo": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/logo.png",
                     "splash_background": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/splash_background.png",
                     "splash_primary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/splash_primary.png",
-                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/onboarding_0.png",
-                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/onboarding_1.png",
+                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images_ios/onboarding_0.png",
+                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images_ios/onboarding_1.png",
                     "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images_ios/onboarding_2.png",
                     "authentication_email": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/authentication_email.png",
                     "authentication_email_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/authentication_email_dark.png",
@@ -38394,8 +38394,8 @@
                     "logo": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/logo.png",
                     "splash_background": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/splash_background.png",
                     "splash_primary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/splash_primary.png",
-                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/onboarding_0.png",
-                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/onboarding_1.png",
+                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images_ios/onboarding_0.png",
+                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images_ios/onboarding_1.png",
                     "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images_ios/onboarding_2.png",
                     "authentication_email": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/authentication_email.png",
                     "authentication_email_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/ccna/app/images/authentication_email_dark.png",
@@ -40153,7 +40153,7 @@
     },
     "phlebotomy": {
         "id": 6433464177917952,
-        "lastUpdate": 1751875661000,
+        "lastUpdate": 1754899221000,
         "createDate": 1705310612780,
         "longId": 6328870527565824,
         "key": "phlebotomy",
@@ -40647,14 +40647,14 @@
         ],
         "remoteConfig": {
             "android": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0,\"freeTrialEvent\":{\"isShow\":false,\"eventId\":\"event_free_trial_1\",\"startTime\":\"2025-06-01T00:00:00\",\"dayLimit\":1}}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0,\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
     },
     "teas": {
         "id": 6451056363962368,
-        "lastUpdate": 1751875648000,
+        "lastUpdate": 1754899024000,
         "createDate": 1705310612780,
         "longId": 5186025303310336,
         "key": "teas",
@@ -41197,7 +41197,7 @@
         ],
         "remoteConfig": {
             "android": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0,\"freeTrialEvent\":{\"isShow\":false,\"eventId\":\"event_free_trial_1\",\"startTime\":\"2025-06-01T00:00:00\",\"dayLimit\":1}}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
@@ -42142,7 +42142,7 @@
     },
     "awscertifiedsolutionsarchitect": {
         "id": 6503832922095616,
-        "lastUpdate": 1751513087000,
+        "lastUpdate": 1754898768000,
         "createDate": 1705310612780,
         "longId": 5962925959282688,
         "key": "awscertifiedsolutionsarchitect",
@@ -42213,9 +42213,9 @@
                     "logo": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_android/logo.png",
                     "splash_background": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_android/splash_background.png",
                     "splash_primary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_android/splash_primary.png",
-                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_android/onboarding_0.png",
-                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_android/onboarding_1.png",
-                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_android/onboarding_2.png",
+                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_ios/onboarding_0.png",
+                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_ios/onboarding_1.png",
+                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_ios/onboarding_2.png",
                     "authentication_email": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_android/authentication_email.png",
                     "authentication_email_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_android/authentication_email_dark.png",
                     "authentication_otp": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_android/authentication_otp.png",
@@ -42348,9 +42348,9 @@
                     "logo": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_android/logo.png",
                     "splash_background": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_android/splash_background.png",
                     "splash_primary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_android/splash_primary.png",
-                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_android/onboarding_0.png",
-                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_android/onboarding_1.png",
-                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_android/onboarding_2.png",
+                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_ios/onboarding_0.png",
+                    "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_ios/onboarding_1.png",
+                    "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_ios/onboarding_2.png",
                     "authentication_email": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_android/authentication_email.png",
                     "authentication_email_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_android/authentication_email_dark.png",
                     "authentication_otp": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/awscertifiedsolutionsarchitect/app/images_android/authentication_otp.png",
@@ -42676,7 +42676,7 @@
         ],
         "remoteConfig": {
             "android": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0,\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
@@ -43185,7 +43185,7 @@
     },
     "ptce": {
         "id": 6574201666273280,
-        "lastUpdate": 1751875635000,
+        "lastUpdate": 1754898709000,
         "createDate": 1705310612780,
         "longId": 5753091221618688,
         "key": "ptce",
@@ -43717,14 +43717,14 @@
         ],
         "remoteConfig": {
             "android": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0,\"freeTrialEvent\":{\"isShow\":false,\"eventId\":\"event_free_trial_1\",\"startTime\":\"2025-06-01T00:00:00\",\"dayLimit\":1}}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0,\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
     },
     "pmp": {
         "id": 6591793852317696,
-        "lastUpdate": 1751875617000,
+        "lastUpdate": 1755145444000,
         "createDate": 1705310612780,
         "longId": 6711507096174592,
         "key": "pmp",
@@ -44149,7 +44149,7 @@
             "name": "PMP",
             "nameId": "pmp-exam-prep",
             "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.pmp",
-            "linkIos": "https://apps.apple.com/us/app/id1502054904",
+            "linkIos": "https://apps.apple.com/us/app/pmp-practice-tests-2025-pmi/id1502054904",
             "rankMathTitle": "",
             "totalQuestion": "883",
             "categoryId": "1",
@@ -44258,7 +44258,7 @@
         ],
         "remoteConfig": {
             "android": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"mentoraMode\":0,\"freeTrialEvent\":{\"isShow\":false,\"eventId\":\"event_free_trial_1\",\"startTime\":\"2025-06-01T00:00:00\",\"dayLimit\":1}}",
-            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100}",
+            "ios": "{\"mentoraFreeLimit\":10,\"mentoraProLimit\":100,\"showAdsConfig\":1}",
             "statusAndroid": 1,
             "statusIOS": 1
         }
@@ -46633,7 +46633,7 @@
     },
     "comptiaa": {
         "id": 6732531340673024,
-        "lastUpdate": 1752128531000,
+        "lastUpdate": 1755145593000,
         "createDate": 1705310612780,
         "longId": 5551925043920896,
         "key": "comptiaa",
@@ -46713,7 +46713,7 @@
                     "splash_background": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/splash_background.png",
                     "splash_primary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_android/splash_primary.png",
                     "splash_secondary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/splash_secondary.png",
-                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_android/onboarding_0.png",
+                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/onboarding_0.png",
                     "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/onboarding_1.png",
                     "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/onboarding_2.png",
                     "authentication_email": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_email.png",
@@ -46855,7 +46855,7 @@
                     "splash_background": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/splash_background.png",
                     "splash_primary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_android/splash_primary.png",
                     "splash_secondary": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/splash_secondary.png",
-                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_android/onboarding_0.png",
+                    "onboarding_0": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/onboarding_0.png",
                     "onboarding_1": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/onboarding_1.png",
                     "onboarding_2": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/onboarding_2.png",
                     "authentication_email": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/authentication_email.png",
@@ -46918,7 +46918,7 @@
                     "study_plan_setup_4_dark": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/images_ios/study_plan_setup_4_dark.png"
                 },
                 "logo": "",
-                "googleServiceUrl": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/google-services/google-services.json"
+                "googleServiceUrl": "https://storage.googleapis.com/micro-enigma-235001.appspot.com/comptiaa/app/google-services/GoogleService-Info.plist"
             },
             "colors": {
                 "primary": "#E13C50",
@@ -47072,7 +47072,7 @@
             "name": "CompTIA A+",
             "nameId": "free-comptia-a-practice-test",
             "linkAndroid": "https://play.google.com/store/apps/details?id=com.simple.comptiaaplus",
-            "linkIos": "http://itunes.apple.com/us/app/id1501304886",
+            "linkIos": "https://apps.apple.com/us/app/comptia-a-practice-test-2025/id1501304886",
             "rankMathTitle": "",
             "totalQuestion": "1565",
             "categoryId": "1",
