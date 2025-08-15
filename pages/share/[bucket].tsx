@@ -181,7 +181,7 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
 
     const deeplink = bucket + '://abc-app/' + query;
     const androidIntent = `intent://${query}#Intent;scheme=${bucket};package=${androidPackageName};end;`;
-    const apiDeeplink = "https://test-api-cms-v2-dot-micro-enigma-235001.appspot.com/api/app/deeplink";
+    const apiDeeplink = "https://api-cms-v2-dot-micro-enigma-235001.appspot.com/api/app/deeplink";
     interface QueryParams {
         type: string;
         customParams?: Record<string, string>;
