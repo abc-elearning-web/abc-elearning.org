@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "pages/api/get-fingerprint.js"  ],
   "exclude": [
     "node_modules"
   ]

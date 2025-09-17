@@ -1,171 +1,30 @@
 import fs from 'fs';
 import { GetServerSidePropsContext } from 'next';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
+import { DeeplinkHandler } from '../../utils/deeplinkHandler';
 
-// Define types
-interface AppConfig {
-    webConfig: {
-        linkIos: string;
-    };
-    android: {
-        name: string;
-        packageName: string;
-        assets?: {
-            appImages?: {
-                logo?: string;
-            };
-        };
-    };
-    ios: {
-        name: string;
-        packageName: string;
-        assets?: {
-            appImages?: {
-                logo?: string;
-            };
-        };
-        colors: {
-            primary: string,
-            secondary: string
-        }
-    };
-    bucket: string;
-    appName?: string;
-    appIcon?: string;
-}
+// Constants
+const IS_DEVELOPMENT = process.env.NODE_ENV === 'development';
+const SERVER_URL = IS_DEVELOPMENT ? "http://192.168.88.64:3002" : "https://api-cms-v2-dot-micro-enigma-235001.appspot.com";
+const SERVER_HANDLE_DEEPLINK_URL = "/api/app/deeplink";
+const FINGERPRINT_URL = "/api/get-fingerprint";
 
-interface ShareProps {
-    appConfig: AppConfig;
-    query: string;
-    fullUrl: string;
+interface QueryParams {
+    type: string;
+    customParams?: Record<string, string>;
+    [key: string]: any;
 }
 
 interface BrowserInfo {
     isIOS: boolean;
-    isAndroid: boolean;
-    isChrome: boolean;
-    isFirefox: boolean;
-    isSafari: boolean;
-    isCriOS: boolean;
-    isIOSVersion: boolean;
+    // Add other properties as needed
 }
 
-// Constants
-const IOS_REDIRECT_TIMEOUT = 2500; // Tăng từ 250 lên 2500ms
-const ANDROID_REDIRECT_TIMEOUT = 25;
-
-class DeeplinkHandler {
-    private userAgent: string;
-    private browserInfo: BrowserInfo;
-
-    constructor() {
-        if (typeof window !== 'undefined') {
-            this.userAgent = navigator.userAgent;
-            this.browserInfo = this.detectBrowser();
-        } else {
-            this.userAgent = '';
-            this.browserInfo = {
-                isIOS: false,
-                isAndroid: false,
-                isChrome: false,
-                isFirefox: false,
-                isSafari: false,
-                isCriOS: false,
-                isIOSVersion: false
-            };
-        }
-    }
-
-    private detectBrowser(): BrowserInfo {
-        return {
-            isIOS: /iPhone|iPad|iPod/i.test(this.userAgent),
-            isAndroid: /Android/i.test(this.userAgent),
-            isChrome: /Chrome/i.test(this.userAgent),
-            isFirefox: /Firefox/i.test(this.userAgent),
-            isSafari: /Safari/i.test(this.userAgent),
-            isCriOS: /CriOS/i.test(this.userAgent),
-            isIOSVersion: /Version\/(9|10|11|12)/i.test(this.userAgent)
-        };
-    }
-
-    public getBrowserInfo(): BrowserInfo {
-        return this.browserInfo;
-    }
-
-    public launchApp(
-        deeplink: string,
-        iosLink: string,
-        playStoreLink: string,
-        androidIntent: string,
-        onComplete: () => void,
-        onError: (error: Error) => void
-    ): void {
-        try {
-            if (this.browserInfo.isIOS) {
-                this.iosLaunch(deeplink, iosLink, onComplete);
-            } else if (this.browserInfo.isAndroid) {
-                this.androidLaunch(deeplink, playStoreLink, androidIntent, onComplete);
-            } else {
-                window.location.href = iosLink;
-                onComplete();
-            }
-        } catch (error) {
-            console.error('Redirect error:', error);
-            onError(error instanceof Error ? error : new Error('Unknown error'));
-        }
-    }
-
-    private iosLaunch(deepLink: string, iosStoreLink: string, onComplete: () => void): void {
-        if (this.browserInfo.isCriOS || (this.browserInfo.isSafari && this.browserInfo.isIOSVersion)) {
-            console.log('launchWekitApproach');
-            this.launchWekitApproach(deepLink, iosStoreLink, onComplete);
-        } else {
-            console.log('launchIframeApproach');
-            this.launchIframeApproach(deepLink, iosStoreLink, onComplete);
-        }
-    }
-
-    private androidLaunch(deepLink: string, playStoreLink: string, androidIntent: string, onComplete: () => void): void {
-        if (this.browserInfo.isChrome) {
-            console.log('launchChromeApproach');
-            window.location.href = androidIntent;
-            setTimeout(onComplete, ANDROID_REDIRECT_TIMEOUT);
-        } else if (this.browserInfo.isFirefox) {
-            console.log('launchWekitApproach');
-            this.launchWekitApproach(deepLink, playStoreLink, onComplete);
-        } else {
-            console.log('launchIframeApproach');
-            this.launchIframeApproach(deepLink, playStoreLink, onComplete);
-        }
-    }
-
-    private launchWekitApproach(url: string, fallback: string, onComplete: () => void): void {
-        window.location.href = url;
-        setTimeout(() => {
-            window.location.href = fallback;
-            onComplete();
-        }, IOS_REDIRECT_TIMEOUT);
-    }
-
-    private launchIframeApproach(url: string, fallback: string, onComplete: () => void): void {
-        const iframe = document.createElement('iframe');
-        iframe.style.border = 'none';
-        iframe.style.width = '1px';
-        iframe.style.height = '1px';
-        iframe.onload = () => {
-            window.location.href = url;
-        };
-        iframe.src = url;
-
-        document.body.appendChild(iframe);
-
-        setTimeout(() => {
-            window.location.href = fallback;
-            onComplete();
-        }, this.browserInfo.isIOS ? IOS_REDIRECT_TIMEOUT : ANDROID_REDIRECT_TIMEOUT); // Sử dụng timeout phù hợp với loại thiết bị
-    }
+interface ShareProps {
+    appConfig: any;
+    query: string;
+    fullUrl: string;
 }
 
 const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
@@ -173,25 +32,26 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
     const [error, setError] = useState<string | null>(null);
     const [deviceInfo, setDeviceInfo] = useState<BrowserInfo | null>(null);
 
-    const iosLink = appConfig.webConfig.linkIos;
-    const androidPackageName = appConfig.android.packageName;
-    const bucket = appConfig.bucket;
-    const appName = appConfig.android.name || 'Application';
-    const playStoreLink = `https://market.android.com/details?id=${androidPackageName}`;
+    // Use ref to track if initialization has already occurred
+    const initializeRef = useRef(false);
 
-    const deeplink = bucket + '://abc-app/' + query;
-    const androidIntent = `intent://${query}#Intent;scheme=${bucket};package=${androidPackageName};end;`;
-    const apiDeeplink = "https://api-cms-v2-dot-micro-enigma-235001.appspot.com/api/app/deeplink";
-    interface QueryParams {
-        type: string;
-        customParams?: Record<string, string>;
-        [key: string]: any;
-    }
+    // Memoize static values
+    const appData = {
+        iosLink: appConfig.webConfig.linkIos,
+        androidPackageName: appConfig.android.packageName,
+        bucket: appConfig.bucket,
+        appName: appConfig.android.name || 'Application',
+        playStoreLink: `https://market.android.com/details?id=${appConfig.android.packageName}`,
+        deeplink: `${appConfig.bucket}://abc-app/${query}`,
+        androidIntent: `intent://${query}#Intent;scheme=${appConfig.bucket};package=${appConfig.android.packageName};end;`,
+        apiDeeplink: `${SERVER_URL}${SERVER_HANDLE_DEEPLINK_URL}`,
+        appLogo: appConfig.android?.assets?.appImages?.logo || appConfig.appIcon,
+        primaryColor: appConfig.ios?.colors?.primary || '#E3A651'
+    };
 
-    const parseQueryParams = (): QueryParams => {
+    const parseQueryParams = useCallback((): QueryParams => {
         try {
             let path, queryString;
-
             if (query.includes('?')) {
                 [path, queryString] = query.split('?');
             } else {
@@ -200,7 +60,6 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
             }
 
             const result: QueryParams = { type: path };
-
             const urlParams = new Map<string, string>();
 
             if (queryString) {
@@ -216,7 +75,6 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
             if (fullUrl) {
                 try {
                     const fullUrlObj = new URL(fullUrl, 'https://example.com');
-
                     Array.from(fullUrlObj.searchParams.keys()).forEach(key => {
                         if (key !== 'query') {
                             const value = fullUrlObj.searchParams.get(key);
@@ -235,12 +93,7 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
                 params[key] = value;
             });
 
-            console.log('All parsed params:', params);
-            console.log('Original query:', query);
-            console.log('Full URL:', fullUrl);
-
             result.customParams = params;
-
             Object.entries(params).forEach(([key, value]) => {
                 result[key] = value;
             });
@@ -250,45 +103,95 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
             console.error('Error parsing query:', error);
             return { type: query };
         }
-    };
+    }, [query, fullUrl]);
 
-    const callApiServer = async () => {
+    const getTimezoneOffset = useCallback(() => {
+        const offsetMinutes = new Date().getTimezoneOffset();
+        const offsetHours = -offsetMinutes / 60;
+        const sign = offsetHours >= 0 ? "+" : "-";
+        const hours = Math.abs(offsetHours).toString().padStart(2, "0");
+        return `${sign}${hours}`;
+    }, []);
+
+    const getScreen = useCallback(() => {
+        if (typeof window === 'undefined') return '';
+        const width = Math.round(window.screen.width);
+        const height = Math.round(window.screen.height);
+        const dpr = window.devicePixelRatio.toFixed(2);
+        return `${width}x${height}@${dpr}`;
+    }, []);
+
+    const getFingerprint = useCallback(async () => {
+        try {
+            const getLang = (navigator.language || "en-US").toLowerCase();
+            const obj = {
+                lang: getLang,
+                tz: getTimezoneOffset(),
+                screen: getScreen(),
+            };
+
+            const resp = await fetch(FINGERPRINT_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(obj),
+            });
+
+            if (!resp.ok) {
+                throw new Error(`Fingerprint API failed with status: ${resp.status}`);
+            }
+
+            const data = await resp.json();
+            return data.fingerprint;
+        } catch (error) {
+            console.error('Error getting fingerprint:', error);
+            throw error;
+        }
+    }, [getTimezoneOffset, getScreen]);
+
+    const callApiServer = useCallback(async (fingerprint: string) => {
         try {
             setIsLoading(true);
             const queryParams = parseQueryParams();
+
+            if (!queryParams.customParams) {
+                queryParams.customParams = {};
+            }
+            queryParams.customParams["fingerprint"] = fingerprint;
+
             const payload = {
-                appId: queryParams["appId"] ?? -1,
+                appId: queryParams["appId"] ?? `${appConfig.appId}`,
                 bucket: appConfig.bucket,
                 type: queryParams.type,
                 customParams: queryParams.customParams || {}
             };
 
-            console.log(payload);
-            // Gọi API
-            const response = await fetch(apiDeeplink, {
+            console.log("payload:", payload);
+
+            const response = await fetch(appData.apiDeeplink, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(payload),
             });
+
             if (!response.ok) {
                 throw new Error(`API call failed with status: ${response.status}`);
             }
+
             await response.json();
         } catch (error) {
-            console.log(error)
+            console.error('API Server call error:', error);
+            setError('Failed to initialize application');
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [parseQueryParams, appConfig.appId, appConfig.bucket, appData.apiDeeplink]);
 
-    const launchApp = () => {
+    const launchApp = useCallback(() => {
         let appOpened = false;
-        const appOpenedTime = Date.now();
 
         const onAppOpened = () => {
-            console.log('App opened successfully');
             appOpened = true;
             setIsLoading(false);
         };
@@ -302,71 +205,85 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
         };
 
         try {
-            // Lưu thời điểm trước khi thực hiện hành động
             const beforeRedirect = Date.now();
-            
-            // Thử mở ứng dụng trực tiếp
-            window.location.href = deeplink;
-            
-            // Tạo một sự kiện lắng nghe khi người dùng quay lại trang
-            window.addEventListener('visibilitychange', () => {
-                // Nếu người dùng quay lại trang sau một khoảng thời gian dài, có thể họ đã sử dụng ứng dụng
+            window.location.href = appData.deeplink;
+
+            const handleVisibilityChange = () => {
                 if (document.visibilityState === 'visible') {
                     const returnTime = Date.now();
-                    // Nếu thời gian quay lại > 2 giây, có thể giả định ứng dụng đã mở
                     if (returnTime - beforeRedirect > 2000) {
                         appOpened = true;
                         setIsLoading(false);
                         return;
                     }
                 }
-            });
-            
-            setTimeout(() => {
+            };
+
+            window.addEventListener('visibilitychange', handleVisibilityChange);
+
+            const timeout = setTimeout(() => {
                 if (!appOpened) {
                     const deeplinkHandler = new DeeplinkHandler();
                     deeplinkHandler.launchApp(
-                        deeplink,
-                        iosLink,
-                        playStoreLink,
-                        androidIntent,
+                        appData.deeplink,
+                        appData.iosLink,
+                        appData.playStoreLink,
+                        appData.androidIntent,
                         onAppOpened,
                         onError
                     );
                 }
+                window.removeEventListener('visibilitychange', handleVisibilityChange);
             }, 1500);
+
+            // Cleanup function
+            return () => {
+                clearTimeout(timeout);
+                window.removeEventListener('visibilitychange', handleVisibilityChange);
+            };
         } catch (error) {
             onError(error instanceof Error ? error : new Error('Unknown error'));
         }
-    };
+    }, [appData]);
 
+    const handleStoreRedirect = useCallback(() => {
+        if (deviceInfo?.isIOS) {
+            window.location.href = appData.iosLink;
+        } else {
+            window.location.href = appData.playStoreLink;
+        }
+    }, [deviceInfo?.isIOS, appData.iosLink, appData.playStoreLink]);
+
+    // Main initialization effect - runs only once
     useEffect(() => {
-        if (typeof window === 'undefined') return;
+        if (typeof window === 'undefined' || initializeRef.current) {
+            return;
+        }
 
-        const runEffect = async () => {
-            const deeplinkHandler = new DeeplinkHandler();
-            const browserInfo = deeplinkHandler.getBrowserInfo();
+        initializeRef.current = true;
 
-            setDeviceInfo(browserInfo);
-            await callApiServer();
-            launchApp();
+        const initializeApp = async () => {
+            try {
+                const fingerprint = await getFingerprint();
+
+                const deeplinkHandler = new DeeplinkHandler();
+                const browserInfo = deeplinkHandler.getBrowserInfo();
+                setDeviceInfo(browserInfo);
+
+                await callApiServer(fingerprint);
+                launchApp();
+            } catch (error) {
+                console.error('Initialization error:', error);
+                setError('Failed to initialize application');
+                setIsLoading(false);
+            }
         };
 
-        runEffect();
+        initializeApp();
     }, []);
-
-    const handleStoreRedirect = () => {
-        if (deviceInfo?.isIOS) {
-            window.location.href = iosLink;
-        } else {
-            window.location.href = playStoreLink;
-        }
-    };
-
+    const appName = appConfig.android.name || 'Application';
     const appLogo = appConfig.android?.assets?.appImages?.logo || appConfig.appIcon;
-
     const primaryColor = appConfig.ios?.colors?.primary || '#E3A651';
-
     return (
         <>
             <Head>
@@ -375,7 +292,6 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
                 <meta name="description" content={`Open ${appName} or download from app store`} />
             </Head>
             <div className="min-h-screen bg-gradient-to-b from-primary-50 to-primary-100 flex flex-col items-center justify-center p-4">
-
                 <div className="w-full max-w-md bg-white rounded-xl shadow-lg overflow-hidden">
                     <div className="p-6 text-center">
                         {appLogo && (
@@ -389,13 +305,10 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
                                 </div>
                             </div>
                         )}
-
-                        <h1 className="text-2xl font-bold text-gray-800 mb-2">
-                            {appName}
-                        </h1>
                         <h2 className="text-xl font-bold text-gray-800 mb-2">
-                            {isLoading ? 'Opening App...' : `Open ${appName}`}
+                            {isLoading ? `Opening App ${appName}...` : `Open ${appName}`}
                         </h2>
+
                         {isLoading ? (
                             <div className="flex justify-center my-6">
                                 <div
@@ -439,8 +352,7 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
                         </div>
                     </div>
                 </div>
-                <div className='mt-3'>
-                    <span>Email:</span>
+                <div className='mt-3 text-sm'>
                     <a href="mailto:support@abc-elearning.org">support@abc-elearning.org</a>
                 </div>
             </div>
@@ -458,6 +370,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 
         const fullUrl = context.resolvedUrl;
         console.log("Full URL:", fullUrl);
+
         const urlObj = new URL(fullUrl, 'https://example.com');
         const allParams = Object.fromEntries(urlObj.searchParams.entries());
         console.log("All URL params:", allParams);
