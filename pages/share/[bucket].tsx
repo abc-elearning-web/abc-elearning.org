@@ -3,6 +3,7 @@ import { GetServerSidePropsContext } from 'next';
 import { useEffect, useState, useCallback, useRef } from 'react';
 import Head from 'next/head';
 import { DeeplinkHandler } from '../../utils/deeplinkHandler';
+import { platform } from 'os';
 
 // Constants
 const IS_DEVELOPMENT = process.env.NODE_ENV === 'development';
@@ -121,13 +122,27 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
         return `${width}x${height}@${dpr}`;
     }, []);
 
+    function getPlatform() {
+        const ua = navigator.userAgent.toLowerCase();
+
+        if (ua.includes("android")) {
+            return "android";
+        }
+        if (/iphone|ipad|ipod/.test(ua)) {
+            return "ios";
+        }
+        return "other";
+    }
+
+
+
     const getFingerprint = useCallback(async () => {
         try {
             const getLang = (navigator.language || "en-US").toLowerCase();
             const obj = {
                 lang: getLang,
                 tz: getTimezoneOffset(),
-                screen: getScreen(),
+                platform: getPlatform(),
             };
 
             const resp = await fetch(FINGERPRINT_URL, {
