@@ -9,22 +9,18 @@ export default function handler(req, res) {
   // IP từ header hoặc socket
   const ip =
     req.headers["x-forwarded-for"] || req.connection?.remoteAddress || "";
-
-  // Lấy data client gửi (Flutter hoặc web)
   const { lang, tz, screen, platform, osVersion, deviceModel } = req.body || {};
 
   // Ghép object để hash
   const obj = {
-    lang: (lang || "").toLowerCase(),
+    lang: (lang || "").split("-")[0].toLowerCase(),
     tz: tz || "UTC",
     ip: ip,
     platform: platform,
   };
 
   const raw = JSON.stringify(obj);
-  console.log("raw:", raw);
   const fingerprint = crypto.createHash("sha256").update(raw).digest("hex");
-  console.log("fingerprint:", fingerprint);
   res.status(200).json({
     fingerprint,
     raw: obj, // gửi kèm để debug

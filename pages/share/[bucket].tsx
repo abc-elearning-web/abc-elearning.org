@@ -243,8 +243,10 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
             redirectTimeout = setTimeout(() => {
                 window.removeEventListener('visibilitychange', handleVisibilityChange);
                 if (!appOpened) {
-                    // Only redirect to store, don't use DeeplinkHandler to avoid double redirects
-                    if (deviceInfo?.isIOS) {
+                    // Detect iOS directly here instead of relying on deviceInfo state
+                    const isIOS = /iPhone|iPad|iPod|Macintosh|MacIntel/i.test(navigator.userAgent);
+
+                    if (isIOS) {
                         window.location.href = appData.iosLink;
                     } else {
                         window.location.href = appData.playStoreLink;
@@ -261,15 +263,16 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
         } catch (error) {
             onError(error instanceof Error ? error : new Error('Unknown error'));
         }
-    }, [appData, deviceInfo?.isIOS]);
+    }, [appData]);
 
     const handleStoreRedirect = useCallback(() => {
-        if (deviceInfo?.isIOS) {
+        const isIOS = /iPhone|iPad|iPod|Macintosh|MacIntel/i.test(navigator.userAgent);
+        if (isIOS) {
             window.location.href = appData.iosLink;
         } else {
             window.location.href = appData.playStoreLink;
         }
-    }, [deviceInfo?.isIOS, appData.iosLink, appData.playStoreLink]);
+    }, [appData.iosLink, appData.playStoreLink]);
 
     // Main initialization effect - runs only once
     useEffect(() => {
