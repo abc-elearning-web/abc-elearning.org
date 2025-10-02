@@ -245,7 +245,7 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
                 if (!appOpened) {
                     // Detect iOS directly here instead of relying on deviceInfo state
                     const isIOS = /iPhone|iPad|iPod|Macintosh|MacIntel/i.test(navigator.userAgent);
-                    
+
                     if (isIOS) {
                         window.location.href = appData.iosLink;
                     } else {
@@ -266,8 +266,7 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
     }, [appData]);
 
     const handleStoreRedirect = useCallback(() => {
-        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-        
+        const isIOS = /iPhone|iPad|iPod|Macintosh|MacIntel/i.test(navigator.userAgent);
         if (isIOS) {
             window.location.href = appData.iosLink;
         } else {
