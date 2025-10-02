@@ -128,10 +128,10 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
         if (ua.includes("android")) {
             return "android";
         }
-        if (/iphone|ipad|ipod/.test(ua)) {
+        if (/iphone|ipad|ipod|macintosh|macintel/.test(ua)) {
             return "ios";
         }
-        return "other";
+        return ua;
     }
 
 
