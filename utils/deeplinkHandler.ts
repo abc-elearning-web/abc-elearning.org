@@ -3,6 +3,7 @@ const ANDROID_REDIRECT_TIMEOUT = 25;
 export class DeeplinkHandler {
     private userAgent: string;
     private browserInfo: BrowserInfo;
+    private timeoutId: NodeJS.Timeout | null = null;
 
     constructor() {
         if (typeof window !== 'undefined') {
@@ -36,6 +37,13 @@ export class DeeplinkHandler {
 
     public getBrowserInfo(): BrowserInfo {
         return this.browserInfo;
+    }
+
+    public cancelRedirect(): void {
+        if (this.timeoutId) {
+            clearTimeout(this.timeoutId);
+            this.timeoutId = null;
+        }
     }
 
     public launchApp(
@@ -87,7 +95,7 @@ export class DeeplinkHandler {
 
     private launchWekitApproach(url: string, fallback: string, onComplete: () => void): void {
         window.location.href = url;
-        setTimeout(() => {
+        this.timeoutId = setTimeout(() => {
             window.location.href = fallback;
             onComplete();
         }, IOS_REDIRECT_TIMEOUT);
@@ -105,9 +113,9 @@ export class DeeplinkHandler {
 
         document.body.appendChild(iframe);
 
-        setTimeout(() => {
+        this.timeoutId = setTimeout(() => {
             window.location.href = fallback;
             onComplete();
-        }, this.browserInfo.isIOS ? IOS_REDIRECT_TIMEOUT : ANDROID_REDIRECT_TIMEOUT); // Sử dụng timeout phù hợp với loại thiết bị
+        }, this.browserInfo.isIOS ? IOS_REDIRECT_TIMEOUT : ANDROID_REDIRECT_TIMEOUT);
     }
 }

@@ -205,10 +205,14 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
 
     const launchApp = useCallback(() => {
         let appOpened = false;
+        let redirectTimeout: NodeJS.Timeout;
 
         const onAppOpened = () => {
             appOpened = true;
             setIsLoading(false);
+            if (redirectTimeout) {
+                clearTimeout(redirectTimeout);
+            }
         };
 
         const onError = (error: Error) => {
@@ -227,8 +231,7 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
                 if (document.visibilityState === 'visible') {
                     const returnTime = Date.now();
                     if (returnTime - beforeRedirect > 2000) {
-                        appOpened = true;
-                        setIsLoading(false);
+                        onAppOpened();
                         return;
                     }
                 }
@@ -236,30 +239,29 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
 
             window.addEventListener('visibilitychange', handleVisibilityChange);
 
-            const timeout = setTimeout(() => {
-                if (!appOpened) {
-                    const deeplinkHandler = new DeeplinkHandler();
-                    deeplinkHandler.launchApp(
-                        appData.deeplink,
-                        appData.iosLink,
-                        appData.playStoreLink,
-                        appData.androidIntent,
-                        onAppOpened,
-                        onError
-                    );
-                }
+            // For iOS devices, only redirect to store if app didn't open after visibility check
+            redirectTimeout = setTimeout(() => {
                 window.removeEventListener('visibilitychange', handleVisibilityChange);
-            }, 1500);
+                if (!appOpened) {
+                    // Only redirect to store, don't use DeeplinkHandler to avoid double redirects
+                    if (deviceInfo?.isIOS) {
+                        window.location.href = appData.iosLink;
+                    } else {
+                        window.location.href = appData.playStoreLink;
+                    }
+                    onAppOpened();
+                }
+            }, 3000); // Increased timeout to give more time for app to open
 
             // Cleanup function
             return () => {
-                clearTimeout(timeout);
+                clearTimeout(redirectTimeout);
                 window.removeEventListener('visibilitychange', handleVisibilityChange);
             };
         } catch (error) {
             onError(error instanceof Error ? error : new Error('Unknown error'));
         }
-    }, [appData]);
+    }, [appData, deviceInfo?.isIOS]);
 
     const handleStoreRedirect = useCallback(() => {
         if (deviceInfo?.isIOS) {
