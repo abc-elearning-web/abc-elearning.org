@@ -33,8 +33,30 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
     const [error, setError] = useState<string | null>(null);
     const [deviceInfo, setDeviceInfo] = useState<BrowserInfo | null>(null);
 
+    console.log("query:", query);
+
     // Use ref to track if initialization has already occurred
     const initializeRef = useRef(false);
+
+    // Parse query to get the main path and parameters
+    const queryParams = new URLSearchParams(query);
+    const mainPath = queryParams.get('type') || '';
+    const otherParams = new URLSearchParams();
+    
+    // Add all parameters except 'type' to otherParams
+    Array.from(queryParams.keys()).forEach(key => {
+        if (key !== 'type') {
+            const value = queryParams.get(key);
+            if (value !== null) {
+                otherParams.set(key, value);
+            }
+        }
+    });
+
+    // Build deeplink with main path and parameters
+    const deeplinkPath = otherParams.toString() 
+        ? `${mainPath}?${otherParams.toString()}`
+        : mainPath;
 
     // Memoize static values
     const appData = {
@@ -43,8 +65,8 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
         bucket: appConfig.bucket,
         appName: appConfig.android.name || 'Application',
         playStoreLink: `https://market.android.com/details?id=${appConfig.android.packageName}`,
-        deeplink: `${appConfig.bucket}://abc-app/${query}`,
-        androidIntent: `intent://${query}#Intent;scheme=${appConfig.bucket};package=${appConfig.android.packageName};end;`,
+        deeplink: `${appConfig.bucket}://abc-app/${deeplinkPath}`,
+        androidIntent: `intent://${deeplinkPath}#Intent;scheme=${appConfig.bucket};package=${appConfig.android.packageName};end;`,
         apiDeeplink: `${SERVER_URL}${SERVER_HANDLE_DEEPLINK_URL}`,
         appLogo: appConfig.android?.assets?.appImages?.logo || appConfig.appIcon,
         primaryColor: appConfig.ios?.colors?.primary || '#E3A651'
@@ -52,50 +74,31 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
 
     const parseQueryParams = useCallback((): QueryParams => {
         try {
-            let path, queryString;
-            if (query.includes('?')) {
-                [path, queryString] = query.split('?');
-            } else {
-                path = query;
-                queryString = '';
+            // Parse the query string that now contains all parameters
+            const searchParams = new URLSearchParams(query);
+            const result: QueryParams = { type: '' };
+            const customParams: Record<string, string> = {};
+
+            // Extract type parameter (the main path)
+            const typeParam = searchParams.get('type');
+            if (typeParam) {
+                result.type = typeParam;
             }
 
-            const result: QueryParams = { type: path };
-            const urlParams = new Map<string, string>();
-
-            if (queryString) {
-                const searchParams = new URLSearchParams(queryString);
-                Array.from(searchParams.keys()).forEach(key => {
+            // Extract all other parameters as custom params
+            Array.from(searchParams.keys()).forEach(key => {
+                if (key !== 'type') {
                     const value = searchParams.get(key);
                     if (value !== null) {
-                        urlParams.set(key, value);
+                        customParams[key] = value;
                     }
-                });
-            }
-
-            if (fullUrl) {
-                try {
-                    const fullUrlObj = new URL(fullUrl, 'https://example.com');
-                    Array.from(fullUrlObj.searchParams.keys()).forEach(key => {
-                        if (key !== 'query') {
-                            const value = fullUrlObj.searchParams.get(key);
-                            if (value !== null) {
-                                urlParams.set(key, value);
-                            }
-                        }
-                    });
-                } catch (e) {
-                    console.error('Error parsing fullUrl:', e);
                 }
-            }
-
-            const params: Record<string, string> = {};
-            urlParams.forEach((value, key) => {
-                params[key] = value;
             });
 
-            result.customParams = params;
-            Object.entries(params).forEach(([key, value]) => {
+            result.customParams = customParams;
+            
+            // Also add them directly to result for backward compatibility
+            Object.entries(customParams).forEach(([key, value]) => {
                 result[key] = value;
             });
 
@@ -104,7 +107,7 @@ const Share = ({ appConfig, query, fullUrl }: ShareProps) => {
             console.error('Error parsing query:', error);
             return { type: query };
         }
-    }, [query, fullUrl]);
+    }, [query]);
 
     const getTimezoneOffset = useCallback(() => {
         const offsetMinutes = new Date().getTimezoneOffset();
@@ -385,8 +388,8 @@ export default Share;
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
     try {
         const { bucket } = context.params as { bucket: string };
-        const { query } = context.query as { query: string };
-        console.log("Original query:", query);
+        const { query: queryParam } = context.query as { query: string };
+        console.log("Original query param:", queryParam);
 
         const fullUrl = context.resolvedUrl;
         console.log("Full URL:", fullUrl);
@@ -395,15 +398,25 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
         const allParams = Object.fromEntries(urlObj.searchParams.entries());
         console.log("All URL params:", allParams);
 
-        let enhancedQuery = query;
-        if (allParams.appId && !query.includes('appId=')) {
-            enhancedQuery = query.includes('?')
-                ? `${query}&appId=${allParams.appId}`
-                : `${query}?appId=${allParams.appId}`;
+        // Build the complete query string from all parameters except 'query' itself
+        const queryParams = new URLSearchParams();
+        
+        // Add the main query parameter if it exists
+        if (queryParam) {
+            queryParams.set('type', queryParam);
         }
+        
+        // Add all other parameters
+        Object.entries(allParams).forEach(([key, value]) => {
+            if (key !== 'query' && value) {
+                queryParams.set(key, value);
+            }
+        });
+
+        const enhancedQuery = queryParams.toString();
         console.log("Enhanced query:", enhancedQuery);
 
-        if (!bucket || !query) {
+        if (!bucket) {
             return { notFound: true };
         }
 
