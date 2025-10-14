@@ -1,298 +1,234 @@
+import React, { useState } from "react";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import Layout from "../../components/layout";
 
-const Brainmate = () => {
-  const { query } = useRouter();
-  const { appName } = query;
-  const [isGlitching, setIsGlitching] = useState(false);
-  const [particleCount, setParticleCount] = useState(0);
-  const [isMatrixActive, setIsMatrixActive] = useState(true);
-
-  useEffect(() => {
-    const glitchInterval = setInterval(() => {
-      setIsGlitching(true);
-      setTimeout(() => setIsGlitching(false), 200);
-    }, 3000);
-
-    const particleInterval = setInterval(() => {
-      setParticleCount((prev) => (prev + 1) % 50);
-    }, 100);
-
-    const matrixInterval = setInterval(() => {
-      setIsMatrixActive((prev) => !prev);
-    }, 5000);
-
-    return () => {
-      clearInterval(glitchInterval);
-      clearInterval(particleInterval);
-      clearInterval(matrixInterval);
-    };
-  }, []);
+const BrainmatePage = () => {
+  const [activeTab, setActiveTab] = useState("about");
 
   return (
-    <>
+    <Layout>
       <Head>
-        <title>🧠 BRAINMATE — NEURAL OVERLOAD ACTIVATED 🧠</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="/css/brainmate.css" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Creepster&family=Butcherman&family=Chakra+Petch:wght@300;400;700&display=swap"
-          rel="stylesheet"
+        <title>Brainmate - Your Smart Exam Helper</title>
+        <meta
+          name="description"
+          content="Meet Brainmate, your AI-powered exam assistant designed to help you understand questions and make learning smoother."
         />
+        <link rel="stylesheet" href="/css/brainmate.css" />
       </Head>
 
-      {/* Matrix Rain Background */}
-      <div className={`matrix-rain ${isMatrixActive ? "active" : ""}`}>
-        {Array.from({ length: 30 }).map((_, i) => (
-          <div
-            key={i}
-            className="matrix-column"
-            style={{ left: `${i * 3.33}%` }}
-          >
-            {Array.from({ length: 25 }).map((_, j) => (
-              <div
-                key={j}
-                className="matrix-char"
-                style={{ animationDelay: `${Math.random() * 3}s` }}
-              >
-                {Math.random() > 0.5 ? "1" : "0"}
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
-
-      {/* Glitch Overlay */}
-      <div className={`glitch-overlay ${isGlitching ? "active" : ""}`}></div>
-
-      {/* Cyber Grid Background */}
-      <div className="cyber-grid-bg"></div>
-
-      <main className="wrapper">
-        {/* INSANE Hero Section */}
-        <section className="hero">
-          <div className="hero-content">
-            <div className="glitch-text">
-              <h1 className={`main-title ${isGlitching ? "glitch" : ""}`}>
-                <span className="layer-1">🧠 BRAINMATE 🧠</span>
-                <span className="layer-2">🧠 BRAINMATE 🧠</span>
-                <span className="layer-3">🧠 BRAINMATE 🧠</span>
-              </h1>
-            </div>
-            <p className="hero-subtitle neon-text">
-              ⚡ NEURAL OVERLOAD ACTIVATED ⚡
-            </p>
-            <div className="cyber-grid"></div>
-          </div>
-
-          {/* Floating Particles */}
-          {Array.from({ length: particleCount }).map((_, i) => (
-            <div
-              key={i}
-              className="floating-particle"
-              style={{
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 2}s`,
-                animationDuration: `${2 + Math.random() * 3}s`,
-              }}
+      <div className="brainmate-container">
+        {/* Tabs Navigation */}
+        <div className="tabs-wrapper">
+          <div className="tabs-navigation">
+            <button
+              className={`tab-btn ${activeTab === "about" ? "active" : ""}`}
+              onClick={() => setActiveTab("about")}
             >
-              {
-                ["💥", "⚡", "🔥", "🧠", "💀", "👁️", "🤖", "⚡", "💎", "🌟"][
-                  Math.floor(Math.random() * 10)
-                ]
-              }
-            </div>
-          ))}
-        </section>
-
-        {/* INSANE Content card */}
-        <section className="card cyber-card">
-          {/* About Brainmate */}
-          <div className="section">
-            <h2 className="section-title cyber-title">
-              <span className="icon glitch-icon">📢</span>
-              <span className="title-text">ABOUT BRAINMATE</span>
-              <span className="title-glitch">ABOUT BRAINMATE</span>
-            </h2>
-            <p className="lead cyber-text">
-              🔥 MEET BRAINMATE – YOUR NEURAL OVERLOAD ASSISTANT! 🔥
-              <br />
-              Studying for an exam can feel like a CYBER ATTACK on your brain,
-              but you don't have to fight alone anymore! Brainmate is your
-              BUILT-IN AI NEURAL NETWORK designed to HACK into your study
-              questions and make learning EXPLODE with understanding! Think of
-              it as a CYBER-PUNK friend who's always ready to DECODE the "why"
-              behind every answer! ⚡
-            </p>
-
-            <div className="info-box cyber-box">
-              <h3 className="cyber-heading">🤖 WHAT IS BRAINMATE? 🤖</h3>
-              <p className="cyber-paragraph">
-                Brainmate isn't some basic chatbot that chats about
-                everything—it's a NEURAL OVERLOAD SYSTEM focused entirely on
-                your study questions! Its purpose is SIMPLE: to HACK your brain
-                and help you understand each question deeply, recognize common
-                TRAPS, and strengthen your exam readiness to MAXIMUM LEVEL!
-                Brainmate combines AI language understanding with
-                subject-specific knowledge to guide you whenever you're STUCK in
-                the matrix! 🧠⚡
-              </p>
-            </div>
-
-            <div className="info-box cyber-box">
-              <h3 className="cyber-heading">⚡ HOW BRAINMATE WORKS ⚡</h3>
-              <p className="cyber-paragraph">
-                At its core, Brainmate is powered by ADVANCED AI TECHNOLOGY
-                based on ChatGPT-4, trained specifically for exam-style content!
-                When you ask a question, Brainmate INTERPRETS the meaning, looks
-                for the relevant concept, and then EXPLAINS it in clear,
-                easy-to-follow language! Instead of just giving you the answer,
-                it helps you see how to reach it, so you actually LEARN from
-                every interaction! 🚀
-              </p>
-              <p className="cyber-paragraph">
-                Brainmate can CLARIFY confusing terms, point out why other
-                options are incorrect, offer short study tips related to the
-                question, and even guide you through hard questions step by step
-                so you can understand the reasoning behind them! Everything it
-                provides stays strictly within the context of your practice
-                content! 💥
-              </p>
-            </div>
+              About Brainmate
+            </button>
+            <button
+              className={`tab-btn ${
+                activeTab === "how-to-use" ? "active" : ""
+              }`}
+              onClick={() => setActiveTab("how-to-use")}
+            >
+              How To Use Brainmate
+            </button>
+            <button
+              className={`tab-btn ${activeTab === "accuracy" ? "active" : ""}`}
+              onClick={() => setActiveTab("accuracy")}
+            >
+              Accuracy Disclaimer
+            </button>
           </div>
+        </div>
 
-          {/* How to Use Brainmate */}
-          <div className="section">
-            <h2 className="section-title cyber-title">
-              <span className="icon glitch-icon">💬</span>
-              <span className="title-text">HOW TO USE BRAINMATE</span>
-              <span className="title-glitch">HOW TO USE BRAINMATE</span>
-            </h2>
-            <p className="lead cyber-text">
-              You can find Brainmate directly on each Question Screen, ready to
-              assist whenever you need extra help! 🚀
-            </p>
+        {/* Tab Contents */}
+        <div className="tab-content-wrapper">
+          {/* About Brainmate Tab */}
+          {activeTab === "about" && (
+            <div className="tab-content active">
+              <div className="content-section">
+                <div className="illustration-box">
+                  <img
+                    src="/images/brainmate/brainmate-info-1.png"
+                    alt="Brainmate AI Robot Assistant"
+                    className="illustration-image"
+                  />
+                </div>
 
-            <div className="feature-grid cyber-grid-features">
-              <div className="feature-card cyber-feature-card">
-                <div className="feature-icon cyber-icon">💬</div>
-                <h3 className="cyber-feature-title">ASKING QUESTIONS</h3>
-                <p className="cyber-feature-text">
+                <h2 className="section-title">
+                  📢 Meet Brainmate – Your Smart Exam Helper!
+                </h2>
+                <p className="section-text">
+                  Studying for an exam can feel overwhelming, but you don't have
+                  to do it alone anymore. Brainmate is your built-in AI
+                  assistant, designed to help you understand the questions
+                  inside the app and make learning smoother. Think of it as a
+                  calm, knowledgeable friend who's always ready to explain
+                  things and answer every answer.
+                </p>
+
+                <h3 className="subsection-title">What is Brainmate?</h3>
+                <p className="section-text">
+                  Brainmate isn't a general chatbot that chats about
+                  everything—it's focused entirely on your study content. Its
+                  purpose is simple: to help you understand each question
+                  deeply, recognize common traps, and strengthen your exam
+                  readiness. Brainmate combines AI language understanding with
+                  subject-specific knowledge to guide you whenever you're stuck.
+                </p>
+
+                <h3 className="subsection-title">How Brainmate Works</h3>
+                <p className="section-text">
+                  At its core, Brainmate is powered by{" "}
+                  <strong>advanced AI language models</strong> (built on
+                  technology similar to ChatGPT-4). When you ask a question,
+                  Brainmate doesn't just search for the meaning, looks for the
+                  relevant concept, and then explains it back to you in simple,
+                  supportive language. Instead of just giving you the answer, it
+                  helps you see <em>how</em> to reach it, so you actually learn
+                  in the process.
+                </p>
+                <p className="section-text">
+                  Brainmate can clarify confusing terms, point out why other
+                  options are incorrect, offer guidance on difficult reasoning,
+                  and give you extra tips related to the question and even guide
+                  you through your thought process. Everything it provides stays
+                  strictly within the context of your practice content.
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* How To Use Brainmate Tab */}
+          {activeTab === "how-to-use" && (
+            <div className="tab-content active">
+              <div className="content-section">
+                <div className="illustration-box">
+                  <img
+                    src="/images/brainmate/brainmate-info-2.png"
+                    alt="How to use Brainmate - Student studying with AI assistant"
+                    className="illustration-image"
+                  />
+                </div>
+
+                <p className="section-text">
+                  You can find Brainmate directly on each Question Screen, ready
+                  to assist whenever you need extra help.
+                </p>
+
+                <h3 className="subsection-title">Asking Questions</h3>
+                <p className="section-text">
                   When you're unsure about a question, you can either tap one of
-                  the suggested options shown below the question or type your
-                  own question directly into the chat bar! Brainmate will
-                  instantly respond with explanations, clarifications, or
-                  step-by-step guidance—especially useful for hard or confusing
-                  questions where you need more detailed reasoning! ⚡
+                  our <strong>quick suggestions</strong> that appear below the
+                  question or <strong>type your own question</strong> directly
+                  into the chat bar. Brainmate will instantly respond with
+                  explanations, clarifications, or step-by-step
+                  guidance—especially effective for
+                  <strong> hard or confusing questions</strong> where you need
+                  more detailed reasoning.
                 </p>
-              </div>
 
-              <div className="feature-card cyber-feature-card">
-                <div className="feature-icon cyber-icon">⚙️</div>
-                <h3 className="cyber-feature-title">DAILY LIMIT</h3>
-                <p className="cyber-feature-text">
-                  Brainmate is completely free to use but currently supports up
-                  to 100 messages per day! This helps ensure smooth performance
-                  and fair access for all learners! 🔥
+                <h3 className="subsection-title">Daily Limit</h3>
+                <p className="section-text">
+                  Brainmate is completely free to use but currently supports{" "}
+                  <strong>up to 100 messages per day</strong>. This helps ensure
+                  fair performance and equal access for all learners.
                 </p>
-              </div>
 
-              <div className="feature-card cyber-feature-card">
-                <div className="feature-icon cyber-icon">💡</div>
-                <h3 className="cyber-feature-title">TIPS FOR EFFECTIVE USE</h3>
-                <ul className="tips-list cyber-tips">
-                  <li className="cyber-tip">
-                    Use the quick options when available—they're the fastest way
-                    to get help matched to your current question! ⚡
+                <h3 className="subsection-title">Tips for Effective Use</h3>
+                <p className="section-text">
+                  To make the most out of Brainmate:
+                </p>
+                <ul className="tips-list">
+                  <li>
+                    <strong>
+                      Use the quick options when they're the fastest way to get
+                      help matched to your current question.
+                    </strong>
                   </li>
-                  <li className="cyber-tip">
-                    Type your own questions when you want a deeper explanation
-                    or help with a tough one! 🧠
+                  <li>
+                    <strong>Type your own questions</strong> when you want a
+                    deeper explanation or help with a tough one.
                   </li>
-                  <li className="cyber-tip">
-                    Be clear and specific! The more precise your question, the
-                    better Brainmate can assist! 💎
+                  <li>
+                    <strong>Be clear and specific:</strong> The more precise
+                    your question, the better Brainmate can assist.
                   </li>
-                  <li className="cyber-tip">
-                    Stay focused on exam topics! Brainmate only assists within
-                    the test-related content available in the app! 🎯
+                  <li>
+                    <strong>Stay focused on exam topics.</strong> Brainmate only
+                    assists with the test-related content available in the app.
                   </li>
                 </ul>
               </div>
             </div>
-          </div>
+          )}
 
-          {/* Accuracy Disclaimer */}
-          <div className="section">
-            <h2 className="section-title cyber-title">
-              <span className="icon glitch-icon">🤔</span>
-              <span className="title-text">ACCURACY DISCLAIMER</span>
-              <span className="title-glitch">ACCURACY DISCLAIMER</span>
-            </h2>
-            <div className="disclaimer-box cyber-disclaimer">
-              <h3 className="cyber-disclaimer-title">
-                WHY BRAINMATE MIGHT OCCASIONALLY BE WRONG 🤔
-              </h3>
-              <p className="cyber-disclaimer-text">
-                Brainmate uses natural language models that generate responses
-                based on patterns from study materials, not human reasoning!
-                This means it can sometimes misread vague or complex questions,
-                or phrase explanations imperfectly! It doesn't "know"
-                information—it predicts what's most likely correct based on the
-                data it was trained on! ⚠️
-              </p>
-
-              <div className="disclaimer-points cyber-disclaimer-points">
-                <div className="disclaimer-point cyber-disclaimer-point">
-                  <h4 className="cyber-point-title">LIMITED SCOPE</h4>
-                  <p className="cyber-point-text">
-                    Brainmate only answers question-related content within the
-                    app! If you ask about unrelated subjects, personal advice,
-                    or topics outside the practice questions, its replies may
-                    not be reliable! It also doesn't replace textbooks,
-                    teachers, or official references—use those sources to
-                    confirm important details! 🎯
-                  </p>
+          {/* Accuracy Disclaimer Tab */}
+          {activeTab === "accuracy" && (
+            <div className="tab-content active">
+              <div className="content-section">
+                <div className="illustration-box">
+                  <img
+                    src="/images/brainmate/brainmate-info-3.png"
+                    alt="Accuracy Disclaimer - Important information"
+                    className="illustration-image"
+                  />
                 </div>
 
-                <div className="disclaimer-point cyber-disclaimer-point">
-                  <h4 className="cyber-point-title">VARIATIONS IN INPUT</h4>
-                  <p className="cyber-point-text">
-                    Because everyone writes differently, Brainmate may
-                    misinterpret slang, incomplete sentences, or overly
-                    technical phrasing! Providing clear context helps it give
-                    better answers! 💡
-                  </p>
-                </div>
+                <h2 className="section-title">
+                  Why Brainmate Might Occasionally Be Wrong 🤔
+                </h2>
+                <p className="section-text">
+                  Brainmate uses natural language models that generate responses
+                  based on patterns from extensive training and logical
+                  reasoning. This means it can sometimes mislead vague or
+                  complex questions, or phrase explanations imperfectly. It
+                  doesn't "know" information, it predicts what's most likely
+                  correct based on the data it's trained on.
+                </p>
 
-                <div className="disclaimer-point cyber-disclaimer-point">
-                  <h4 className="cyber-point-title">DATA LIMITATIONS</h4>
-                  <p className="cyber-point-text">
-                    Although Brainmate has been trained on curated educational
-                    content, some explanations might reflect outdated or biased
-                    information from source materials! It doesn't access
-                    real-time databases or confidential data! 📊
-                  </p>
-                </div>
+                <h3 className="subsection-title">Limited Scope</h3>
+                <p className="section-text">
+                  Brainmate only answers question-related content within the
+                  app. If you ask about unrelated subjects, personal advice, or
+                  topics outside the practice questions, its responses might not
+                  be reliable. It also doesn't replace textbooks, teachers, or
+                  official resources—use those sources to confirm important
+                  details.
+                </p>
 
-                <div className="disclaimer-point cyber-disclaimer-point">
-                  <h4 className="cyber-point-title">CONTINUOUS IMPROVEMENT</h4>
-                  <p className="cyber-point-text">
-                    Our team is constantly refining Brainmate's responses
-                    through updates and user feedback! If you spot something
-                    incorrect or unclear, let us know! Every message helps
-                    Brainmate become a more accurate and dependable learning
-                    partner for everyone! 🚀
-                  </p>
-                </div>
+                <h3 className="subsection-title">Variations in Input</h3>
+                <p className="section-text">
+                  Because everyone writes differently, Brainmate may
+                  misunderstand slang, incomplete sentences, or overly technical
+                  phrasing. Providing clear context helps it give better
+                  answers.
+                </p>
+
+                <h3 className="subsection-title">Data Limitations</h3>
+                <p className="section-text">
+                  Although Brainmate has been trained on curated educational
+                  content, some explanations might feel outdated or biased
+                  depending on the source materials. It doesn't access real-
+                  time databases or the most up-to-date, confidential data.
+                </p>
+
+                <h3 className="subsection-title">Continuous Improvement</h3>
+                <p className="section-text">
+                  Our team is constantly refining Brainmate's responses through
+                  updates and user feedback. If something seems off, it's
+                  helping us know. Every message helps Brainmate become a more
+                  reliable study partner for everyone.
+                </p>
               </div>
             </div>
-          </div>
-        </section>
-      </main>
-    </>
+          )}
+        </div>
+      </div>
+    </Layout>
   );
 };
 
-export default Brainmate;
+export default BrainmatePage;
