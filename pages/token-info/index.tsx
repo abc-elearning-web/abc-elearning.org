@@ -209,27 +209,6 @@ const TokenInfo = () => {
                     </div>
                   </td>
                 </tr>
-
-                <tr>
-                  <td style={{ border: "1px solid #ddd", padding: "12px" }}>
-                    • Log in successfully for the first time.
-                  </td>
-                  <td style={{ border: "1px solid #ddd", padding: "12px" }}>
-                    <div className="tokens">
-                      <span className="token-plain">
-                        <img
-                          src="https://raw.githubusercontent.com/abc-elearning-app/token-info/main/token.png"
-                          alt="token"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.remove();
-                          }}
-                        />
-                        +15 tokens
-                      </span>
-                    </div>
-                  </td>
-                </tr>
               </tbody>
             </table>
           </div>
