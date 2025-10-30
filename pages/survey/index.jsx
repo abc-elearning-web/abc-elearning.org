@@ -1,20 +1,34 @@
 import fs from "fs";
-import SurveyContent from "../../components/survey/SurveyContent";
+import ExamPass from "../../components/survey/content";
+import {
+  listSurveyExamFail,
+  listSurveyExamPass,
+} from "../../components/survey/data";
 import SurveyType from "../../components/survey/SurveyType";
 import WhenIsYourExamDate from "../../components/survey/when-is-your-exam-date";
 import WhenWillYouGetYourResult from "../../components/survey/when-will-you-get-your-result";
+
 export default function Survey({ bucket, email, type, appConfig }) {
   return (
     <div>
-      {(type === "exam_pass" || type === "exam_fail") && (
-        <SurveyContent
+      {type === "exam_pass" && (
+        <ExamPass
           bucket={bucket}
-          email={email}
+          listSurvey={listSurveyExamPass}
           type={type}
+          email={email}
+          surveyType={SurveyType.congratulation}
           appConfig={appConfig}
-          surveyType={
-            type === "exam_pass" ? SurveyType.congratulation : SurveyType.sorry
-          }
+        />
+      )}
+      {type === "exam_fail" && (
+        <ExamPass
+          bucket={bucket}
+          listSurvey={listSurveyExamFail}
+          type={type}
+          email={email}
+          surveyType={SurveyType.sorry}
+          appConfig={appConfig}
         />
       )}
       {type === "exam_date" && (
