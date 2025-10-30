@@ -245,7 +245,7 @@ const SurveyContent = ({
                     className="p-3 rounded-xl bg-[#2121210A] mt-4 shadow-sm"
                     id={"survey-item-" + index}
                   >
-                    <p className="m-0 font-medium block text-[14px] md:text-[24px] leading-none mb-2">
+                    <p className="m-0 font-medium block text-[14px] md:text-[24px] leading-normal mb-4">
                       {index + 1}. {survey.content}{" "}
                       {survey.require ? (
                         <i className="text-red-500">*</i>
@@ -279,42 +279,47 @@ const SurveyContent = ({
                       <>
                         {/* Mobile radio button */}
                         <div className="mt-4 md:hidden">
-                          <div className="flex flex-row flex-nowrap gap-2 justify-center">
+                          <div className="flex flex-row flex-nowrap gap-5 justify-center align-center mb-2">
                             {survey.options.map((option, i) => {
                               return (
-                                <div
-                                  className="flex justify-center items-center mb-2 w-6"
-                                  key={i}
-                                >
-                                  <label className="flex flex-col-reverse gap-2 m-0 cursor-pointer">
-                                    <input
-                                      type="radio"
-                                      id={`get-data ${index}-${i}`}
-                                      name={"rate-" + index}
-                                      value={option.content}
-                                      checked={option.selected}
-                                      onChange={(e) => {
-                                        let _ = [...surveys];
-                                        _[index].options[i].selected =
-                                          e.currentTarget.checked;
-                                        setSurveys(_);
-                                      }}
-                                      className="appearance-none w-6 h-6 border-2 border-[#3B6AD0] rounded-full bg-white checked:before:block checked:before:content-[''] checked:before:w-2.5 checked:before:h-2.5 checked:before:bg-[#3B6AD0] transition-colors cursor-pointer"
-                                    />
-                                    <span className="text-[12px] md:text-[14px] leading-5 font-medium text-center">
-                                      {option.content.replace("#", "")}
-                                    </span>
-                                  </label>
-                                </div>
+                                <span className="" key={i}>
+                                  {option.content.replace("#", "")}
+                                </span>
                               );
                             })}
                           </div>
-                          <div className="flex items-center justify-between translate-y-[-30px]">
-                            <span className="text-xs font-medium whitespace-nowrap text-[10.5px]">
-                              Not close at all
+                          <div className="flex items-center justify-between align-center">
+                            <span className="text-xs font-medium whitespace-nowrap text-[10.5px] text-left ">
+                              Not Close At All
                             </span>
-                            <span className="text-xs font-medium whitespace-nowrap text-[10.5px]">
-                              Extremely close
+                            {survey.options.map((option, i) => {
+                              return (
+                                <label
+                                  className="flex flex-col-reverse gap-2 m-0 cursor-pointer align-center"
+                                  key={i}
+                                >
+                                  <input
+                                    type="radio"
+                                    id={`get-data ${index}-${i}`}
+                                    name={"rate-" + index}
+                                    value={option.content}
+                                    checked={option.selected}
+                                    onChange={(e) => {
+                                      let _ = [...surveys];
+                                      _[index].options[i].selected =
+                                        e.currentTarget.checked;
+                                      setSurveys(_);
+                                    }}
+                                    className="appearance-none w-4 h-4 border-2 border-[#3B6AD0] rounded-full bg-white checked:before:block checked:before:content-[''] checked:before:w-2.5 checked:before:h-2.5 checked:before:bg-[#3B6AD0] transition-colors cursor-pointer"
+                                  />
+                                  {/* <span className="text-[12px] md:text-[14px] leading-5 font-medium text-center">
+                                    {option.content.replace("#", "")}
+                                  </span> */}
+                                </label>
+                              );
+                            })}
+                            <span className="text-xs font-medium whitespace-nowrap text-[10.5px] text-right ">
+                              Extremely Close
                             </span>
                           </div>
                         </div>
@@ -322,7 +327,7 @@ const SurveyContent = ({
                         {/* Desktop radio button */}
                         <div className="hidden justify-center items-end mt-4 md:flex">
                           <span className="text-xs font-medium leading-10">
-                            Not close at all
+                            Not Close At All
                           </span>
                           <div className="flex flex-row flex-nowrap gap-4 mx-3">
                             {survey.options.map((option, i) => {
@@ -361,7 +366,7 @@ const SurveyContent = ({
                           </div>
 
                           <span className="text-xs font-medium leading-10">
-                            Extremely close
+                            Extremely Close
                           </span>
                         </div>
                       </>
@@ -443,7 +448,7 @@ const SurveyContent = ({
                           {survey.options.map((option, i) => {
                             return (
                               <div className="flex items-center mb-2" key={i}>
-                                <label className="flex gap-1 items-center m-0 cursor-pointer">
+                                <label className="flex gap-2 items-center m-0 cursor-pointer">
                                   <input
                                     type="checkbox"
                                     className="appearance-none w-6 h-6 border border-[#3B6AD0] rounded-md bg-white
@@ -501,7 +506,7 @@ const SurveyContent = ({
                                 {option.content.endsWith("#") && (
                                   <>
                                     <i className="text-[12px] md:text-sm flex-none">
-                                      (Please specify:
+                                      (Please Specify:
                                     </i>
                                     <input
                                       className="w-full ml-1 mb-3 block border-0 border-b border-gray-800 focus:border-gray-800 focus:outline-none placeholder:text-gray-300  max-w-[260px]  bg-[#F6F6F6]"
@@ -536,7 +541,7 @@ const SurveyContent = ({
                             {survey.options.map((option, i) => {
                               return (
                                 <div className="flex items-center mb-2" key={i}>
-                                  <label className="flex gap-1 items-center m-0 cursor-pointer">
+                                  <label className="flex gap-3 items-center m-0 cursor-pointer">
                                     <input
                                       type="radio"
                                       id={`get-data ${index}-${i}`}
@@ -565,7 +570,7 @@ const SurveyContent = ({
                                   {option.content.endsWith("#") && (
                                     <>
                                       <i className="text-[12px] md:text-sm flex-none">
-                                        (Please specify:
+                                        (Please Specify:
                                       </i>
                                       <input
                                         className=" flex-1 min-w-0 ml-1 mb-3 block border-0 border-b border-gray-800 focus:border-gray-800 focus:outline-none placeholder:text-gray-300  max-w-[280px] bg-[#F6F6F6]"
@@ -615,7 +620,7 @@ const SurveyContent = ({
                           marginLeft: "16px",
                         }}
                       >
-                        Please specify!
+                        Please Specify!
                       </span>
                     </div>
                   </div>
@@ -659,29 +664,29 @@ const getSurveyQuestion = (appConfig: any, type: SurveyType) => {
     if (type === SurveyType.sorry) {
       listSurvey = [
         {
-          content: "What score did you get?",
+          content: "What Score Did You Get?",
           type: SurveyQuestionType.fill,
           options: [{ content: "", selected: false }],
           require: true,
         },
         {
           content:
-            "What do you believe was the reason(s) for your exam failure? (Please select all that apply)",
+            "What Do You Believe Was The Reason(s) For Your Exam Failure? (Please Select All That Apply)",
           type: SurveyQuestionType.multiChoices,
           options: [
             {
               content:
-                "Insufficient time dedicated to learning and preparation",
+                "Insufficient Time Dedicated To Learning And Preparation",
               selected: false,
             },
             {
               content:
-                "Practice questions in the app did not accurately reflect the real exam",
+                "Practice Questions In The App Did Not Accurately Reflect The Real Exam",
               selected: false,
             },
             {
               content:
-                "Features in the app were not helpful for exam preparation",
+                "Features In The App Were Not Helpful For Exam Preparation",
               selected: false,
             },
             { content: "Other#", selected: false, specify: "" },
@@ -689,52 +694,53 @@ const getSurveyQuestion = (appConfig: any, type: SurveyType) => {
           require: true,
         },
         {
-          content: "How frequently did you use our app to study for the exam?",
+          content: "How Frequently Did You Use Our App To Study For The Exam?",
           type: SurveyQuestionType.singleChoice,
           options: [
             { content: "Daily", selected: false },
-            { content: "Several times a week", selected: false },
-            { content: "Once a week", selected: false },
+            { content: "Several Times A Week", selected: false },
+            { content: "Once A Week", selected: false },
+            { content: "Occasionally", selected: false },
             { content: "Rarely", selected: false },
           ],
           require: true,
         },
         {
           content:
-            "Did you encounter any specific topics on the exam that you felt unprepared for based on the app's practice content?",
+            "Did You Encounter Any Specific Topics On The Exam That You Felt Unprepared For Based On The App's Practice Content?",
           type: SurveyQuestionType.multiChoices,
           options: [
-            { content: "General science", selected: false },
-            { content: "Arithmetic reasoning", selected: false },
-            { content: "Word knowledge", selected: false },
-            { content: "Paragraph comprehension", selected: false },
-            { content: "Mathematics knowledge", selected: false },
-            { content: "Electronics information", selected: false },
-            { content: "Auto and shop information", selected: false },
-            { content: "Mechanical comprehension", selected: false },
-            { content: "Assembling objects", selected: false },
+            { content: "Arithmetic Reasoning", selected: false },
+            { content: "Assembling Objects", selected: false },
+            { content: "Auto and Shop Information", selected: false },
+            { content: "Electronics Information", selected: false },
+            { content: "General Science", selected: false },
+            { content: "Mathematics Knowledge", selected: false },
+            { content: "Word Knowledge", selected: false },
+            { content: "Other#", selected: false, specify: "" },
           ],
           require: true,
         },
         {
           content:
-            "What features do you think the app could improve on to better help users pass their exams?",
+            "What Features Do You Think The App Could Improve On To Better Help Users Pass Their Exams?",
           type: SurveyQuestionType.multiChoices,
           options: [
             { content: "Diagnostic test", selected: false },
-            { content: "Practice questions", selected: false },
-            { content: "Explanations for answers", selected: false },
+            { content: "Study By Topics", selected: false },
+            { content: "Daily Challenge", selected: false },
             { content: "Passing possibility", selected: false },
-            { content: "Study plan", selected: false },
-            { content: "Exam simulator", selected: false },
-            { content: "Final test", selected: false },
+            { content: "Practice Test", selected: false },
+            { content: "Mentora", selected: false },
+            { content: "Exam Simulator", selected: false },
+            { content: "Final Test", selected: false },
             { content: "Other#", selected: false, specify: "" }, // **dấu # sẽ tương ứng với việc điền thêm thông tin vào lựa chọn
           ],
           require: true,
         },
         {
           content:
-            "Would you be willing to try the app again if we implemented improvements based on user feedback?",
+            "Would You Be Willing To Try The App Again If We Implemented Improvements Based On User Feedback?",
           type: SurveyQuestionType.singleChoice,
           options: [
             { content: "Yes", selected: false },
@@ -754,25 +760,25 @@ const getSurveyQuestion = (appConfig: any, type: SurveyType) => {
     } else if (type === SurveyType.congratulation) {
       listSurvey = [
         {
-          content: "What score did you get?",
+          content: "What Score Did You Get?",
           type: SurveyQuestionType.fill,
           options: [{ content: "", selected: false }],
           require: true,
         },
         {
-          content: "How frequently did you use our app to study for the exam?",
+          content: "How Frequently Did You Use Our App To Study For The Exam?",
           type: SurveyQuestionType.singleChoice,
           options: [
             { content: "Daily", selected: false },
             { content: "Weekly", selected: false },
-            { content: "Few times a week", selected: false },
-            { content: "Less than once a week", selected: false },
+            { content: "Few Times A Week", selected: false },
+            { content: "Less Than Once A Week", selected: false },
           ],
           require: true,
         },
         {
           content:
-            "On a scale of 1-5, please rate the closeness of the practice questions in our app compared to the real exam.",
+            "How Close Are The Practice Questions In Our App Compared To The Real Exam?",
           type: SurveyQuestionType.rate,
           options: [
             { content: "1", selected: false },
@@ -785,34 +791,35 @@ const getSurveyQuestion = (appConfig: any, type: SurveyType) => {
         },
         {
           content:
-            "Which specific features of our app did you find most beneficial in your exam preparation? (Check all that apply)",
+            "Which Specific Features Of Our App Did You Find Most Beneficial In Your Exam Preparation? (Check All That Apply)",
           type: SurveyQuestionType.multiChoices,
           options: [
-            { content: "Diagnostic test", selected: false },
-            { content: "Practice questions", selected: false },
-            { content: "Explanations for answers", selected: false },
+            { content: "Diagnostic Test", selected: false },
+            { content: "Study By Topics", selected: false },
+            { content: "Daily Challenge", selected: false },
             { content: "Passing possibility", selected: false },
-            { content: "Study plan", selected: false },
-            { content: "Exam simulator", selected: false },
-            { content: "Final test", selected: false },
+            { content: "Practice Test", selected: false },
+            { content: "Mentora", selected: false },
+            { content: "Exam Simulator", selected: false },
+            { content: "Final Test", selected: false },
             { content: "Other#", selected: false, specify: "" }, // **dấu # sẽ tương ứng với việc điền thêm thông tin vào lựa chọn
           ],
           require: true,
         },
         {
-          content: "How did you hear about our app?",
+          content: "How Did You Hear About Our App?",
           type: SurveyQuestionType.singleChoice,
           options: [
-            { content: "Online search", selected: false },
-            { content: "Social media", selected: false },
-            { content: "Word of mouth", selected: false },
+            { content: "Online Search", selected: false },
+            { content: "Social Media", selected: false },
+            { content: "Word Of Mouth", selected: false },
             { content: "Other#", selected: false, specify: "" },
           ],
           require: false,
         },
         {
           content:
-            "Would you recommend our app to others preparing for the same exam?",
+            "Would You Recommend Our App To Others Preparing For The Same Exam?",
           type: SurveyQuestionType.singleChoice,
           options: [
             { content: "Yes", selected: false },
@@ -822,7 +829,7 @@ const getSurveyQuestion = (appConfig: any, type: SurveyType) => {
         },
         {
           content:
-            "Could you please rate us with a 5-star rating on the Store? It is the best encouragement for our team.",
+            "Could You Please Rate Us With A 5-Star Rating On The Store? It Is The Best Encouragement For Our Team.",
           type: SurveyQuestionType.singleChoice,
           options: [
             { content: "Yes", selected: false },
@@ -832,7 +839,7 @@ const getSurveyQuestion = (appConfig: any, type: SurveyType) => {
         },
         {
           content:
-            "Do you have any additional feedback or suggestions to help us further improve our app?",
+            "Do You Have Any Additional Feedback Or Suggestions To Help Us Further Improve Our App?",
           type: SurveyQuestionType.fill,
           options: [{ content: "", selected: false }],
           require: false,
