@@ -1,4 +1,4 @@
-import SurveyType, { SurveyData } from "../components/SurveyType";
+import SurveyType, { SurveyData } from "../components/survey/SurveyType";
 
 const base = "https://api-cms-v2-dot-micro-enigma-235001.appspot.com"; //"http://localhost:3001"; //
 

@@ -1,13 +1,12 @@
-import { GetServerSideProps } from "next";
-import { useState, useEffect } from "react";
-import LogoApp from "./components/LogoApp";
-import { sendSurvey } from "./services/home.service";
-import SurveyType from "./components/SurveyType";
-import Calendar from "./components/Calendar";
+import { useEffect, useState } from "react";
+import { sendSurvey } from "../../services/home.service";
+import Calendar from "./Calendar";
+import LogoApp from "./LogoApp";
+import SurveyType from "./SurveyType";
 
 const SELECT_EXAM_DATE_TAB = 0;
 const SUBMITED = 1;
-const WhenIsYourExamDate = ({
+const WhenWillYouGetYourResult = ({
   bucket,
   email,
   type,
@@ -35,13 +34,13 @@ const WhenIsYourExamDate = ({
   };
 
   const handleDontKnowYet = () => {
-    let examDate = "Don't know yet";
+    let resultDate = "Don't know yet";
     sendSurvey({
-      type: SurveyType.examDate,
+      type: SurveyType.waitResult,
       survey: [
         {
-          content: "When is your exam date?",
-          options: [{ content: examDate, selected: true }],
+          content: "When will you get your result?",
+          options: [{ content: resultDate, selected: true }],
           require: true,
           type: 1,
         },
@@ -54,13 +53,13 @@ const WhenIsYourExamDate = ({
   };
 
   const handleSubmit = () => {
-    let examDate = formatDate(selectedDate);
+    let resultDate = formatDate(selectedDate);
     sendSurvey({
-      type: SurveyType.examDate,
+      type: SurveyType.waitResult,
       survey: [
         {
-          content: "When is your exam date?",
-          options: [{ content: examDate, selected: true }],
+          content: "When will you get your result?",
+          options: [{ content: resultDate, selected: true }],
           require: true,
           type: 1,
         },
@@ -73,19 +72,19 @@ const WhenIsYourExamDate = ({
   };
 
   return (
-    <div className="min-h-screen bg-white relative overflow-x-hidden">
-      <div className="relative z-10 container mx-auto px-4 py-8">
-        <div className="max-w-10xl mx-auto">
+    <div className="overflow-x-hidden relative min-h-screen bg-white">
+      <div className="container relative z-10 px-4 py-8 mx-auto">
+        <div className="mx-auto max-w-7xl">
           {tab === SELECT_EXAM_DATE_TAB ? (
             <div
               className={`flex ${
                 isDesktop
-                  ? "flex-row items-start justify-center gap-16"
+                  ? "flex-row gap-16 justify-center items-start"
                   : "flex-col items-center"
               }`}
             >
               {isDesktop && (
-                <div className="flex-shrink-0 max-w-md w-full">
+                <div className="flex-shrink-0 w-full max-w-md">
                   <img
                     src="/images/date.png"
                     alt="Calendar Illustration"
@@ -95,12 +94,12 @@ const WhenIsYourExamDate = ({
               )}
 
               <div className="flex-1 max-w-[708px] py-2">
-                <div className="text-center mb-8">
-                  <div className="mb-6 justify-center flex">
+                <div className="mb-8 text-center">
+                  <div className="flex justify-center mb-6">
                     <LogoApp appInfo={appConfig} />
                   </div>
                   <h1 className="text-[24px] md:text-[52px] font-bold text-[#212121] mb-4 leading-tight">
-                    When Is Your Exam Date?
+                    When Will You Get Your Result?
                   </h1>
                   <p className="text-[#21212199] text-[12px] md:text-[24px]">
                     Pick a Date From Calendar
@@ -117,9 +116,8 @@ const WhenIsYourExamDate = ({
                 </div>
               </div>
 
-              {/* Mobile Image */}
               {!isDesktop && (
-                <div className="w-full max-w-sm mt-8 flex justify-center">
+                <div className="flex justify-center mt-8 w-full max-w-sm">
                   <img
                     src="/images/date_mobile.png"
                     alt="Calendar Illustration"
@@ -129,14 +127,14 @@ const WhenIsYourExamDate = ({
               )}
             </div>
           ) : tab === SUBMITED ? (
-            <div className="max-w-2xl mx-auto">
-              <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-200">
+            <div className="mx-auto max-w-2xl">
+              <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-sm">
                 <h1 className="text-2xl font-bold text-[#212121] mb-4">
-                  When is your exam date?
+                  When will you get your result?
                 </h1>
                 <p className="text-[#21212199] text-base mb-6">
                   Thank you for your time! We wish you all the best on your
-                  upcoming exam!
+                  exam!
                 </p>
                 <button
                   onClick={() => setTab(SELECT_EXAM_DATE_TAB)}
@@ -153,4 +151,4 @@ const WhenIsYourExamDate = ({
   );
 };
 
-export default WhenIsYourExamDate;
+export default WhenWillYouGetYourResult;

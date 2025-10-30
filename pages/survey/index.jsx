@@ -1,9 +1,8 @@
-import { GetServerSideProps } from "next";
 import fs from "fs";
-import SurveyContent from "./components/SurveyContent";
-import SurveyType from "./components/SurveyType";
-import WhenIsYourExamDate from "./when-is-your-exam-date";
-import WhenWillYouGetYourResult from "./when-will-you-get-your-result";
+import SurveyContent from "../../components/survey/SurveyContent";
+import SurveyType from "../../components/survey/SurveyType";
+import WhenIsYourExamDate from "../../components/survey/when-is-your-exam-date";
+import WhenWillYouGetYourResult from "../../components/survey/when-will-you-get-your-result";
 export default function Survey({ bucket, email, type, appConfig }) {
   return (
     <div>
