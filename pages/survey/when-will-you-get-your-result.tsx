@@ -99,10 +99,10 @@ const WhenWillYouGetYourResult = ({
                   <div className="mb-6 justify-center flex">
                     <LogoApp appInfo={appConfig} />
                   </div>
-                  <h1 className="text-4xl md:text-5xl font-bold text-[#212121] mb-4 leading-tight">
+                  <h1 className="text-[24px] md:text-[52px] font-bold text-[#212121] mb-4 leading-tight">
                     When Will You Get Your Result?
                   </h1>
-                  <p className="text-[#21212199] text-lg">
+                  <p className="text-[#21212199] text-[12px] md:text-[24px]">
                     Pick a Date From Calendar
                   </p>
                 </div>
