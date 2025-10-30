@@ -3,9 +3,20 @@ import React, { useState } from "react";
 interface CalendarProps {
   onDateSelect: (date: Date) => void;
   selectedDate?: Date;
+  onSubmit?: () => void;
+  onDontKnowYet?: () => void;
+  submitLabel?: string;
+  dontKnowLabel?: string;
 }
 
-const Calendar: React.FC<CalendarProps> = ({ onDateSelect, selectedDate }) => {
+const Calendar: React.FC<CalendarProps> = ({
+  onDateSelect,
+  selectedDate,
+  onSubmit,
+  onDontKnowYet,
+  submitLabel = "Submit",
+  dontKnowLabel = "Don't Know Yet",
+}) => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const monthNames = [
@@ -67,7 +78,7 @@ const Calendar: React.FC<CalendarProps> = ({ onDateSelect, selectedDate }) => {
   const renderCalendarDays = () => {
     const daysInMonth = getDaysInMonth(currentDate);
     const firstDay = getFirstDayOfMonth(currentDate);
-    const days = [];
+    const days: React.ReactNode[] = [];
 
     for (let i = 0; i < firstDay; i++) {
       days.push(<div key={`empty-${i}`} className="h-12 w-12"></div>);
@@ -115,7 +126,7 @@ const Calendar: React.FC<CalendarProps> = ({ onDateSelect, selectedDate }) => {
           </svg>
         </button>
 
-        <h2 className="text-base font-medium text-[#212121] px-8 text-center">
+        <h2 className="text-[18px] md:text-base font-medium text-[#212121] px-8 text-center">
           {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
         </h2>
 
@@ -150,6 +161,27 @@ const Calendar: React.FC<CalendarProps> = ({ onDateSelect, selectedDate }) => {
       </div>
 
       <div className="grid grid-cols-7 gap-2">{renderCalendarDays()}</div>
+
+      {(onSubmit || onDontKnowYet) && (
+        <div className="flex justify-end gap-4 mt-6">
+          {onDontKnowYet && (
+            <button
+              onClick={onDontKnowYet}
+              className="px-6 py-3 text-[#21212185] font-medium transition-colors hover:text-[#212121] text-[14px] md:text-base"
+            >
+              {dontKnowLabel}
+            </button>
+          )}
+          {onSubmit && (
+            <button
+              onClick={onSubmit}
+              className="px-8 py-3 bg-[#3B6AD0] hover:bg-[#2B5BC0] text-white font-medium rounded-lg transition-colors shadow-sm text-[14px] md:text-base"
+            >
+              {submitLabel}
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 };

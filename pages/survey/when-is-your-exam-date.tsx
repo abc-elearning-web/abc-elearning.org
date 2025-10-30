@@ -23,7 +23,12 @@ const WhenIsYourExamDate = ({
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    setIsDesktop(window.innerWidth > 768);
+    const updateIsDesktop = () => {
+      setIsDesktop(window.innerWidth > 768);
+    };
+    updateIsDesktop();
+    window.addEventListener("resize", updateIsDesktop);
+    return () => window.removeEventListener("resize", updateIsDesktop);
   }, []);
   const formatDate = (date: Date) => {
     return date.toLocaleDateString("en-GB");
@@ -68,7 +73,7 @@ const WhenIsYourExamDate = ({
   };
 
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
+    <div className="min-h-screen bg-white relative overflow-x-hidden">
       <div className="relative z-10 container mx-auto px-4 py-8">
         <div className="max-w-10xl mx-auto">
           {tab === SELECT_EXAM_DATE_TAB ? (
@@ -80,24 +85,24 @@ const WhenIsYourExamDate = ({
               }`}
             >
               {isDesktop && (
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 max-w-md w-full">
                   <img
                     src="/images/date.png"
                     alt="Calendar Illustration"
-                    className="object-contain"
+                    className="object-contain w-full h-auto"
                   />
                 </div>
               )}
 
-              <div className="flex-1">
+              <div className="flex-1 max-w-[708px] py-2">
                 <div className="text-center mb-8">
                   <div className="mb-6 justify-center flex">
                     <LogoApp appInfo={appConfig} />
                   </div>
-                  <h1 className="text-4xl md:text-5xl font-bold text-[#212121] mb-4 leading-tight">
+                  <h1 className="text-[24px] md:text-[52px] font-bold text-[#212121] mb-4 leading-tight">
                     When Is Your Exam Date?
                   </h1>
-                  <p className="text-[#21212199] text-lg">
+                  <p className="text-[#21212199] text-[12px] md:text-[24px]">
                     Pick a Date From Calendar
                   </p>
                 </div>
@@ -106,22 +111,9 @@ const WhenIsYourExamDate = ({
                   <Calendar
                     onDateSelect={setSelectedDate}
                     selectedDate={selectedDate}
+                    onDontKnowYet={handleDontKnowYet}
+                    onSubmit={handleSubmit}
                   />
-                </div>
-
-                <div className="flex justify-end gap-4">
-                  <button
-                    onClick={handleDontKnowYet}
-                    className="px-6 py-3 text-[#21212185] font-medium transition-colors hover:text-[#212121]"
-                  >
-                    Don't Know Yet
-                  </button>
-                  <button
-                    onClick={handleSubmit}
-                    className="px-8 py-3 bg-[#3B6AD0] hover:bg-[#2B5BC0] text-white font-medium rounded-lg transition-colors shadow-sm"
-                  >
-                    Submit
-                  </button>
                 </div>
               </div>
 
@@ -131,7 +123,7 @@ const WhenIsYourExamDate = ({
                   <img
                     src="/images/date_mobile.png"
                     alt="Calendar Illustration"
-                    className="object-contain"
+                    className="object-contain w-full h-auto"
                   />
                 </div>
               )}

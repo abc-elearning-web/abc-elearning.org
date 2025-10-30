@@ -25,6 +25,19 @@ const SurveyContent = ({
   const listSurvey = getSurveyQuestion(appConfig, surveyType);
   const [surveys, setSurveys] = useState(listSurvey);
 
+  useEffect(() => {
+    const updateIsDesktop = () => {
+      setIsDesktop(
+        typeof window !== "undefined" ? window.innerWidth >= 768 : false
+      );
+    };
+    updateIsDesktop();
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", updateIsDesktop);
+      return () => window.removeEventListener("resize", updateIsDesktop);
+    }
+  }, []);
+
   const onSubmit = () => {
     let alertQuestionRequired = [];
     let alertQuestionOtherRequired = [];
@@ -141,13 +154,13 @@ const SurveyContent = ({
                   {tab === FILL_SURVEY ? (
                     surveyType === SurveyType.sorry ? (
                       <>
-                        <div className="relative flex justify-center pt-2 pb-24 md:pb-20 ">
-                          <div className="relative z-10 text-center max-w-[1006px] mx-auto">
-                            <h1 className="text-center m-0 text-2xl md:text-5xl font-semibold text-red-500 max-w-[1006px] mx-auto">
+                        <div className="relative flex justify-center pt-2 pb-28 md:pb-20 ">
+                          <div className="relative z-10 text-center max-w-[343px] md:max-w-[1006px] mx-auto px-4">
+                            <h1 className="text-center m-0 text-2xl md:text-5xl font-semibold text-red-500 max-w-[343px] md:max-w-[1006px] mx-auto">
                               We're sorry to hear that <br /> you didn't pass
                               the exam.
                             </h1>
-                            <p className="m-0 mt-3 font-poppins text-[24px] leading-[36px] font-normal text-[#212121]/50">
+                            <p className="m-0 mt-3 font-poppins text-[12px] leading-[18px] md:text-[24px] md:leading-[36px] font-normal text-[#212121]/50">
                               Failure is an opportunity to learn. Keep moving
                               forward. Please take a few minutes to participate
                               in our survey. Your feedback is valuable for
@@ -156,8 +169,16 @@ const SurveyContent = ({
 
                             <div className="absolute inset-x-0 bottom-0 flex justify-center">
                               <img
-                                src="/images/fail.png"
-                                className="pointer-events-none max-w-[1373px] object-contain translate-y-[80px]"
+                                src={
+                                  isDesktop
+                                    ? "/images/fail.png"
+                                    : "/images/fail_mobile.png"
+                                }
+                                className={`pointer-events-none object-contain ${
+                                  isDesktop
+                                    ? "max-w-[1373px] translate-y-[80px]"
+                                    : "max-w-[480px] translate-y-[56px]"
+                                }`}
                                 alt=""
                               />
                             </div>
@@ -166,12 +187,12 @@ const SurveyContent = ({
                       </>
                     ) : surveyType === SurveyType.congratulation ? (
                       <>
-                        <div className="relative flex justify-center pt-2 pb-24 md:pb-40">
-                          <div className="relative z-10 text-center max-w-[1006px] mx-auto">
-                            <h1 className="m-0 text-2xl md:text-5xl font-semibold text-emerald-600 max-w-[1006px] mx-auto">
+                        <div className="relative flex justify-center pt-2 pb-28 md:pb-40">
+                          <div className="relative z-10 text-center max-w-[343px] md:max-w-[1006px] mx-auto px-4">
+                            <h1 className="m-0 text-2xl md:text-5xl font-semibold text-emerald-600 max-w-[343px] md:max-w-[1006px] mx-auto">
                               Congratulations on passing your test!
                             </h1>
-                            <p className="m-0 mt-3 font-poppins text-[24px] leading-[36px] font-normal text-[#212121]/50">
+                            <p className="m-0 mt-3 font-poppins text-[12px] leading-[18px] md:text-[24px] md:leading-[36px] font-normal text-[#212121]/50">
                               Your hard work has paid off, and we are proud of
                               you. Please take a few minutes to complete our
                               survey. Your feedback is valuable for our
@@ -183,8 +204,16 @@ const SurveyContent = ({
 
                           <div className="absolute inset-x-0 bottom-0 flex justify-center">
                             <img
-                              src="/images/cons.png"
-                              className="pointer-events-none max-w-[1373px] object-contain"
+                              src={
+                                isDesktop
+                                  ? "/images/cons.png"
+                                  : "/images/cons_mobile.png"
+                              }
+                              className={`pointer-events-none object-contain ${
+                                isDesktop
+                                  ? "max-w-[1373px] "
+                                  : "max-w-[480px] translate-y-[-20px]"
+                              }`}
                               alt=""
                             />
                           </div>
@@ -217,7 +246,7 @@ const SurveyContent = ({
                     className="p-3 rounded-xl bg-[#2121210A] mt-4 shadow-sm"
                     id={"survey-item-" + index}
                   >
-                    <p className="m-0 font-medium block text-[24px] leading-none mb-2">
+                    <p className="m-0 font-medium block text-[14px] md:text-[24px] leading-none mb-2">
                       {index + 1}. {survey.content}{" "}
                       {survey.require ? (
                         <i className="text-red-500">*</i>
@@ -249,7 +278,50 @@ const SurveyContent = ({
                       </>
                     ) : survey.type === SurveyQuestionType.rate ? (
                       <>
-                        <div className="flex items-end mt-4 justify-center">
+                        {/* Mobile radio button */}
+                        <div className="mt-4 md:hidden">
+                          <div className="flex flex-row flex-nowrap justify-center gap-2">
+                            {survey.options.map((option, i) => {
+                              return (
+                                <div
+                                  className="flex items-center mb-2 w-6 justify-center"
+                                  key={i}
+                                >
+                                  <label className="flex flex-col-reverse m-0 gap-2 cursor-pointer">
+                                    <input
+                                      type="radio"
+                                      id={`get-data ${index}-${i}`}
+                                      name={"rate-" + index}
+                                      value={option.content}
+                                      checked={option.selected}
+                                      onChange={(e) => {
+                                        let _ = [...surveys];
+                                        _[index].options[i].selected =
+                                          e.currentTarget.checked;
+                                        setSurveys(_);
+                                      }}
+                                      className="appearance-none w-6 h-6 border-2 border-[#3B6AD0] rounded-full bg-white checked:before:block checked:before:content-[''] checked:before:w-2.5 checked:before:h-2.5 checked:before:bg-[#3B6AD0] transition-colors cursor-pointer"
+                                    />
+                                    <span className="text-[12px] md:text-[14px] leading-5 font-medium text-center">
+                                      {option.content.replace("#", "")}
+                                    </span>
+                                  </label>
+                                </div>
+                              );
+                            })}
+                          </div>
+                          <div className="flex items-center justify-between translate-y-[-30px]">
+                            <span className="text-xs font-medium whitespace-nowrap text-[10.5px]">
+                              Not close at all
+                            </span>
+                            <span className="text-xs font-medium whitespace-nowrap text-[10.5px]">
+                              Extremely close
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Desktop radio button */}
+                        <div className="hidden md:flex items-end mt-4 justify-center">
                           <span className="text-xs leading-10 font-medium">
                             Not close at all
                           </span>
@@ -257,7 +329,7 @@ const SurveyContent = ({
                             {survey.options.map((option, i) => {
                               return (
                                 <div
-                                  className="flex items-center mb-2 w-6 md:w-8 justify-center"
+                                  className="flex items-center mb-2 w-8 justify-center"
                                   key={i}
                                 >
                                   <label className="flex flex-col-reverse m-0 gap-2 cursor-pointer">
@@ -280,7 +352,7 @@ const SurveyContent = ({
                                                  checked:before:content-[''] checked:before:w-2.5 checked:before:h-2.5 checked:before:bg-[#3B6AD0]                           
                                                  transition-colors cursor-pointer"
                                     />
-                                    <span className="text-base leading-5 font-medium text-center">
+                                    <span className="text-[12px] md:text-[14px] leading-5 font-medium text-center">
                                       {option.content.replace("#", "")}
                                     </span>
                                   </label>
@@ -423,17 +495,17 @@ const SurveyContent = ({
                                       setSurveys(_);
                                     }}
                                   />
-                                  <span className="text-base leading-5 font-medium">
+                                  <span className="text-[12px] md:text-[14px] leading-5 font-medium">
                                     {option.content.replace("#", "")}
                                   </span>
                                 </label>
                                 {option.content.endsWith("#") && (
                                   <>
-                                    <i className="text-sm flex-none">
+                                    <i className="text-[12px] md:text-sm flex-none">
                                       (Please specify:
                                     </i>
                                     <input
-                                      className="w-full ml-1 mb-3 block border-0 border-b border-gray-800 focus:border-gray-800 focus:outline-none placeholder:text-gray-300  max-w-[280px] bg-[#F6F6F6]"
+                                      className="w-full ml-1 mb-3 block border-0 border-b border-gray-800 focus:border-gray-800 focus:outline-none placeholder:text-gray-300  max-w-[260px]  bg-[#F6F6F6]"
                                       type="text"
                                       id={`get-data ${index}-${i}-1`}
                                       value={option.specify}
@@ -444,7 +516,9 @@ const SurveyContent = ({
                                         setSurveys(_);
                                       }}
                                     />
-                                    <i className="text-sm flex-none">)</i>
+                                    <i className="text-[12px] md:text-sm flex-none">
+                                      )
+                                    </i>
                                   </>
                                 )}
                               </div>
@@ -485,17 +559,17 @@ const SurveyContent = ({
                                                      checked:before:content-[''] checked:before:w-2.5 checked:before:h-2.5 checked:before:bg-[#3B6AD0]                        
                                                     transition-colors cursor-pointer"
                                     />
-                                    <span className="text-base leading-5 font-medium">
+                                    <span className="text-[12px] md:text-[14px] leading-5 font-medium">
                                       {option.content.replace("#", "")}
                                     </span>
                                   </label>
                                   {option.content.endsWith("#") && (
                                     <>
-                                      <i className="text-sm flex-none">
+                                      <i className="text-[12px] md:text-sm flex-none">
                                         (Please specify:
                                       </i>
                                       <input
-                                        className=" ml-1 mb-3 block border-0 border-b border-gray-800 focus:border-gray-800 focus:outline-none placeholder:text-gray-300  max-w-[280px] bg-[#F6F6F6]"
+                                        className=" flex-1 min-w-0 ml-1 mb-3 block border-0 border-b border-gray-800 focus:border-gray-800 focus:outline-none placeholder:text-gray-300  max-w-[280px] bg-[#F6F6F6]"
                                         type="text"
                                         id={`get-data ${index}-${i}-1`}
                                         value={option.specify}
@@ -506,7 +580,9 @@ const SurveyContent = ({
                                           setSurveys(_);
                                         }}
                                       />
-                                      <i className="text-sm flex-none">)</i>
+                                      <i className="text-[12px] md:text-sm flex-none">
+                                        )
+                                      </i>
                                     </>
                                   )}
                                 </div>

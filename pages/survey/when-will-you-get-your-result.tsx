@@ -23,7 +23,12 @@ const WhenWillYouGetYourResult = ({
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    setIsDesktop(window.innerWidth > 768);
+    const updateIsDesktop = () => {
+      setIsDesktop(window.innerWidth > 768);
+    };
+    updateIsDesktop();
+    window.addEventListener("resize", updateIsDesktop);
+    return () => window.removeEventListener("resize", updateIsDesktop);
   }, []);
   const formatDate = (date: Date) => {
     return date.toLocaleDateString("en-GB");
@@ -68,7 +73,7 @@ const WhenWillYouGetYourResult = ({
   };
 
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
+    <div className="min-h-screen bg-white relative overflow-x-hidden">
       <div className="relative z-10 container mx-auto px-4 py-8">
         <div className="max-w-7xl mx-auto">
           {tab === SELECT_EXAM_DATE_TAB ? (
@@ -80,16 +85,16 @@ const WhenWillYouGetYourResult = ({
               }`}
             >
               {isDesktop && (
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 max-w-md w-full">
                   <img
                     src="/images/date.png"
                     alt="Calendar Illustration"
-                    className="object-contain"
+                    className="object-contain w-full h-auto"
                   />
                 </div>
               )}
 
-              <div className="flex-1 max-w-[708px]">
+              <div className="flex-1 max-w-[708px] py-2">
                 <div className="text-center mb-8">
                   <div className="mb-6 justify-center flex">
                     <LogoApp appInfo={appConfig} />
@@ -106,22 +111,9 @@ const WhenWillYouGetYourResult = ({
                   <Calendar
                     onDateSelect={setSelectedDate}
                     selectedDate={selectedDate}
+                    onDontKnowYet={handleDontKnowYet}
+                    onSubmit={handleSubmit}
                   />
-                </div>
-
-                <div className="flex justify-end gap-4">
-                  <button
-                    onClick={handleDontKnowYet}
-                    className="px-6 py-3 text-[#21212185] font-medium transition-colors hover:text-[#212121]"
-                  >
-                    Don't Know Yet
-                  </button>
-                  <button
-                    onClick={handleSubmit}
-                    className="px-8 py-3 bg-[#3B6AD0] hover:bg-[#2B5BC0] text-white font-medium rounded-lg transition-colors shadow-sm"
-                  >
-                    Submit
-                  </button>
                 </div>
               </div>
 
@@ -130,7 +122,7 @@ const WhenWillYouGetYourResult = ({
                   <img
                     src="/images/date_mobile.png"
                     alt="Calendar Illustration"
-                    className="object-contain"
+                    className="object-contain w-full h-auto"
                   />
                 </div>
               )}
