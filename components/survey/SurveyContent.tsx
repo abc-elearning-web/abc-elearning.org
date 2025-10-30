@@ -1,8 +1,7 @@
-import React from "react";
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import { sendSurvey } from "../../services/home.service";
 import LogoApp from "./LogoApp";
 import SurveyType, { SurveyData, SurveyQuestionType } from "./SurveyType";
-import { sendSurvey } from "../services/home.service";
 const FILL_SURVEY = 0;
 const SUBMITED = 1;
 
@@ -154,7 +153,7 @@ const SurveyContent = ({
                   {tab === FILL_SURVEY ? (
                     surveyType === SurveyType.sorry ? (
                       <>
-                        <div className="relative flex justify-center pt-2 pb-28 md:pb-20 ">
+                        <div className="flex relative justify-center pt-2 pb-28 md:pb-20">
                           <div className="relative z-10 text-center max-w-[343px] md:max-w-[1006px] mx-auto px-4">
                             <h1 className="text-center m-0 text-2xl md:text-5xl font-semibold text-red-500 max-w-[343px] md:max-w-[1006px] mx-auto">
                               We're sorry to hear that <br /> you didn't pass
@@ -167,7 +166,7 @@ const SurveyContent = ({
                               improving our products. Thank you!
                             </p>
 
-                            <div className="absolute inset-x-0 bottom-0 flex justify-center">
+                            <div className="flex absolute inset-x-0 bottom-0 justify-center">
                               <img
                                 src={
                                   isDesktop
@@ -187,7 +186,7 @@ const SurveyContent = ({
                       </>
                     ) : surveyType === SurveyType.congratulation ? (
                       <>
-                        <div className="relative flex justify-center pt-2 pb-28 md:pb-40">
+                        <div className="flex relative justify-center pt-2 pb-28 md:pb-40">
                           <div className="relative z-10 text-center max-w-[343px] md:max-w-[1006px] mx-auto px-4">
                             <h1 className="m-0 text-2xl md:text-5xl font-semibold text-emerald-600 max-w-[343px] md:max-w-[1006px] mx-auto">
                               Congratulations on passing your test!
@@ -202,7 +201,7 @@ const SurveyContent = ({
                             </p>
                           </div>
 
-                          <div className="absolute inset-x-0 bottom-0 flex justify-center">
+                          <div className="flex absolute inset-x-0 bottom-0 justify-center">
                             <img
                               src={
                                 isDesktop
@@ -211,7 +210,7 @@ const SurveyContent = ({
                               }
                               className={`pointer-events-none object-contain ${
                                 isDesktop
-                                  ? "max-w-[1373px] "
+                                  ? "max-w-[1373px]"
                                   : "max-w-[480px] translate-y-[-20px]"
                               }`}
                               alt=""
@@ -234,7 +233,7 @@ const SurveyContent = ({
         <div className="pb-8 max-w-[1228px] max-h[2178px] mx-auto">
           {tab === FILL_SURVEY ? (
             <div ref={ref}>
-              <div className="mt-6 relative">
+              <div className="relative mt-6">
                 <p className="m-0 text-xl md:text-5xl leading-[30px] md:leading-[78px] text-gray-800 font-semibold block text-center">
                   Satisfaction Survey
                 </p>
@@ -280,14 +279,14 @@ const SurveyContent = ({
                       <>
                         {/* Mobile radio button */}
                         <div className="mt-4 md:hidden">
-                          <div className="flex flex-row flex-nowrap justify-center gap-2">
+                          <div className="flex flex-row flex-nowrap gap-2 justify-center">
                             {survey.options.map((option, i) => {
                               return (
                                 <div
-                                  className="flex items-center mb-2 w-6 justify-center"
+                                  className="flex justify-center items-center mb-2 w-6"
                                   key={i}
                                 >
-                                  <label className="flex flex-col-reverse m-0 gap-2 cursor-pointer">
+                                  <label className="flex flex-col-reverse gap-2 m-0 cursor-pointer">
                                     <input
                                       type="radio"
                                       id={`get-data ${index}-${i}`}
@@ -321,18 +320,18 @@ const SurveyContent = ({
                         </div>
 
                         {/* Desktop radio button */}
-                        <div className="hidden md:flex items-end mt-4 justify-center">
-                          <span className="text-xs leading-10 font-medium">
+                        <div className="hidden justify-center items-end mt-4 md:flex">
+                          <span className="text-xs font-medium leading-10">
                             Not close at all
                           </span>
-                          <div className="flex flex-row flex-nowrap mx-3 gap-4">
+                          <div className="flex flex-row flex-nowrap gap-4 mx-3">
                             {survey.options.map((option, i) => {
                               return (
                                 <div
-                                  className="flex items-center mb-2 w-8 justify-center"
+                                  className="flex justify-center items-center mb-2 w-8"
                                   key={i}
                                 >
-                                  <label className="flex flex-col-reverse m-0 gap-2 cursor-pointer">
+                                  <label className="flex flex-col-reverse gap-2 m-0 cursor-pointer">
                                     <input
                                       type="radio"
                                       id={`get-data ${index}-${i}`}
@@ -361,7 +360,7 @@ const SurveyContent = ({
                             })}
                           </div>
 
-                          <span className="text-xs leading-10 font-medium">
+                          <span className="text-xs font-medium leading-10">
                             Extremely close
                           </span>
                         </div>
@@ -444,7 +443,7 @@ const SurveyContent = ({
                           {survey.options.map((option, i) => {
                             return (
                               <div className="flex items-center mb-2" key={i}>
-                                <label className="flex items-center m-0 gap-1 cursor-pointer">
+                                <label className="flex gap-1 items-center m-0 cursor-pointer">
                                   <input
                                     type="checkbox"
                                     className="appearance-none w-6 h-6 border border-[#3B6AD0] rounded-md bg-white
@@ -537,7 +536,7 @@ const SurveyContent = ({
                             {survey.options.map((option, i) => {
                               return (
                                 <div className="flex items-center mb-2" key={i}>
-                                  <label className="flex items-center m-0 gap-1 cursor-pointer">
+                                  <label className="flex gap-1 items-center m-0 cursor-pointer">
                                     <input
                                       type="radio"
                                       id={`get-data ${index}-${i}`}
@@ -630,7 +629,7 @@ const SurveyContent = ({
               </div>
             </div>
           ) : (
-            <div className="p-3 rounded-xl mt-4 bg-white">
+            <div className="p-3 mt-4 bg-white rounded-xl">
               <p className="m-0 text-xl leading-[30px] text-gray-800 font-semibold">
                 Satisfaction survey
               </p>
