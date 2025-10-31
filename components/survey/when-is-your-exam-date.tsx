@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { sendSurvey } from "../../services/home.service";
-import Calendar from "./Calendar";
-import LogoApp from "./LogoApp";
-import SurveyType from "./SurveyType";
+import Calendar from "./calendar";
+import { SUBMITTED_SURVEY } from "./data";
+import LogoApp from "./logoApp";
+import SurveyType from "./type";
 
 const SELECT_EXAM_DATE_TAB = 0;
-const SUBMITED = 1;
 const WhenIsYourExamDate = ({
   bucket,
   email,
@@ -49,7 +49,7 @@ const WhenIsYourExamDate = ({
       bucket: bucket,
       appId: appConfig.appId,
     });
-    setTab(SUBMITED);
+    setTab(SUBMITTED_SURVEY);
   };
 
   const handleSubmit = () => {
@@ -68,7 +68,7 @@ const WhenIsYourExamDate = ({
       bucket: bucket,
       appId: appConfig.appId,
     });
-    setTab(SUBMITED);
+    setTab(SUBMITTED_SURVEY);
   };
 
   return (
@@ -127,7 +127,7 @@ const WhenIsYourExamDate = ({
                 </div>
               )}
             </div>
-          ) : tab === SUBMITED ? (
+          ) : tab === SUBMITTED_SURVEY ? (
             <div className="mx-auto max-w-2xl">
               <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-sm">
                 <h1 className="text-2xl font-bold text-[#212121] mb-4">

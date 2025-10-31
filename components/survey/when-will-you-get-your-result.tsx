@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { sendSurvey } from "../../services/home.service";
-import Calendar from "./Calendar";
-import LogoApp from "./LogoApp";
-import SurveyType from "./SurveyType";
+import Calendar from "./calendar";
+import LogoApp from "./logoApp";
+import SurveyType from "./type";
 
 const SELECT_EXAM_DATE_TAB = 0;
 const SUBMITED = 1;
