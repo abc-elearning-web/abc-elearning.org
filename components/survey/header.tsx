@@ -1,19 +1,31 @@
-import LogoApp from "./LogoApp";
-import SurveyType from "./SurveyType";
-const FILL_SURVEY = 0;
-const SUBMITED = 1;
-
+import { useEffect, useState } from "react";
+import { FILL_SURVEY, SUBMITTED_SURVEY } from "./data";
+import LogoApp from "./logoApp";
+import SurveyType from "./type";
 export default function HeaderSurvey({
   surveyType,
   appConfig,
   tab,
-  isDesktop,
 }: {
   surveyType: SurveyType;
   appConfig: any;
   tab: number;
-  isDesktop: boolean;
 }) {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const updateIsDesktop = () => {
+      setIsDesktop(
+        typeof window !== "undefined" ? window.innerWidth >= 768 : false
+      );
+    };
+    updateIsDesktop();
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", updateIsDesktop);
+      return () => window.removeEventListener("resize", updateIsDesktop);
+    }
+  }, []);
+
   return (
     <header>
       <div
@@ -31,11 +43,11 @@ export default function HeaderSurvey({
           }`}
         >
           <div className="flex justify-center">
-            <div className="w-full max-h[474px] flex flex-col items-center mt-2  gap-2">
+            <div className="w-full max-h[474px] flex flex-col items-center mt-4  gap-2">
               <LogoApp
                 appInfo={appConfig}
                 theme={"dark"}
-                size={tab == SUBMITED ? "l" : isDesktop ? "m" : "s"}
+                size={tab == SUBMITTED_SURVEY ? "l" : isDesktop ? "m" : "s"}
               />
               {tab === FILL_SURVEY ? (
                 surveyType === SurveyType.sorry ? (
@@ -108,7 +120,7 @@ export default function HeaderSurvey({
                   <></>
                 )
               ) : (
-                <></>
+                <div className="p-1"></div>
               )}
             </div>
           </div>

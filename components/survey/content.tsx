@@ -1,9 +1,14 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { sendSurvey } from "../../services/home.service";
+import { FILL_SURVEY, SUBMITTED_SURVEY } from "./data";
 import HeaderSurvey from "./header";
-import SurveyType, { SurveyData, SurveyQuestionType } from "./SurveyType";
+import {
+  SurveyContext,
+  SurveyContextValue,
+  useSurveyContext,
+} from "./provider";
 import { Thank } from "./thank";
-const FILL_SURVEY = 0;
-const SUBMITED = 1;
+import SurveyType, { SurveyData, SurveyQuestionType } from "./type";
 export default function ExamPass({
   bucket,
   email,
@@ -20,22 +25,9 @@ export default function ExamPass({
   listSurvey: SurveyData[];
 }) {
   const [tab, setTab] = useState(FILL_SURVEY);
-  const [isDesktop, setIsDesktop] = useState(false);
   const [surveys, setSurveys] = useState<SurveyData[]>(() =>
     JSON.parse(JSON.stringify(listSurvey))
   );
-  useEffect(() => {
-    const updateIsDesktop = () => {
-      setIsDesktop(
-        typeof window !== "undefined" ? window.innerWidth >= 768 : false
-      );
-    };
-    updateIsDesktop();
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", updateIsDesktop);
-      return () => window.removeEventListener("resize", updateIsDesktop);
-    }
-  }, []);
 
   const onSubmit = () => {
     const requiredErrors: number[] = [];
@@ -61,7 +53,6 @@ export default function ExamPass({
     }
 
     if (requiredErrors.length > 0) {
-      // Scroll tới câu hỏi đầu tiên thiếu
       const el = document.querySelectorAll("[data-survey-item]")[
         requiredErrors[0]
       ] as HTMLElement | undefined;
@@ -69,7 +60,6 @@ export default function ExamPass({
       return;
     }
 
-    // Submit dữ liệu
     const result = surveys.map((s) => ({
       ...s,
       options: s.options.map((o) => ({
@@ -78,8 +68,15 @@ export default function ExamPass({
         specify: o.specify,
       })),
     }));
-    // Tùy tích hợp backend sau, hiện log tạm
-    setTab(SUBMITED);
+
+    sendSurvey({
+      type: surveyType,
+      survey: result,
+      email: email,
+      bucket: bucket,
+      appId: appConfig.appId,
+    });
+    setTab(SUBMITTED_SURVEY);
   };
 
   const updateFill = (qIndex: number, value: string) => {
@@ -122,6 +119,18 @@ export default function ExamPass({
     setSurveys(next);
   };
 
+  const toggleSelectAll = (qIndex: number) => {
+    const next = [...surveys];
+    if (!next[qIndex] || !next[qIndex].options) {
+      return;
+    }
+    const allSelected = next[qIndex].options.every((o) => o.selected);
+    next[qIndex].options.forEach((option) => {
+      option.selected = !allSelected;
+    });
+    setSurveys(next);
+  };
+
   const surveyContextValue: SurveyContextValue = {
     surveys,
     setSurveys,
@@ -130,18 +139,14 @@ export default function ExamPass({
     updateRate,
     toggleMulti,
     updateSpecify,
+    toggleSelectAll,
   };
 
   return (
     <SurveyContext.Provider value={surveyContextValue}>
-      <div style={{ background: "#FFFFFF", minHeight: "100vh" }}>
-        <HeaderSurvey
-          surveyType={surveyType}
-          appConfig={appConfig}
-          tab={tab}
-          isDesktop={isDesktop}
-        />
-        <div className="pb-8 max-w-[1228px] max-h[2178px] mx-auto">
+      <div className="bg-[#FFFFFF] min-h-screen pb-8">
+        <HeaderSurvey surveyType={surveyType} appConfig={appConfig} tab={tab} />
+        <div className="pb-8 px-4 sm:px-6 max-w-[1228px]  mx-auto">
           {tab === FILL_SURVEY ? (
             <div>
               <div className="relative mt-6">
@@ -149,11 +154,11 @@ export default function ExamPass({
                   Satisfaction Survey
                 </p>
               </div>
-              <div className="flex flex-col gap-4 mt-6 sm:gap-6">
+              <div className="flex flex-col gap-4 mt-4 sm:mt-6 sm:gap-6">
                 {surveys.map((_, index) => (
                   <div
                     key={index}
-                    className="p-3 rounded-xl bg-[#2121210A] mt-4 shadow-sm"
+                    className="p-3 sm:p-6 rounded-xl bg-[#2121210A] shadow-sm"
                     data-survey-item
                   >
                     <QuestionBlock index={index} />
@@ -176,31 +181,13 @@ export default function ExamPass({
   );
 }
 
-type SurveyContextValue = {
-  surveys: SurveyData[];
-  setSurveys: (s: SurveyData[]) => void;
-  updateFill: (qIndex: number, value: string) => void;
-  updateSingle: (qIndex: number, optIndex: number) => void;
-  updateRate: (qIndex: number, optIndex: number) => void;
-  toggleMulti: (qIndex: number, optIndex: number, checked: boolean) => void;
-  updateSpecify: (qIndex: number, optIndex: number, value: string) => void;
-};
-
-const SurveyContext = createContext<SurveyContextValue | null>(null);
-
-const useSurveyContext = () => {
-  const ctx = useContext(SurveyContext);
-  if (!ctx) throw new Error("SurveyContext is not available");
-  return ctx;
-};
-
 const QuestionBlock = ({ index }: { index: number }) => {
   const { surveys } = useSurveyContext();
   const survey = surveys[index];
   return (
     <>
-      <p className="m-0 font-medium block text-[14px] md:text-[24px] leading-normal mb-4">
-        {index + 1}. {survey.content}{" "}
+      <p className="font-medium block text-[14px] sm:text-2xl mb-4">
+        {index + 1}. {survey.content}
         {survey.require ? <i className="text-red-500">*</i> : <i>(Optional)</i>}
       </p>
       <RenderContent index={index} />
@@ -231,7 +218,7 @@ const SurveyItemFill = ({ qIndex }: { qIndex: number }) => {
   const value = surveys[qIndex]?.options?.[0]?.content || "";
   return (
     <input
-      className="-w-full mt-3 h-11 bg-[#F6F6F6] px-4 w-full sm:max-w-[380px] text-gray-800 placeholder:text-gray-400 border-b border-gray-800 focus:outline-none"
+      className="-w-full h-9 bg-[#F6F6F6] text-xs border-[#212121] font-medium sm:text-base  w-full sm:max-w-[380px] text-[#212121] placeholder:text-gray-400 border-b focus:outline-none"
       type="text"
       placeholder="Enter your answer"
       value={value}
@@ -243,6 +230,7 @@ const SurveyItemFill = ({ qIndex }: { qIndex: number }) => {
 const SurveyItemSingleChoice = ({ qIndex }: { qIndex: number }) => {
   const { surveys, updateSingle, updateSpecify } = useSurveyContext();
   const options = surveys[qIndex]?.options || [];
+
   const selected = Math.max(
     0,
     options.findIndex((o) => o.selected)
@@ -265,17 +253,23 @@ const SurveyItemSingleChoice = ({ qIndex }: { qIndex: number }) => {
             height={24}
             checked={selected === index}
             onChange={() => updateSingle(qIndex, index)}
-            className=" w-[24px] h-[24px] border-2 border-[#3B6AD0] rounded-full bg-white  transition-colors cursor-pointer"
+            className="w-4 sm:w-6 h-4 sm:h-6 border border-[#3B6AD0] rounded-full bg-white transition-colors cursor-pointer focus:outline-none focus:border-[#3B6AD0]"
           />
-          <label className="cursor-pointer" htmlFor={radioRef.current?.id}>
-            {option.content}
-          </label>
-          {option?.specify?.render && (
-            <SurveyItemSpecify
-              value={option.specify?.content || ""}
-              onChange={(v) => updateSpecify(qIndex, index, v)}
-            />
-          )}
+
+          <div className="flex flex-1 gap-2 items-center">
+            <label
+              className="cursor-pointer text-[#212121] text-xs sm:text-base font-medium "
+              htmlFor={radioRef.current?.id}
+            >
+              {option.content}
+            </label>
+            {option?.specify?.render && (
+              <SurveyItemSpecify
+                value={option.specify?.content || ""}
+                onChange={(v) => updateSpecify(qIndex, index, v)}
+              />
+            )}
+          </div>
         </div>
       ))}
     </div>
@@ -290,27 +284,35 @@ const SurveyItemRate = ({ qIndex }: { qIndex: number }) => {
     options.findIndex((o) => o.selected)
   );
   return (
-    <div className="flex gap-3 justify-center items-center">
-      <span className="text-xs font-medium whitespace-nowrap text-[10.5px] text-left ">
+    <div className="flex gap-3 justify-center items-end sm:items-center">
+      <span className="text-xs font-medium whitespace-nowrap sm:text-base">
         Not Close At All
       </span>
-      <div className="flex flex-row flex-nowrap gap-4 mx-3">
+      <div className="flex flex-row flex-nowrap gap-2 sm:gap-4">
         {options.map((option, index) => (
-          <div key={index} className="flex gap-3 items-center">
+          <div
+            key={index}
+            className="flex flex-col-reverse gap-1 items-center sm:flex-row sm:gap-3"
+          >
             <input
               type="radio"
               name={`survey-${index}`}
               value={option.content}
               checked={selectedIndex === index}
               onChange={() => updateRate(qIndex, index)}
-              className=" w-4 sm:w-6 h-4 sm:h-6 border-2 border-[#3B6AD0] rounded-full bg-white  transition-colors cursor-pointer"
+              className="w-4 sm:w-6 h-4 sm:h-6 border border-[#3B6AD0] rounded-full bg-white transition-colors cursor-pointer focus:outline-none focus:border-[#3B6AD0]"
             />
-            <label htmlFor={`survey-${index}`}>{option.content}</label>
+            <label
+              htmlFor={`survey-${index}`}
+              className="text-[#212121] cursor-pointer text-xs sm:text-base font-medium "
+            >
+              {option.content}
+            </label>
           </div>
         ))}
       </div>
 
-      <span className="text-xs font-medium whitespace-nowrap text-[10.5px] text-right ">
+      <span className="text-xs font-medium whitespace-nowrap sm:text-base">
         Extremely Close
       </span>
     </div>
@@ -318,37 +320,71 @@ const SurveyItemRate = ({ qIndex }: { qIndex: number }) => {
 };
 
 const SurveyItemMultiChoices = ({ qIndex }: { qIndex: number }) => {
-  const { surveys, toggleMulti, updateSpecify } = useSurveyContext();
+  const { surveys, toggleMulti, updateSpecify, toggleSelectAll } =
+    useSurveyContext();
   const options = surveys[qIndex]?.options || [];
+  const allSelected = options.length > 0 && options.every((o) => o.selected);
+
   return (
     <div className="flex flex-col gap-3 gap-y-4 sm:gap-4">
+      <div
+        className="text-[#0085FF] text-sm sm:text-lg cursor-pointer"
+        onClick={() => toggleSelectAll(qIndex)}
+      >
+        {allSelected ? <p>Clear all</p> : <p>Select all</p>}
+      </div>
+
       {options.map((option, index) => (
         <div
           key={index}
-          className="flex gap-3 items-center cursor-pointer"
+          className="flex gap-3 items-start cursor-pointer"
           onClick={(e) => {
             toggleMulti(qIndex, index, true);
           }}
         >
-          <input
-            type="checkbox"
-            name={`survey-${index}`}
-            value={option.content}
-            checked={!!option.selected}
-            onChange={(e) =>
-              toggleMulti(qIndex, index, e.currentTarget.checked)
-            }
-            className=" w-[24px] h-[24px] border-2 border-[#3B6AD0]   rounded-md bg-white  transition-colors cursor-pointer"
-            width={24}
-            height={24}
-          />
-          <label htmlFor={`survey-${index}`}>{option.content}</label>
-          {option?.specify?.render && (
-            <SurveyItemSpecify
-              value={option.specify?.content || ""}
-              onChange={(v) => updateSpecify(qIndex, index, v)}
+          <div className="inline-block relative z-10 w-4 h-4 sm:w-6 sm:h-6">
+            <input
+              type="checkbox"
+              name={`survey-${index}`}
+              value={option.content}
+              checked={!!option.selected}
+              onChange={(e) =>
+                toggleMulti(qIndex, index, e.currentTarget.checked)
+              }
+              className="appearance-none absolute z-10 w-4 sm:w-6 h-4 sm:h-6 border border-[#3B6AD0] rounded-md bg-white transition-colors cursor-pointer checked:bg-transparent checked:border-[#3B6AD0] focus:outline-none focus:border-[#3B6AD0]"
             />
-          )}
+            {option.selected && (
+              <div className="flex absolute top-0 bg-[#3B6AD0] rounded-md left-0 z-0 justify-center items-center w-4 h-4 transform sm:w-6 sm:h-6">
+                <svg
+                  className="w-3 h-3 text-white sm:w-4 sm:h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              </div>
+            )}
+          </div>
+          <div className="flex flex-1 gap-2 items-center">
+            <label
+              htmlFor={`survey-${index}`}
+              className="text-[#212121] cursor-pointer text-xs sm:text-base font-medium "
+            >
+              {option.content}
+            </label>
+            {option?.specify?.render && (
+              <SurveyItemSpecify
+                value={option.specify?.content || ""}
+                onChange={(v) => updateSpecify(qIndex, index, v)}
+              />
+            )}
+          </div>
         </div>
       ))}
     </div>
@@ -363,15 +399,17 @@ const SurveyItemSpecify = ({
   onChange: (v: string) => void;
 }) => {
   return (
-    <div>
-      <i className="text-[12px] md:text-sm flex-none">(Please Specify:</i>
+    <>
+      <i className="flex-none text-xs font-medium sm:text-base">
+        (Please Specify:
+      </i>
       <input
-        className="ml-2 flex-1 min-w-0 border-0 border-b border-gray-800 focus:border-gray-800 focus:outline-none placeholder:text-gray-300 bg-[#F6F6F6] px-2 py-1 max-w-[280px]"
+        className=" flex-1 min-w-0 border-0  text-xs font-medium sm:text-base border-b border-gray-800 focus:border-gray-800 focus:outline-none placeholder:text-gray-300 bg-[#F6F6F6]  max-w-[280px]"
         type="text"
         value={value}
         onChange={(e) => onChange(e.currentTarget.value)}
       />
-      <i className="text-[12px] md:text-sm flex-none">)</i>
-    </div>
+      <i className="flex-none text-xs font-medium sm:text-base">)</i>
+    </>
   );
 };

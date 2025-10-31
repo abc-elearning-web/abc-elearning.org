@@ -1,5 +1,6 @@
-import { SurveyQuestionType } from "./SurveyType";
-
+import { SurveyQuestionType } from "./type";
+export const FILL_SURVEY = 0;
+export const SUBMITTED_SURVEY = 1;
 export const listSurveyExamPass = [
   {
     content: "What Score Did You Get?",
@@ -169,7 +170,7 @@ export const listSurveyExamFail = [
   },
   {
     content:
-      "What Features Do You Think The App Could Improve On To Better Help Users Pass Their Exams?",
+      "What features do you think the app could improve on to better help users pass their exams?",
     type: SurveyQuestionType.multiChoices,
     options: [
       { content: "Diagnostic test", selected: false },

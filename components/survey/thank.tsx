@@ -1,6 +1,11 @@
 export const Thank = ({ setTab }: { setTab: (tab: number) => void }) => {
   return (
-    <div className="p-3 mt-4 bg-white rounded-xl">
+    <div
+      className="p-4 sm:p-6 mt-4 bg-white border-[#FFFFFF] rounded-xl border"
+      style={{
+        boxShadow: "0px 0px 8px 0px #2121211F",
+      }}
+    >
       <p className="m-0 text-xl leading-[30px] text-gray-800 font-semibold">
         Satisfaction survey
       </p>

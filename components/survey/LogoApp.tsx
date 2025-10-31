@@ -24,6 +24,7 @@ const THEME_CLASSES = {
   dark: "text-[#212121]",
   light: "text-gray-800", // #212121
 };
+
 const LogoApp = ({
   appInfo,
   theme = "light",

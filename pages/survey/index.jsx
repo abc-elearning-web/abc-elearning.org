@@ -4,7 +4,7 @@ import {
   listSurveyExamFail,
   listSurveyExamPass,
 } from "../../components/survey/data";
-import SurveyType from "../../components/survey/SurveyType";
+import SurveyType from "../../components/survey/type";
 import WhenIsYourExamDate from "../../components/survey/when-is-your-exam-date";
 import WhenWillYouGetYourResult from "../../components/survey/when-will-you-get-your-result";
 
