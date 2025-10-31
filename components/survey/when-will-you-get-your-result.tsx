@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { sendSurvey } from "../../services/home.service";
-import Calendar from "./calendar";
+import Calendar from "./calendarRender";
 import LogoApp from "./logoAppSurvey";
 import SurveyType from "./type";
 
