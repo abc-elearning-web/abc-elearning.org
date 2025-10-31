@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FILL_SURVEY, SUBMITTED_SURVEY } from "./data";
-import LogoApp from "./logoApp";
+import LogoApp from "./logoAppSurvey";
 import SurveyType from "./type";
 export default function HeaderSurvey({
   surveyType,
