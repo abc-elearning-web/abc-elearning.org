@@ -1,17 +1,17 @@
-import fs from "fs";
-import ExamPass from "../../components/survey/content";
+import ExamPass from "@/components/survey/content";
 import {
   listSurveyExamFail,
   listSurveyExamPass,
-} from "../../components/survey/data";
-import SurveyType from "../../components/survey/type";
-import WhenIsYourExamDate from "../../components/survey/when-is-your-exam-date";
-import WhenWillYouGetYourResult from "../../components/survey/when-will-you-get-your-result";
+} from "@/components/survey/data";
+import SurveyType from "@/components/survey/type";
+import WhenIsYourExamDate from "@/components/survey/when-is-your-exam-date";
+import WhenWillYouGetYourResult from "@/components/survey/when-will-you-get-your-result";
+import fs from "fs";
 
 export default function Survey({ bucket, email, type, appConfig }) {
   return (
     <div>
-      {type === "exam_pass" && (
+      {type === "mail-exam-pass" && (
         <ExamPass
           bucket={bucket}
           listSurvey={listSurveyExamPass}
@@ -21,7 +21,7 @@ export default function Survey({ bucket, email, type, appConfig }) {
           appConfig={appConfig}
         />
       )}
-      {type === "exam_fail" && (
+      {type === "mail-exam-fail" && (
         <ExamPass
           bucket={bucket}
           listSurvey={listSurveyExamFail}
@@ -31,7 +31,7 @@ export default function Survey({ bucket, email, type, appConfig }) {
           appConfig={appConfig}
         />
       )}
-      {type === "exam_date" && (
+      {type === "mail-exam-no-date" && (
         <WhenIsYourExamDate
           bucket={bucket}
           email={email}
@@ -39,7 +39,7 @@ export default function Survey({ bucket, email, type, appConfig }) {
           appConfig={appConfig}
         />
       )}
-      {type === "wait_result" && (
+      {type === "mail-exam-no-result" && (
         <WhenWillYouGetYourResult
           bucket={bucket}
           email={email}
