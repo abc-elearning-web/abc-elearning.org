@@ -20,14 +20,16 @@ const WhenWillYouGetYourResult = ({
   const [tab, setTab] = useState(SELECT_EXAM_DATE_TAB);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [isDesktop, setIsDesktop] = useState(false);
-
+  const [isTablet, setIsTablet] = useState(false);
   useEffect(() => {
-    const updateIsDesktop = () => {
-      setIsDesktop(window.innerWidth > 768);
+    const updateBreakpoints = () => {
+      const width = window.innerWidth;
+      setIsDesktop(width >= 1024);
+      setIsTablet(width >= 768 && width < 1024);
     };
-    updateIsDesktop();
-    window.addEventListener("resize", updateIsDesktop);
-    return () => window.removeEventListener("resize", updateIsDesktop);
+    updateBreakpoints();
+    window.addEventListener("resize", updateBreakpoints);
+    return () => window.removeEventListener("resize", updateBreakpoints);
   }, []);
   const formatDate = (date: Date) => {
     return date.toLocaleDateString("en-GB");
@@ -93,7 +95,15 @@ const WhenWillYouGetYourResult = ({
                 </div>
               )}
 
-              <div className="flex-1 max-w-[708px] py-2">
+              <div
+                className={`flex-1 py-2 ${
+                  isDesktop
+                    ? "max-w-[708px]"
+                    : isTablet
+                    ? "max-w-[600px]"
+                    : "w-full"
+                }`}
+              >
                 <div className="mb-8 text-center">
                   <div className="flex justify-center mb-6">
                     <LogoApp appInfo={appConfig} />
