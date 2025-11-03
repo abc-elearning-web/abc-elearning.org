@@ -58,12 +58,22 @@ const Calendar: React.FC<CalendarProps> = ({
   };
 
   const handleDateClick = (day: number) => {
-    const newDate = new Date(
+    onDateSelect(
+      new Date(currentDate.getFullYear(), currentDate.getMonth(), day)
+    );
+  };
+
+  const isPastDate = (day: number) => {
+    const date = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth(),
       day
     );
-    onDateSelect(newDate);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const checkDate = new Date(date);
+    checkDate.setHours(0, 0, 0, 0);
+    return checkDate < today;
   };
 
   const isSelectedDate = (day: number) => {
@@ -86,15 +96,17 @@ const Calendar: React.FC<CalendarProps> = ({
 
     for (let day = 1; day <= daysInMonth; day++) {
       const isSelected = isSelectedDate(day);
+      const isPast = isPastDate(day);
       days.push(
         <button
           key={day}
           onClick={() => handleDateClick(day)}
+          disabled={isPast}
           className={`h-12 w-12 rounded-full flex items-center justify-center text-sm font-medium transition-colors ${
             isSelected
               ? "bg-[#3B6AD0] text-white hover:bg-[#2B5BC0]"
               : "text-[#212121] hover:bg-gray-100"
-          }`}
+          } ${isPast ? "opacity-50 cursor-not-allowed" : ""}`}
         >
           {day}
         </button>
