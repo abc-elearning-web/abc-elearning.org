@@ -117,7 +117,7 @@ export const listSurveyExamFail = [
     options: [
       {
         content: "Insufficient Time Dedicated To Learning And Preparation",
-        selected: false,
+        selected: true,
       },
       {
         content:
@@ -140,7 +140,7 @@ export const listSurveyExamFail = [
     content: "How Frequently Did You Use Our App To Study For The Exam?",
     type: SurveyQuestionType.singleChoice,
     options: [
-      { content: "Daily", selected: false },
+      { content: "Daily", selected: true },
       { content: "Several Times A Week", selected: false },
       { content: "Once A Week", selected: false },
       { content: "Occasionally", selected: false },
@@ -194,7 +194,7 @@ export const listSurveyExamFail = [
       "Would You Be Willing To Try The App Again If We Implemented Improvements Based On User Feedback?",
     type: SurveyQuestionType.singleChoice,
     options: [
-      { content: "Yes", selected: false },
+      { content: "Yes", selected: true },
       { content: "No", selected: false },
     ],
     require: false,
