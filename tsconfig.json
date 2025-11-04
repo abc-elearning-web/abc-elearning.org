@@ -31,7 +31,8 @@
     "next-env.d.ts",
     "pages/api/get-fingerprint.js",
     "pages/survey/index.jsx",
-    ".next/types/**/*.ts"
-, "src/app/mentora/page.jsx"  ],
+    ".next/types/**/*.ts",
+    "src/app/mentora/main.tsx"
+  ],
   "exclude": ["node_modules"]
 }

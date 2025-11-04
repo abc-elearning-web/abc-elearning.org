@@ -1,23 +1,58 @@
 import fs from "fs";
 import { notFound } from "next/navigation";
 import ShareClient from "./ShareClient";
+import type { Metadata, Viewport } from "next";
 
 interface PageProps {
   params: Promise<{ bucket: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { bucket } = await params;
+
+  const data = fs.readFileSync("public/json/app_config.json", "utf-8");
+  const appConfigData = JSON.parse(data);
+  const appConfig = appConfigData[bucket];
+
+  if (!appConfig) {
+    return {
+      title: "Opening Application",
+      description: "Open application or download from app store",
+      robots: { index: false, follow: true },
+    };
+  }
+
+  const appName =
+    appConfig.android?.name ||
+    appConfig.ios?.name ||
+    appConfig.webConfig?.title ||
+    "Application";
+
+  return {
+    title: `Opening ${appName}`,
+    description: `Open ${appName} or download from app store`,
+  };
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default async function SharePage({ params, searchParams }: PageProps) {
   const { bucket } = await params;
   const searchParamsResolved = await searchParams;
-  
+
   if (!bucket) {
     notFound();
   }
 
   // Build query string from searchParams
   const queryParams = new URLSearchParams();
-  
+
   Object.entries(searchParamsResolved).forEach(([key, value]) => {
     if (value) {
       if (Array.isArray(value)) {
@@ -62,4 +97,3 @@ export default async function SharePage({ params, searchParams }: PageProps) {
     />
   );
 }
-

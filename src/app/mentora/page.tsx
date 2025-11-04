@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import Head from "./head";
-import TokenInfo from "./main";
+import Mentora from "./main";
 
 export const metadata: Metadata = {
-  title: "Tokens — Your Reward Points",
-  description: "Tokens — Your Reward Points",
+  title: "Mentora AI",
+  description: "Mentora AI",
 };
 
 export const viewport: Viewport = {
@@ -16,7 +16,7 @@ export default function Page() {
   return (
     <>
       <Head />
-      <TokenInfo />
+      <Mentora />
     </>
   );
 }

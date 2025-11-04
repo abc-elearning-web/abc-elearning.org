@@ -1,5 +1,4 @@
 "use client";
-import Head from "./head";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { DeeplinkHandler } from "@/utils/deeplinkHandler";
 
@@ -317,7 +316,6 @@ export default function ShareClient({ appConfig, query, fullUrl }: ShareProps) {
   const primaryColor = appConfig.ios?.colors?.primary || "#E3A651";
   return (
     <>
-      <Head appName={appName} />
       <div className="flex flex-col justify-center items-center p-4 min-h-screen bg-linear-to-b from-primary-50 to-primary-100">
         <div className="overflow-hidden w-full max-w-md bg-white rounded-xl shadow-lg">
           <div className="p-6 text-center">

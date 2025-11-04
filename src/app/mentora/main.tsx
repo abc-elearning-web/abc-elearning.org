@@ -19,8 +19,8 @@ const Mentora = () => {
         tab.classList.add("active");
 
         // Show corresponding content
-        const contentId = tab.getAttribute("href").substring(1);
-        document.getElementById(contentId).classList.add("active");
+        const contentId = tab?.getAttribute("href")?.substring(1);
+        document.getElementById(contentId!)?.classList.add("active");
       });
     });
   }, []);

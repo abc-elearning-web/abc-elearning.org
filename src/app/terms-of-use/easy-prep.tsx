@@ -1,5 +1,12 @@
 "use client";
 import Head from "./head";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Easy Prep Terms of Use",
+  description: "Easy Prep Terms of Use",
+  viewport: "width=device-width, initial-scale=1",
+};
 
 const EasyPrepTermsOfUse = () => {
   return (
