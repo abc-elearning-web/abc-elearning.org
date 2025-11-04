@@ -16,15 +16,23 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
-    }
+      "@/*": ["./src/*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
   },
   "include": [
-    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "next-env.d.ts",
     "pages/api/get-fingerprint.js",
-    "pages/survey/index.jsx"
+    "pages/survey/index.jsx",
+    ".next/types/**/*.ts",
+    "src/app/mentora/main.tsx"
   ],
   "exclude": ["node_modules"]
 }
