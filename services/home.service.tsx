@@ -1,6 +1,7 @@
 import SurveyType, { SurveyData } from "../components/survey/type";
 
-const base = "https://api-cms-v2-dot-micro-enigma-235001.appspot.com"; //"http://localhost:3001"; //
+// const base = "https://api-cms-v2-dot-micro-enigma-235001.appspot.com"; //"http://localhost:3001"; //
+const base = "http://localhost:3002"; //"http://localhost:3001"; //
 
 const POST = async ({ url, params }: { url: string; params: any }) => {
   try {
@@ -30,21 +31,15 @@ export const sendSurvey = async (survey: {
   bucket: string;
   appId: number;
 }) => {
-  const typeMapping = {
-    [SurveyType.congratulation]: "mail-exam-pass",
-    [SurveyType.sorry]: "mail-exam-fail",
-    [SurveyType.examDate]: "mail-exam-no-date",
-    [SurveyType.waitResult]: "mail-exam-no-result",
-  };
+  const url = `${base}/api/survey/send-survey`;
 
-  const action = typeMapping[survey.type] || "mail-exam-pass";
-  let url = `${base}/api/survey/send-survey?bucket=${survey.bucket}&email=${survey.email}&query=${action}&type=${survey.type}`;
-
-  let response = await POST({
+  const response = await POST({
     url,
     params: {
       survey: survey.survey,
       appId: survey.appId,
+      email: survey.email,
+      type: survey.type,
     },
   });
   return response;

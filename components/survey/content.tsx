@@ -29,7 +29,7 @@ export default function ExamPass({
     JSON.parse(JSON.stringify(listSurvey))
   );
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const requiredErrors: number[] = [];
     for (let i = 0; i < surveys.length; i++) {
       const s = surveys[i];
@@ -76,12 +76,14 @@ export default function ExamPass({
       bucket: bucket,
       appId: appConfig.appId,
     });
+
     setTab(SUBMITTED_SURVEY);
   };
 
   const updateFill = (qIndex: number, value: string) => {
     const next = [...surveys];
     next[qIndex].options[0].content = value;
+    next[qIndex].options[0].selected = true;
     setSurveys(next);
   };
 
