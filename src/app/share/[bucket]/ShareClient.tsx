@@ -234,32 +234,32 @@ export default function ShareClient({ appConfig, query, fullUrl }: ShareProps) {
       const handleVisibilityChange = () => {
         if (document.visibilityState === "visible") {
           const returnTime = Date.now();
-          //   if (returnTime - beforeRedirect > 2000) {
-          //     onAppOpened();
-          //     return;
-          //   }
+          if (returnTime - beforeRedirect > 2000) {
+            onAppOpened();
+            return;
+          }
         }
       };
 
       window.addEventListener("visibilitychange", handleVisibilityChange);
 
       // For iOS devices, only redirect to store if app didn't open after visibility check
-      //   redirectTimeout = setTimeout(() => {
-      //     window.removeEventListener("visibilitychange", handleVisibilityChange);
-      //     if (!appOpened) {
-      //       // Detect iOS directly here instead of relying on deviceInfo state
-      //       const isIOS = /iPhone|iPad|iPod|Macintosh|MacIntel/i.test(
-      //         navigator.userAgent
-      //       );
+      redirectTimeout = setTimeout(() => {
+        window.removeEventListener("visibilitychange", handleVisibilityChange);
+        if (!appOpened) {
+          // Detect iOS directly here instead of relying on deviceInfo state
+          const isIOS = /iPhone|iPad|iPod|Macintosh|MacIntel/i.test(
+            navigator.userAgent
+          );
 
-      //       if (isIOS) {
-      //         window.location.href = appData.iosLink;
-      //       } else {
-      //         window.location.href = appData.playStoreLink;
-      //       }
-      //       onAppOpened();
-      //     }
-      //   }, 3000); // Increased timeout to give more time for app to open
+          if (isIOS) {
+            window.location.href = appData.iosLink;
+          } else {
+            window.location.href = appData.playStoreLink;
+          }
+          onAppOpened();
+        }
+      }, 3000); // Increased timeout to give more time for app to open
 
       // Cleanup function
       return () => {
