@@ -1,0 +1,770 @@
+[
+  {
+    "appKey": "cen",
+    "bucket": "cen",
+    "iosPackageName": "com.abc.cen",
+    "androidPackageName": "com.sima.cen",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.cen",
+    "linkIos": "https://apps.apple.com/us/app/cen-practice-test-2024/id6473518534"
+  },
+  {
+    "appKey": "comptiasecurity",
+    "bucket": "comptiasecurity",
+    "iosPackageName": "com.abc.comptiasecurityplus",
+    "androidPackageName": "com.simple.comptiasecurityplus",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.simple.comptiasecurityplus",
+    "linkIos": "https://apps.apple.com/us/app/comptia-security-exam-prep/id1501784033"
+  },
+  {
+    "appKey": "naplex",
+    "bucket": "naplex",
+    "iosPackageName": "com.abc.naplex",
+    "androidPackageName": "com.sima.naplex",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.naplex",
+    "linkIos": "https://apps.apple.com/us/app/naplex-practice-questions-2022/id1635945161"
+  },
+  {
+    "appKey": "hvac",
+    "bucket": "hvac",
+    "iosPackageName": "com.abc.hvac",
+    "androidPackageName": "com.sima.hvac",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.hvac",
+    "linkIos": "https://apps.apple.com/us/app/hvac-exam-prep-2020/id1528925311"
+  },
+  {
+    "appKey": "parapro",
+    "bucket": "parapro",
+    "iosPackageName": "com.abc.parapro",
+    "androidPackageName": "com.sima.parapro",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.parapro",
+    "linkIos": null
+  },
+  {
+    "appKey": "journeymanelectrician",
+    "bucket": "journeymanelectrician",
+    "iosPackageName": "com.abc.journeymanelectriciantest",
+    "androidPackageName": "com.sima.journeymanelectrician",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.journeymanelectrician",
+    "linkIos": "https://apps.apple.com/us/app/electrician-test-prep/id6479842245"
+  },
+  {
+    "appKey": "wonderlic",
+    "bucket": "wonderlic",
+    "iosPackageName": "com.abc.wonderlic",
+    "androidPackageName": "com.sima.wonderlic",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.wonderlic",
+    "linkIos": "https://apps.apple.com/us/app/wonderlic/id1610963082"
+  },
+  {
+    "appKey": "cpa",
+    "bucket": "cpa",
+    "iosPackageName": "com.abc.cpa",
+    "androidPackageName": "com.sima.cpa",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.cpa",
+    "linkIos": "https://apps.apple.com/us/app/cpa-practice-test-2022/id1642256483"
+  },
+  {
+    "appKey": "nate",
+    "bucket": "nate",
+    "iosPackageName": "com.abc.nate",
+    "androidPackageName": "com.sima.nate",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.nate",
+    "linkIos": "https://apps.apple.com/us/app/nate-practice-questions-2020/id1531465669"
+  },
+  {
+    "appKey": "cna",
+    "bucket": "cna",
+    "iosPackageName": "com.abc.cna",
+    "androidPackageName": "com.sima.cna",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.cna",
+    "linkIos": "https://apps.apple.com/us/app/id1502053307"
+  },
+  {
+    "appKey": "comptiaitf",
+    "bucket": "comptiaitf",
+    "iosPackageName": "com.abc.comptiaitf",
+    "androidPackageName": "com.sima.comptiaitf",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.comptiaitf",
+    "linkIos": "https://apps.apple.com/us/app/comptia-itf-practice-test/id6472702499"
+  },
+  {
+    "appKey": "cfalevel2",
+    "bucket": "cfalevel2",
+    "iosPackageName": null,
+    "androidPackageName": "com.sima.cfalevel2",
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "drivingtheory",
+    "bucket": "theory2",
+    "iosPackageName": "com.abc.drivingtheoryuk",
+    "androidPackageName": "com.sima.drivingtheoryuk",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.drivingtheoryuk",
+    "linkIos": "https://apps.apple.com/us/app/driving-theory-uk-test-prep/id1502051001"
+  },
+  {
+    "appKey": "part107",
+    "bucket": "part107",
+    "iosPackageName": "com.abc.part",
+    "androidPackageName": "com.sima.part",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.part",
+    "linkIos": "https://apps.apple.com/us/app/faa-part-107-practice-test/id1636316022"
+  },
+  {
+    "appKey": "ceh",
+    "bucket": "ceh",
+    "iosPackageName": "com.abc.ceh",
+    "androidPackageName": "com.sima.ceh",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.ceh",
+    "linkIos": "http://itunes.apple.com/us/app/id1527700505"
+  },
+  {
+    "appKey": "codedelaroutephap",
+    "bucket": "codedelaroutephap",
+    "iosPackageName": "com.abc.codedelaroute",
+    "androidPackageName": null,
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "maf",
+    "bucket": "maf",
+    "iosPackageName": "com.abc.maf",
+    "androidPackageName": "com.sima.az900",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.az900",
+    "linkIos": null
+  },
+  {
+    "appKey": "tabe",
+    "bucket": "tabe",
+    "iosPackageName": "com.abc.tabe",
+    "androidPackageName": "com.sima.tabe",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.tabe",
+    "linkIos": "https://apps.apple.com/us/app/id1613101619"
+  },
+  {
+    "appKey": "apsychology",
+    "bucket": "apsychology",
+    "iosPackageName": "com.abc.apsychology",
+    "androidPackageName": "com.sima.apsychology",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.apsychology",
+    "linkIos": "https://apps.apple.com/us/app/ap-psychology-exam-prep-2023/id1659618779"
+  },
+  {
+    "appKey": "pert",
+    "bucket": "pert",
+    "iosPackageName": "com.abc.pert",
+    "androidPackageName": "com.sima.pert",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.pert",
+    "linkIos": "https://apps.apple.com/us/app/pert-practice-test-2022/id1633023655"
+  },
+  {
+    "appKey": "g1",
+    "bucket": "g1",
+    "iosPackageName": "com.abc.g1test",
+    "androidPackageName": "org.sima.g1test",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=org.sima.g1test",
+    "linkIos": "https://apps.apple.com/us/app/ontario-g1-practice-test-2025/id1502051708"
+  },
+  {
+    "appKey": "comptialinux",
+    "bucket": "comptialinux",
+    "iosPackageName": null,
+    "androidPackageName": "com.sima.comptialinux",
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "mbe",
+    "bucket": "mbe",
+    "iosPackageName": "com.abc.mbe",
+    "androidPackageName": "com.sima.mbe",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.mbe",
+    "linkIos": null
+  },
+  {
+    "appKey": "data_sign",
+    "bucket": "data_sign",
+    "iosPackageName": null,
+    "androidPackageName": null,
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "servsafe",
+    "bucket": "servsafe",
+    "iosPackageName": "com.abc.servsafee",
+    "androidPackageName": "com.sima.servsafee",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.servsafee",
+    "linkIos": "https://apps.apple.com/us/app/servsafe-test-prep/id1528924898"
+  },
+  {
+    "appKey": "canadiancitizenship",
+    "bucket": "canadiancitizenship",
+    "iosPackageName": null,
+    "androidPackageName": "com.sima.canadiancitizenship",
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "fsc",
+    "bucket": "fsc",
+    "iosPackageName": "com.abc.fsc",
+    "androidPackageName": "com.sima.fsc",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.fsc",
+    "linkIos": "https://apps.apple.com/us/app/fsc-practice-test-2022/id1636317508"
+  },
+  {
+    "appKey": "phr",
+    "bucket": "phr",
+    "iosPackageName": "com.abc.phrtest",
+    "androidPackageName": "com.sima.phr",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.phr",
+    "linkIos": "https://apps.apple.com/us/app/phr-practice-test-2020/id1502054713"
+  },
+  {
+    "appKey": "cdl",
+    "bucket": "cdl",
+    "iosPackageName": "com.abc.cdltest",
+    "androidPackageName": "com.sima.cdl",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.cdl",
+    "linkIos": "https://apps.apple.com/vn/app/cdl-prep-2024-by-abc/id1469003902"
+  },
+  {
+    "appKey": "sie",
+    "bucket": "sie",
+    "iosPackageName": "com.abc.sie",
+    "androidPackageName": "com.sima.sie",
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "nclexrn",
+    "bucket": "nclexrn",
+    "iosPackageName": "com.abc.nclexrntest",
+    "androidPackageName": "com.sima.nclexrntest",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.nclexrntest",
+    "linkIos": "https://apps.apple.com/us/app/nclex-rn-practice-test-2020/id1502054223"
+  },
+  {
+    "appKey": "comptia",
+    "bucket": "comptia",
+    "iosPackageName": null,
+    "androidPackageName": null,
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "hiset",
+    "bucket": "hiset",
+    "iosPackageName": "com.abc.hisettest",
+    "androidPackageName": "com.sima.hisettest",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.hisettest",
+    "linkIos": "https://apps.apple.com/us/app/hiset-practice-test-2022/id1633022007"
+  },
+  {
+    "appKey": "accuplacer",
+    "bucket": "accuplacer",
+    "iosPackageName": "com.abc.accuplacertest",
+    "androidPackageName": "com.sima.accuplacertest",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.accuplacertest",
+    "linkIos": "http://itunes.apple.com/us/app/id1502050400"
+  },
+  {
+    "appKey": "chspe",
+    "bucket": "chspe",
+    "iosPackageName": "com.abc.chspe",
+    "androidPackageName": "com.sima.chspe",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.chspe",
+    "linkIos": "https://passemall.com/chspe-practice-test/"
+  },
+  {
+    "appKey": "awscerifiedsysopsadministrator",
+    "bucket": "awscerifiedsysopsadministrator",
+    "iosPackageName": null,
+    "androidPackageName": "com.sima.awscerifiedsysopsadministrator",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.awscerifiedsysopsadministrator",
+    "linkIos": null
+  },
+  {
+    "appKey": "mblex",
+    "bucket": "mblex",
+    "iosPackageName": "com.abc.mblextest",
+    "androidPackageName": "com.sima.mblextest",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.mblextest",
+    "linkIos": "https://apps.apple.com/us/app/mblex-practice-test-2020/id1502052095"
+  },
+  {
+    "appKey": "awscp",
+    "bucket": "awscp",
+    "iosPackageName": "com.abc.awscp",
+    "androidPackageName": "com.sima.clfc01",
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "cissp",
+    "bucket": "cissp",
+    "iosPackageName": "com.abc.cissptest",
+    "androidPackageName": "com.sima.cissptest",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.cissptest",
+    "linkIos": "http://itunes.apple.com/us/app/id1501784815"
+  },
+  {
+    "appKey": "cisa",
+    "bucket": "cisa",
+    "iosPackageName": null,
+    "androidPackageName": "com.sima.cisa",
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "mcat",
+    "bucket": "mcat",
+    "iosPackageName": "com.trangnguyen.mcat",
+    "androidPackageName": "com.sima.mcat",
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "tsi",
+    "bucket": "tsi",
+    "iosPackageName": "com.abc.tsi",
+    "androidPackageName": "com.sima.tsi",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.tsi",
+    "linkIos": "https://apps.apple.com/us/app/id1613101962"
+  },
+  {
+    "appKey": "ccsp",
+    "bucket": "ccsp",
+    "iosPackageName": "com.abc.ccsp",
+    "androidPackageName": "com.sima.ccsp",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.ccsp",
+    "linkIos": null
+  },
+  {
+    "appKey": "vtne",
+    "bucket": "vtne",
+    "iosPackageName": "com.abc.vtne",
+    "androidPackageName": "com.sima.vtne",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.vtne",
+    "linkIos": "https://apps.apple.com/us/app/vtne-practice-test-2022/id1634535866"
+  },
+  {
+    "appKey": "hesia2",
+    "bucket": "hesia2",
+    "iosPackageName": "com.abc.hesia2test",
+    "androidPackageName": "com.sima.hesia2test",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.hesia2test",
+    "linkIos": "http://itunes.apple.com/us/app/id1502054000"
+  },
+  {
+    "appKey": "pl300",
+    "bucket": "pl300",
+    "iosPackageName": "com.abc.pl300",
+    "androidPackageName": "com.sima.pl300",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.pl300",
+    "linkIos": "https://apps.apple.com/us/app/power-bi-pl-300-practice-test/id6473520753"
+  },
+  {
+    "appKey": "",
+    "bucket": "easyprep",
+    "iosPackageName": null,
+    "androidPackageName": null,
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "aswb",
+    "bucket": "aswb",
+    "iosPackageName": null,
+    "androidPackageName": "com.sima.aswb",
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "comptianetwork",
+    "bucket": "comptianetwork",
+    "iosPackageName": "com.abc.comptianetworkplus",
+    "androidPackageName": "com.simple.comptianetworkplus",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.simple.comptianetworkplus",
+    "linkIos": "https://apps.apple.com/us/app/comptia-network-exam-training/id1501783324"
+  },
+  {
+    "appKey": "nasmcpt",
+    "bucket": "nasmcpt",
+    "iosPackageName": "com.abc.nasmcpt",
+    "androidPackageName": "com.sima.nasmcpt",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.nasmcpt",
+    "linkIos": null
+  },
+  {
+    "appKey": "asetseries",
+    "bucket": "asetseries",
+    "iosPackageName": "com.sima.asetseries",
+    "androidPackageName": "com.sima.asetseries",
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "permit",
+    "bucket": "permit",
+    "iosPackageName": null,
+    "androidPackageName": "com.sima.permit",
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "appTest",
+    "bucket": "appTest",
+    "iosPackageName": null,
+    "androidPackageName": null,
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "dkt",
+    "bucket": "dkt",
+    "iosPackageName": "com.abc.nswdkt",
+    "androidPackageName": "com.sima.nswdkt",
+    "linkAndroid": null,
+    "linkIos": "http://itunes.apple.com/us/app/id1502054671"
+  },
+  {
+    "appKey": "asvab",
+    "bucket": "asvab",
+    "iosPackageName": "com.abc.asvabtest",
+    "androidPackageName": "com.sima.asvab",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.asvab&pli=1",
+    "linkIos": "https://apps.apple.com/us/app/id1469379973"
+  },
+  {
+    "appKey": "cosmetology",
+    "bucket": "cosmetology",
+    "iosPackageName": null,
+    "androidPackageName": "com.sima.cosmetology",
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "pccn",
+    "bucket": "pccn",
+    "iosPackageName": "com.abc.pccn",
+    "androidPackageName": "com.sima.pccn",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.pccn",
+    "linkIos": null
+  },
+  {
+    "appKey": "gre",
+    "bucket": "gre",
+    "iosPackageName": "com.abc.gretest",
+    "androidPackageName": "com.sima.gretest",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.gretest",
+    "linkIos": "https://apps.apple.com/us/app/gre-practice-test/id1610962898"
+  },
+  {
+    "appKey": "ccat",
+    "bucket": "ccat",
+    "iosPackageName": "com.abc.ccat",
+    "androidPackageName": "com.sima.ccat",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.ccat",
+    "linkIos": "https://apps.apple.com/us/app/ccat-practice-test-2022/id1642258742"
+  },
+  {
+    "appKey": "cbest",
+    "bucket": "cbest",
+    "iosPackageName": "com.abc.cbest",
+    "androidPackageName": "com.sima.cbest",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.cbest",
+    "linkIos": "https://apps.apple.com/us/app/cbest-practice-test-2022/id1633022479"
+  },
+  {
+    "appKey": "ged",
+    "bucket": "ged",
+    "iosPackageName": "com.abc.gedtest",
+    "androidPackageName": "com.sima.ged",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.ged",
+    "linkIos": "https://apps.apple.com/us/app/id1501289997"
+  },
+  {
+    "appKey": "comptiacysa",
+    "bucket": "comptiacysa",
+    "iosPackageName": "com.abc.comptiacysa",
+    "androidPackageName": "com.sima.comptiacysa",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.comptiacysa",
+    "linkIos": "https://apps.apple.com/us/app/comptia-cysa-practice-test/id6473518054"
+  },
+  {
+    "appKey": "awscertifieddeveloper",
+    "bucket": "awscertifieddeveloper",
+    "iosPackageName": null,
+    "androidPackageName": "com.sima.awscertifieddeveloper",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.awscertifieddeveloper",
+    "linkIos": null
+  },
+  {
+    "appKey": "realestate",
+    "bucket": "realestate",
+    "iosPackageName": "com.abc.realestatelicense",
+    "androidPackageName": "com.sima.realestatelicense",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.realestatelicense",
+    "linkIos": "https://apps.apple.com/us/app/id1502054945"
+  },
+  {
+    "appKey": "epa608",
+    "bucket": "epa608",
+    "iosPackageName": "com.abc.epa",
+    "androidPackageName": "com.sima.epa",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.epa",
+    "linkIos": "https://apps.apple.com/us/app/epa-608-hvac-exam-prep/id1528925410"
+  },
+  {
+    "appKey": "usmle",
+    "bucket": "usmle",
+    "iosPackageName": "com.trangnguyen.usmle",
+    "androidPackageName": "com.sima.usmle",
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "comptiaproject",
+    "bucket": "comptiaproject",
+    "iosPackageName": null,
+    "androidPackageName": "com.sima.comptiaproject",
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "tasc",
+    "bucket": "tasc",
+    "iosPackageName": "com.abc.tasc",
+    "androidPackageName": "com.sima.tasc",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.tasc",
+    "linkIos": "https://apps.apple.com/us/app/id1613101685"
+  },
+  {
+    "appKey": "apush",
+    "bucket": "apush",
+    "iosPackageName": "com.abc.apush",
+    "androidPackageName": "com.sima.apush",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.apush",
+    "linkIos": "https://apps.apple.com/us/app/ap-u-s-history-exam-prep-2023/id1659619201"
+  },
+  {
+    "appKey": "hspt",
+    "bucket": "hspt",
+    "iosPackageName": "com.abc.hspt",
+    "androidPackageName": "com.sima.hspt",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.hspt",
+    "linkIos": "https://apps.apple.com/us/app/hspt-practice-test-2022/id1634455056"
+  },
+  {
+    "appKey": "dmv",
+    "bucket": "dmv",
+    "iosPackageName": "com.abc.dmvtest",
+    "androidPackageName": "com.sima.dmv",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.dmv",
+    "linkIos": null
+  },
+  {
+    "appKey": "nmls",
+    "bucket": "nmls",
+    "iosPackageName": "com.abc.nmls",
+    "androidPackageName": "com.sima.nmls",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.nmls",
+    "linkIos": null
+  },
+  {
+    "appKey": "data_faq",
+    "bucket": "data_faq",
+    "iosPackageName": null,
+    "androidPackageName": null,
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "emtb",
+    "bucket": "emtb",
+    "iosPackageName": "com.abc.emtbtest",
+    "androidPackageName": "com.sima.emtb",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.emtb",
+    "linkIos": "https://apps.apple.com/us/app/id1502053535"
+  },
+  {
+    "appKey": "capm",
+    "bucket": "capm",
+    "iosPackageName": "com.abc.capm",
+    "androidPackageName": "com.sima.capm",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.capm",
+    "linkIos": "https://apps.apple.com/us/app/capm-practice-test-2022/id1636319345"
+  },
+  {
+    "appKey": "hamradiotechnician",
+    "bucket": "hamradiotechnician",
+    "iosPackageName": null,
+    "androidPackageName": "com.sima.hamradio",
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "cfa",
+    "bucket": "cfa",
+    "iosPackageName": "com.abc.cfa",
+    "androidPackageName": "com.sima.cfa",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.cfa",
+    "linkIos": "http://itunes.apple.com/us/app/id1528921673"
+  },
+  {
+    "appKey": "ccna",
+    "bucket": "ccna",
+    "iosPackageName": "com.abc.ccna",
+    "androidPackageName": "com.sima.ccna",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.ccna",
+    "linkIos": "https://apps.apple.com/us/app/ccna-practice-test/id1583152765"
+  },
+  {
+    "appKey": "series7",
+    "bucket": "series7",
+    "iosPackageName": "com.abc.series7",
+    "androidPackageName": "com.sima.series7",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.series7",
+    "linkIos": null
+  },
+  {
+    "appKey": "nclexpn",
+    "bucket": "nclexpn",
+    "iosPackageName": "com.abc.nclexpntest",
+    "androidPackageName": "com.sima.nclexpntest",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.nclexpntest",
+    "linkIos": "https://apps.apple.com/us/app/nclex-pn-practice-test-2020/id1502054101"
+  },
+  {
+    "appKey": "dat",
+    "bucket": "dat",
+    "iosPackageName": "com.abc.dat",
+    "androidPackageName": "com.sima.dat",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.dat",
+    "linkIos": null
+  },
+  {
+    "appKey": "phlebotomy",
+    "bucket": "phlebotomy",
+    "iosPackageName": "com.abc.phlebotomy",
+    "androidPackageName": "com.sima.phlebotomy",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.phlebotomy",
+    "linkIos": "https://apps.apple.com/us/app/phlebotomy-practice-test-2022/id1633022711"
+  },
+  {
+    "appKey": "teas",
+    "bucket": "teas",
+    "iosPackageName": "com.abc.teastest",
+    "androidPackageName": "com.sima.teas",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.teas",
+    "linkIos": "https://apps.apple.com/us/app/id1488057201"
+  },
+  {
+    "appKey": "cpce",
+    "bucket": "cpce",
+    "iosPackageName": "com.abc.cpce",
+    "androidPackageName": "com.sima.cpce",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.cpce",
+    "linkIos": null
+  },
+  {
+    "appKey": "australiancitizenship",
+    "bucket": "australiancitizenship",
+    "iosPackageName": null,
+    "androidPackageName": "com.sima.australiancitizenship",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.australiancitizenship",
+    "linkIos": null
+  },
+  {
+    "appKey": "awscertifiedsolutionsarchitect",
+    "bucket": "awscertifiedsolutionsarchitect",
+    "iosPackageName": "com.abc.aws",
+    "androidPackageName": "com.sima.awscss",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.awscss",
+    "linkIos": "https://itunes.apple.com/us/app/id1531456068"
+  },
+  {
+    "appKey": "ase",
+    "bucket": "ase",
+    "iosPackageName": "com.abc.ase",
+    "androidPackageName": "com.sima.ase",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.ase",
+    "linkIos": "https://apps.apple.com/us/app/ase-practice-test-2022/id1642256443"
+  },
+  {
+    "appKey": "ptce",
+    "bucket": "ptce",
+    "iosPackageName": "com.abc.ptce",
+    "androidPackageName": "com.sima.ptce",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.ptce",
+    "linkIos": "https://apps.apple.com/us/app/ptcb-practice-test-2020/id1501786113"
+  },
+  {
+    "appKey": "pmp",
+    "bucket": "pmp",
+    "iosPackageName": "com.abc.pmptest",
+    "androidPackageName": "com.sima.pmp",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.pmp",
+    "linkIos": "https://apps.apple.com/us/app/pmp-practice-tests-2025-pmi/id1502054904"
+  },
+  {
+    "appKey": "cast",
+    "bucket": "cast",
+    "iosPackageName": "com.abc.cast",
+    "androidPackageName": "com.sima.cast",
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "motocycle",
+    "bucket": "motocycle",
+    "iosPackageName": "com.abc.motocycle",
+    "androidPackageName": null,
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "fsot",
+    "bucket": "fsot",
+    "iosPackageName": "com.abc.fsot",
+    "androidPackageName": "com.sima.fsot",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.fsot",
+    "linkIos": "https://apps.apple.com/us/app/fsot-practice-test-2024/id1659616618"
+  },
+  {
+    "appKey": "nce",
+    "bucket": "nce",
+    "iosPackageName": "com.abc.nce",
+    "androidPackageName": "com.sima.nce",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.nce",
+    "linkIos": "https://apps.apple.com/us/app/nce-practice-exam-2022/id1635945019"
+  },
+  {
+    "appKey": "apptest2",
+    "bucket": "apptest2",
+    "iosPackageName": null,
+    "androidPackageName": null,
+    "linkAndroid": null,
+    "linkIos": null
+  },
+  {
+    "appKey": "comptiaa",
+    "bucket": "comptiaa",
+    "iosPackageName": "com.abc.comptiaaplus",
+    "androidPackageName": "com.simple.comptiaaplus",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.simple.comptiaaplus",
+    "linkIos": "https://apps.apple.com/us/app/comptia-a-practice-test-2025/id1501304886"
+  },
+  {
+    "appKey": "paramedic",
+    "bucket": "paramedic",
+    "iosPackageName": "com.abc.paramedic",
+    "androidPackageName": "com.sima.paramedic",
+    "linkAndroid": "https://play.google.com/store/apps/details?id=com.sima.paramedic",
+    "linkIos": "https://apps.apple.com/us/app/nremt-paramedic-test-prep-2024/id6473520950"
+  }
+]
