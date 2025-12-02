@@ -42,7 +42,7 @@ const RefundAssurancePolicy = () => {
               You must provide proof of a failed result from your official exam within 7 days of receiving the result.
             </li>
             <li className="text-gray-700">
-              The exam must be taken within 30 days of activating your PRO subscription.
+              The exam must be taken within 30 days from the end date of your most recent PRO subscription.
             </li>
             <li className="text-gray-700">
               The refund amount will be equal to your most recent PRO subscription payment. If you purchased at a discounted rate, the refunded amount will reflect that discounted total.
