@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import apps from "../data/app_config_new.json";
+const TRACK_EVENT_URL =
+  "https://api-cms-v2-dot-micro-enigma-235001.appspot.com/api/tiktok/tracking";
 
 interface AppPageProps {
   linkIos: string;
@@ -21,6 +23,22 @@ export default function AppPage(props: AppPageProps) {
     }
 
     initializeRef.current = true;
+    const handleTrackEvent = async () => {
+      try {
+        await fetch(TRACK_EVENT_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            event: "app_opened",
+            bucket: bucket,
+          }),
+        });
+      } catch (error) {
+        console.error("Track event error:", error);
+      }
+    };
 
     const launchApp = () => {
       let appOpened = false;
@@ -88,6 +106,8 @@ export default function AppPage(props: AppPageProps) {
             onAppOpened();
           }
         }, 3000);
+
+        handleTrackEvent();
 
         return () => {
           clearTimeout(redirectTimeout);
